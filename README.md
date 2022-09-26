@@ -93,7 +93,7 @@ Damos click en el botón de descarga.
 
 > Ejecutamos el archivo de instalación como administrador.
 
-<img src="img/pythonDownloadEscritorio1.png" width="70%"/>
+<img src="img/pythonDownloadEscritorio1.png" width="40%"/>
 
 > Luego simplemente damos click al botón que dice Si, y se ab>rirá esta ventana de instalación de Python, donde **primero** nos aseguramos de tener marcada la casilla donde señalo la **X** roja y luego damos click en "Customize Installation".
 
