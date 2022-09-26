@@ -118,7 +118,7 @@ Damos click en el botón de descarga.
 ---
 
 ## ‎  
-## 2. Instalando Visual Studio Code
+## 2. Instalando Visual Studio Code‎ ‎ ‎ ‎ ‎ ‎<img src="img/vscode-logo-notext.png" width="5%"/>
 Despues de descaragr Python, nos dirijimos a la siguiente pagina ['https://code.visualstudio.com/']
 
 <img src="img/vscodeDownload.jpeg" width="70%"/>
@@ -128,14 +128,14 @@ Despues de descaragr Python, nos dirijimos a la siguiente pagina ['https://code.
 
 ## ‎ 
 
-## 3. Creando red de prueba en Infura
+## 3. Creando red de prueba en‎ ‎ ‎ ‎<img src="img/infura-logo-notext.png" width="20%"/>
 > very soon..
 
 ---
 
 ## ‎ 
 
-## 4. Creando el Smart Contract
+## 4. Creando el Smart Contract en Remix IDE ‎ ‎ ‎ ‎ ‎ ‎<img src="img/remix-logo-notext.png" width="5%"/>
 El contrato inteligente fue desarrollado en Remix con el lenjuage de programacion Solidity
 ### Pasos para crear el Smart Contract
 (Agregar imagenes de los pasos para crear el smart contract en REMIX IDE)
