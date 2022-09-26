@@ -51,6 +51,8 @@ Antes de comenzar con la programación nos gustaría presentar algunos conceptos
 ### ¿Cómo la tecnología blockchain puede ayudar?
 >La tecnología Blockchain ayudaria en un adecuado manejo de la información, permitirá a los usuarios hacer uso de cualquier dispositivo IoT de manera segura. También permitirá una encriptación de los datos, de esta manera asegurando la privacidad de la información que el usuario envía a la red sin la posibilidad de que alguien intercepte esta información y pueda alterarla, robarla, eliminarla o usarla de manera indebida, lo que beneficia a todos los usuarios que tienen accesos a los dispositivos IoT de la organización
 
+### ¿Qué es una Arduino y para qué sirve?
+>Arduino es una placa que tiene todos los elementos necesarios para conectar periféricos a las entradas y salidas de un microcontrolador. Es decir, es una placa impresa con los componentes necesarios para que funcione el microcontrolador y su comunicación con un ordenador a través de la comunicación serial.
 
 ---
 
@@ -134,6 +136,9 @@ Despues de descaragr Python, nos dirijimos a la siguiente pagina ['https://code.
 ## ‎ 
 
 ## 4. Creando el Smart Contract
+## ¿ Que es Remix?
+>Remix es un entorno integrado de desarrollo (IDE) basado en un navegador que integra un compilador y un entorno en tiempo de ejecución para Solidity sin los componentes orientados al servidor.
+
 El contrato inteligente fue desarrollado en Remix con el lenjuage de programacion Solidity
 ### Pasos para crear el Smart Contract
 (Agregar imagenes de los pasos para crear el smart contract en REMIX IDE)
@@ -142,6 +147,7 @@ El contrato inteligente fue desarrollado en Remix con el lenjuage de programacio
 # Comenzando con el desarrollo
 ### Codigo del smart contract
 Este es un algoritmo sencillo que simplemente se encarga de enviar un dato a la blockchain donde esta desplegado el mismo para que de esa manera, haga llegar ese dato a nuestro sistema desarrollado en python que presentaremos mas adelante. 
+
 ```python
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
@@ -156,10 +162,9 @@ contract LedIoT {
 }
 ```
 
-
 ---
 
-## Programación del backend en vscode
+## Desarrollo del sistema en vscode
 
 Aqui mostramos los pasos para crear el programa que nos va a permitir conectar Blockchain con IoT mediante el uso de un contrato inteligente desplegado en una testnet llamada RINKEBY a la cual nos conectaremos mediante Infura, una herramienta que permite la interaccion entre sistemas web3 y web2.
 
@@ -191,24 +196,19 @@ print("...")
 ```python
 print("...")
 ```
-Aqui se muestra el codigo para que la aplicacion se pueda conectar al Smart Contract (contrato inteligente)   
+Aqui se muestra el codigo para que la aplicacion se pueda conectar al Smart Contract (contrato inteligente)
+
 ```python
 contract_Address = '...'
 contract_abi = json.loads('....')
  
 contract = w3.eth.contract(address=contract_Address, abi=contract_abi)
 ```
-## ¿ Que es Remix?
->Remix es un entorno integrado de desarrollo (IDE) basado en un navegador que integra un compilador y un entorno en tiempo de ejecución para Solidity sin los componentes orientados al servidor.
 
-### Conexion  a arduino 
+### Codigo para conectar al Arduino 
 ```python
 board = Arduino("COM7")
-```
-### ¿Qué es una Arduino y para qué sirve?
->El arduino es una placa que tiene todos los elementos necesarios para conectar periféricos a las entradas y salidas de un microcontrolador. Es decir, es una placa impresa con los componentes necesarios para que funcione el microcontrolador y su comunicación con un ordenador a través de la comunicación serial.
 
-```python
 def handle_event(event):
     person_dict = json.loads(w3.toJSON(event))
     comando = person_dict["args"]
