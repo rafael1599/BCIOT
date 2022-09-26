@@ -1,6 +1,3 @@
-# BCIOT
-Testeando la funcionalidad de un contrato inteligente para controlar dispositivos IoT
-
 # IoT-Blockchain
 
 > Repositorio GitHub del proyecto [BCIOT](https://github.com/rafael1599/BCIOT).
@@ -52,56 +49,61 @@ Para comenzar vamos a descargar python (en su última versión estable), buscamo
 Damos click en el primer 
 [resultado](https://www.python.org/downloads/) que encontramos.
 
-![Python¡](pythonDownload.png)
+![Python¡](/img/pythonDownload.png)
 
 Una vez dentro de la página de descarga, generalmente ya tenemos lista la versión de sistema operativo que necesitamos, pero podemos verificar dando click en el nombre del sistema operativo que estamos usando.
 
-![Python¡](pythonDownload1.png)
+![Python¡](/img/pythonDownload1.png)
 
 En mi caso lo voy a descargar para SO Windows y se vería así.
 
-![Python¡](pythonDownloadWindows.png)
+![Python¡](/img/pythonDownloadWindows.png)
 
 > En este caso sería la versión seria la version 3.10.7
 
 
 Damos click en el botón de descarga.
-![Python¡](pythonDownloadWindowsDescargar.png)
+![Python¡](/img/pythonDownloadWindowsDescargar.png)
 
 Guardamos el archivo de instalación.
 
-![Python¡](pythonDownloadWindowsDescargar1.png)
+![Python¡](/img/pythonDownloadWindowsDescargar1.png)
 
 Guardamos en nuestro escritorio.
 
-![Python¡](pythonDownloadEscritorio.png)
+![Python¡](/img/pythonDownloadEscritorio.png)
 
 Ejecutamos el archivo de instalación como administrador.
 
-![Python¡](pythonDownloadEscritorio1.png)
+![Python¡](/img/pythonDownloadEscritorio1.png)
 
 Luego simplemente damos click al botón que dice Si.
 
 Y se te abrirá esta ventana de instalación de Python, donde **primero** nos aseguramos de tener marcada la casilla donde señalo la **X** roja y luego damos click en "Customize Installation".
 
-![Python¡](pythonInstall.png)
+![Python¡](/img/pythonInstall.png)
 
 
 En la siguiente vista lo dejamos tal cual como esta y damos click en "Next".
 
-![Python¡](pythonInstall1.png)
+![Python¡](/img/pythonInstall1.png)
 
-Luego nos aseguramos que queden las opciones marcadas como en esta imagen asi como tambien el lugar de instalacion.
+Luego nos aseguramos que queden las opciones marcadas como en esta imagen así como también el lugar de instalación.
 
-![Python¡](pythonInstall2.png)
+![Python¡](/img/pythonInstall2.png)
 
+Y por último vamos a dar click en "Install".
+![Python¡](/img/pythonInstall3.png)
+
+Al final simplemente seleccionas el botón que dice "close" y listo terminamos de instalar Python!.
+![Python¡](/img/pythonInstall4.png)
 
 ## 2. Instalando Visual Studio Code
 Despues de descaragr Python, nos dirijimos a la siguiente pagina ['https://code.visualstudio.com/']
 
 
 
-![Vs code¡](vscode.PNG)
+![Vs code¡](/img/vscode.PNG)
 
 ## 3. Programacion del backend
 #### **Desarrollo del programa encargado de conectar arduino con nuestro contrato inteligente alojado en RINKENBY.**
