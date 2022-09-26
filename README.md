@@ -134,64 +134,14 @@ Despues de descaragr Python, nos dirijimos a la siguiente pagina ['https://code.
 ## ‎ 
 
 ## 4. Creando el Smart Contract
-> very soon..
-
----
-
+El contrato inteligente fue desarrollado en Remix con el lenjuage de programacion Solidity
+### Pasos para crear el Smart Contract
+(Agregar imagenes de los pasos para crear el smart contract en REMIX IDE)
 ## ‎ 
 
 # Comenzando con el desarrollo
-## Programacion del backend en vscode
-
-Aqui mostramos los pasos para crear el programa que nos va a permitir conectar Blockchain con IoT mediante el uso de un contrato inteligente desplegado en una testnet llamada RINKEBY a la cual nos conectaremos mediante Infura, una herramienta que permite la interaccion entre sistemas web3 y web2.
-
-
-#### **Desarrollo del programa encargado de conectar arduino con nuestro contrato inteligente alojado en RINKENBY.**
-
-Aqui presentamos las importaciones que vamos a utilizar para que nuestro proyecto pueda funcionar...
-
-```python
-
-import json //para poder utilizar codigo json dentro de este programa
-from web3 import Web3 as w3 //Para todo lo relacionado a blockchain
-import asyncio //Para ejecutar bucles asincronos
-import warnings //Para omitir mensajes warning
-import time //Para obtener hora y fecha de el sistema
-import pyfirmata //nos permite manejar arduino
-from pyfirmata import Arduino, util
-
-```
-En esta parte, se ve el codigo para que la aplicacion se pueda conectar a Infura.
-```python
-infura_url =  '...' //dentro de las comillas se coloca el link que Infura te proporciona una vez creada tu red de testeo dentro de su pagina
-w3= w3(w3.HTTPProvider(infura_url))
-print(w3.isConnected())
-print("...")
- 
-```
-### En la parte de 
-
-```python
-infura_url =
-```
-### Se coloca el enlace que te muestra e proegrama segun la blockchain de prueba que vas a utilizar
-
-### - En esta parte se coloca un mensjae personalizado 
-
-```python
-print("...")
-```
-
-###  Aqui se muestra el codigo para que la aplicacion se pueda conectar al Smart Contract (contrato inteligente)   
-```python
-contract_Address = '...'
-contract_abi = json.loads('....')
- 
-contract = w3.eth.contract(address=contract_Address, abi=contract_abi)
-```
-### El contrato inteligente fue desarrollado en Remix con el lenjuage de programacion Solidity
-
-
+### Codigo del smart contract
+Este es un algoritmo sencillo que simplemente se encarga de enviar un dato a la blockchain donde esta desplegado el mismo para que de esa manera, haga llegar ese dato a nuestro sistema desarrollado en python que presentaremos mas adelante. 
 ```python
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
@@ -207,6 +157,47 @@ contract LedIoT {
 ```
 
 
+---
+
+## Programación del backend en vscode
+
+Aqui mostramos los pasos para crear el programa que nos va a permitir conectar Blockchain con IoT mediante el uso de un contrato inteligente desplegado en una testnet llamada RINKEBY a la cual nos conectaremos mediante Infura, una herramienta que permite la interaccion entre sistemas web3 y web2.
+
+
+#### **Desarrollo del programa encargado de conectar arduino con nuestro contrato inteligente alojado en RINKENBY.**
+
+Aqui presentamos las importaciones que vamos a utilizar para que nuestro proyecto pueda funcionar...
+
+```python
+
+import json                     //para poder utilizar codigo json dentro de este programa
+from web3 import Web3 as w3     //Para todo lo relacionado a blockchain
+import asyncio                  //Para ejecutar bucles asincronos
+import warnings                 //Para omitir mensajes warning
+import time                     //Para obtener hora y fecha de el sistema
+import pyfirmata                //nos permite manejar arduino
+from pyfirmata import Arduino, util
+
+```
+En esta parte, se ve el codigo para que la aplicacion se pueda conectar a Infura.
+```python
+infura_url =  '...'                 //dentro de las comillas se coloca el enlace que Infura te proporciona una vez creada tu red de testeo dentro de su pagina
+w3= w3(w3.HTTPProvider(infura_url))
+print(w3.isConnected())
+print("...")
+```
+### - En esta parte se coloca un mensjae personalizado 
+
+```python
+print("...")
+```
+Aqui se muestra el codigo para que la aplicacion se pueda conectar al Smart Contract (contrato inteligente)   
+```python
+contract_Address = '...'
+contract_abi = json.loads('....')
+ 
+contract = w3.eth.contract(address=contract_Address, abi=contract_abi)
+```
 ## ¿ Que es Remix?
 >Remix es un entorno integrado de desarrollo (IDE) basado en un navegador que integra un compilador y un entorno en tiempo de ejecución para Solidity sin los componentes orientados al servidor.
 
