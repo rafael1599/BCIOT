@@ -2,13 +2,8 @@
 
 > Repositorio GitHub del proyecto [BCIOT](https://github.com/rafael1599/BCIOT).
 
-**Contenido:**
-
--[ Introducción](#introduccion)
-
--[ Características](#caracteristicas)
-
--[ Descripciones](#descripciones)
+**Contenido:** [ Introducción](#introduccion) -[ Características](#caracteristicas) -[ Descripciones](#descripciones)
+>falta corregir el contenido **NO OLVIDAR**
   
 
 ## Introducción
@@ -30,31 +25,31 @@ Un pequeño preámbulo que será agregado más adelante explicando de manera gen
 Antes de comenzar con la programación nos gustaría presentar algunos conceptos necesarios para poder comprender el funcioniamento de lo que estamos desarrollando en este proyecto.
 
 ### ¿Qué es Blockchain?
-    Blockchain es un libro mayor compartido e inmutable que facilita el proceso de registro de transacciones y de seguimiento de activos en una red de negocios. Un activo puede ser tangible (una casa, un auto, dinero en efectivo, terrenos) o intangible (propiedad intelectual, patentes, derechos de autor, marcas). Prácticamente cualquier cosa de valor puede ser rastreada y comercializada en una red de blockchain, reduciendo el riesgo y los costos para todos los involucrados.
+> Blockchain es un libro mayor compartido e inmutable que facilita el proceso de registro de transacciones y de seguimiento de activos en una red de negocios. Un activo puede ser tangible (una casa, un auto, dinero en efectivo, terrenos) o intangible (propiedad intelectual, patentes, derechos de autor, marcas). Prácticamente cualquier cosa de valor puede ser rastreada y comercializada en una red de blockchain, reduciendo el riesgo y los costos para todos los involucrados.
 
 ### ¿Qué es Ethereum?
-    Ethereum es una plataforma digital que adopta la tecnología de cadena de bloques (blockchain) y expande su uso a una gran variedad de aplicaciones. Ether, su criptomoneda nativa, es la segunda más grande del mercado.
+>Ethereum es una plataforma digital que adopta la tecnología de cadena de bloques (blockchain) y expande su uso a una gran variedad de aplicaciones. Ether, su criptomoneda nativa, es la segunda más grande del mercado.
 
 ### ¿Qué es un Smart Contract?
-    Un smart contract es un tipo especial de instrucciones que es almacenada en la blockchain. Y que además tiene la capacidad de autoejecutar acciones de acuerdo a una serie de parámetros ya programados. Todo esto de forma inmutable, transparente y completamente segura.
+>Un smart contract es un tipo especial de instrucciones que es almacenada en la blockchain. Y que además tiene la capacidad de autoejecutar acciones de acuerdo a una serie de parámetros ya programados. Todo esto de forma inmutable, transparente y completamente segura.
 
 ### ¿Qué es Infura?
-    Infura es una plataforma para conectar con redes Blockchain y permite a los desarrolladores construir Smart Contracts utilizando un API JSON-RPC para interactuar con múltiples blockchains.
+>Infura es una plataforma para conectar con redes Blockchain y permite a los desarrolladores construir Smart Contracts utilizando un API JSON-RPC para interactuar con múltiples blockchains.
 
 ### ¿Qué es una red de pruebas?
-    Una red testnet es una herramienta imprescindible en el desarrollo de criptomonedas como Bitcoin. Gracias a este tipo de redes los equipos de desarrollo pueden hacer pruebas sin afectar el funcionamiento de la red original.
+>Una red testnet es una herramienta imprescindible en el desarrollo de criptomonedas como Bitcoin. Gracias a este tipo de redes los equipos de desarrollo pueden hacer pruebas sin afectar el funcionamiento de la red original.
 
 ### ¿Qué es RINKEBY?
-    Rinkeby. Una red de prueba con prueba de autoridad para los que ejecutan clientes de Geth.
+>Rinkeby. Una red de prueba con prueba de autoridad para los que ejecutan clientes de Geth.
 
 ### ¿Qué es IoT?
-    El término IoT, o Internet de las cosas, se refiere a la red colectiva de dispositivos conectados y a la tecnología que facilita la comunicación entre los dispositivos y la nube, así como entre los propios dispositivos
+>El término IoT, o Internet de las cosas, se refiere a la red colectiva de dispositivos conectados y a la tecnología que facilita la comunicación entre los dispositivos y la nube, así como entre los propios dispositivos
 
 ### ¿Qué vulnerabilidades tiene el IoT?
-    La seguridad de IoT siguen siendo un desafío importante esto en gran parte, debido al crecimiento en gran escala de la adopción de los dispositivos IoT y su crecimiento exponencial que ha estado aconteciendo hoy en día. Mientras las empresas que desarrollan la tecnología IoT buscan nuevas formas de proteger la infraestructura donde se guardan y manejan los datos. Por el otro lado, los atacantes también idean nuevas formas de poder infiltrarse o vulnerar la seguridad, de afectar negativamente la confidencialidad de la información de los dispositivos, de hacerse con el control de acceso a los dispositivos o sensores, así como también afectando la integridad de la información que estos envían o reciben, y por último la disponibilidad de los mismos.
+>La seguridad de IoT siguen siendo un desafío importante esto en gran parte, debido al crecimiento en gran escala de la adopción de los dispositivos IoT y su crecimiento exponencial que ha estado aconteciendo hoy en día. Mientras las empresas que desarrollan la tecnología IoT buscan nuevas formas de proteger la infraestructura donde se guardan y manejan los datos. Por el otro lado, los atacantes también idean nuevas formas de poder infiltrarse o vulnerar la seguridad, de afectar negativamente la confidencialidad de la información de los dispositivos, de hacerse con el control de acceso a los dispositivos o sensores, así como también afectando la integridad de la información que estos envían o reciben, y por último la disponibilidad de los mismos.
 
 ### ¿Cómo la tecnología blockchain puede ayudar?
-    La tecnología Blockchain ayudaria en un adecuado manejo de la información, permitirá a los usuarios hacer uso de cualquier dispositivo IoT de manera segura. También permitirá una encriptación de los datos, de esta manera asegurando la privacidad de la información que el usuario envía a la red sin la posibilidad de que alguien intercepte esta información y pueda alterarla, robarla, eliminarla o usarla de manera indebida, lo que beneficia a todos los usuarios que tienen accesos a los dispositivos IoT de la organización
+>La tecnología Blockchain ayudaria en un adecuado manejo de la información, permitirá a los usuarios hacer uso de cualquier dispositivo IoT de manera segura. También permitirá una encriptación de los datos, de esta manera asegurando la privacidad de la información que el usuario envía a la red sin la posibilidad de que alguien intercepte esta información y pueda alterarla, robarla, eliminarla o usarla de manera indebida, lo que beneficia a todos los usuarios que tienen accesos a los dispositivos IoT de la organización
 
 
 ---
@@ -121,7 +116,7 @@ Al final simplemente seleccionas el botón que dice "close" y listo terminamos d
 
 ---
 
-## ‎ 
+## ‎  
 ## 2. Instalando Visual Studio Code
 Despues de descaragr Python, nos dirijimos a la siguiente pagina ['https://code.visualstudio.com/']
 
