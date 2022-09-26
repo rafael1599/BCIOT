@@ -11,7 +11,7 @@
   
 
 # Introducción
-Un pequeño preámbulo que será agregado más adelante explicando de manera general nuestro proyecto
+Un pequeño preámbulo que será agregado más adelante explicando de manera general nuestro proyecto.
 
 # Caracteristicas
 ¿Qué es lo que hace? aún en desarrollo..
