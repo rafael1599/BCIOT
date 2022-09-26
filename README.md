@@ -141,7 +141,7 @@ El contrato inteligente fue desarrollado en Remix con el lenjuage de programacio
 (Agregar imagenes de los pasos para crear el smart contract en REMIX IDE)
 ## ‎ 
 
-# Comenzando con el desarrollo
+## Comenzando con el desarrollo
 ### Codigo del smart contract
 Este es un algoritmo sencillo que simplemente se encarga de enviar un dato a la blockchain donde esta desplegado el mismo para que de esa manera, haga llegar ese dato a nuestro sistema desarrollado en python que presentaremos mas adelante. 
 
