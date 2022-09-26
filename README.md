@@ -20,15 +20,19 @@ Un pequeño preámbulo que será agregado más adelante explicando de manera gen
 Antes de comenzar con la programación nos gustaría presentar algunos conceptos necesarios para poder comprender el funcioniamento de lo que estamos desarrollando en este proyecto.
 
 ## ¿Qué es Blockchain?
+    Blockchain es un libro mayor compartido e inmutable que facilita el proceso de registro de transacciones y de seguimiento de activos en una red de negocios. Un activo puede ser tangible (una casa, un auto, dinero en efectivo, terrenos) o intangible (propiedad intelectual, patentes, derechos de autor, marcas). Prácticamente cualquier cosa de valor puede ser rastreada y comercializada en una red de blockchain, reduciendo el riesgo y los costos para todos los involucrados.
 
 ## ¿Qué es Ethereum?
+    Ethereum es una plataforma digital que adopta la tecnología de cadena de bloques (blockchain) y expande su uso a una gran variedad de aplicaciones. Ether, su criptomoneda nativa, es la segunda más grande del mercado.
 
 ## ¿Qué es un Smart Contract?
+    Un smart contract es un tipo especial de instrucciones que es almacenada en la blockchain. Y que además tiene la capacidad de autoejecutar acciones de acuerdo a una serie de parámetros ya programados. Todo esto de forma inmutable, transparente y completamente segura.
 
 ## ¿Qué es Infura?
     Infura es una plataforma para conectar con redes Blockchain y permite a los desarrolladores construir Smart Contracts utilizando un API JSON-RPC para interactuar con múltiples blockchains.
 
 ## ¿Qué es una red de pruebas?
+    Una red testnet es una herramienta imprescindible en el desarrollo de criptomonedas como Bitcoin. Gracias a este tipo de redes los equipos de desarrollo pueden hacer pruebas sin afectar el funcionamiento de la red original.
 
 ## ¿Qué es RINKENBY?
 
@@ -38,7 +42,7 @@ Antes de comenzar con la programación nos gustaría presentar algunos conceptos
 
 ## ¿Cómo la tecnología blockchain puede ayudar?
 
-#
+# 
 
 # Instalación de herramientas de desarrollo
 A continuación explicamos el paso a paso del desarrollo completo de esta pequeña demostración.
@@ -54,60 +58,60 @@ Damos click en el primer
 
 Una vez dentro de la página de descarga, generalmente ya tenemos lista la versión de sistema operativo que necesitamos, pero podemos verificar dando click en el nombre del sistema operativo que estamos usando.
 
-![Python¡](img/pythonDownload1.png)
+![<img width="70%"/>](img/pythonDownload1.png)
 
 En mi caso lo voy a descargar para SO Windows y se vería así.
 
-![Python¡](img/pythonDownloadWindows.png)
+![<img width="70%"/>](img/pythonDownloadWindows.png)
 
 > En este caso sería la versión seria la version 3.10.7
 
 
 Damos click en el botón de descarga.
 
-![Python¡](img/pythonDownloadWindowsDescargar.png)
+![<img width="70%"/>](img/pythonDownloadWindowsDescargar.png)
 
 Guardamos el archivo de instalación.
 
-![Python¡](img/pythonDownloadWindowsDescargar1.png)
+![<img width="70%"/>](img/pythonDownloadWindowsDescargar1.png)
 
 Guardamos en nuestro escritorio.
 
-![Python¡](img/pythonDownloadEscritorio.png)
+![<img width="70%"/>](img/pythonDownloadEscritorio.png)
 
 Ejecutamos el archivo de instalación como administrador.
 
-![Python¡](img/pythonDownloadEscritorio1.png)
+![<img width="70%"/>](img/pythonDownloadEscritorio1.png)
 
 Luego simplemente damos click al botón que dice Si.
 
 Y se te abrirá esta ventana de instalación de Python, donde **primero** nos aseguramos de tener marcada la casilla donde señalo la **X** roja y luego damos click en "Customize Installation".
 
-![Python¡](img/pythonInstall.png)
+![<img width="70%"/>](img/pythonInstall.png)
 
 
 En la siguiente vista lo dejamos tal cual como esta y damos click en "Next".
 
-![Python¡](img/pythonInstall1.png)
+![<img width="70%"/>](img/pythonInstall1.png)
 
 Luego nos aseguramos que queden las opciones marcadas como en esta imagen así como también el lugar de instalación.
 
-![Python¡](img/pythonInstall2.png)
+![<img width="70%"/>](img/pythonInstall2.png)
 
 Y por último vamos a dar click en "Install".
 
-![Python¡](img/pythonInstall3.png)
+![<img width="70%"/>](img/pythonInstall3.png)
 
 Al final simplemente seleccionas el botón que dice "close" y listo terminamos de instalar Python!.
 
-![Python¡](img/pythonInstall4.png)
+![<img width="70%"/>](img/pythonInstall4.png)
 
 ## 2. Instalando Visual Studio Code
 Despues de descaragr Python, nos dirijimos a la siguiente pagina ['https://code.visualstudio.com/']
 
 
 
-![Vs code¡](img/vscodeDownload.PNG)
+![<img width="70%"/>](img/vscodeDownload.jpeg)
 
 ## 3. Programacion del backend
 #### **Desarrollo del programa encargado de conectar arduino con nuestro contrato inteligente alojado en RINKENBY.**
