@@ -30,10 +30,10 @@ Antes de comenzar con la programación nos gustaría presentar algunos conceptos
 ### ¿Qué es Ethereum?
 >Ethereum es una plataforma digital que adopta la tecnología de cadena de bloques (blockchain) y expande su uso a una gran variedad de aplicaciones. Ether, su criptomoneda nativa, es la segunda más grande del mercado.
 
-### ¿Qué es un Smart Contract?
+### ¿Qué es un Smart Contract o contrato inteligente?
 >Un smart contract es un tipo especial de instrucciones que es almacenada en la blockchain. Y que además tiene la capacidad de autoejecutar acciones de acuerdo a una serie de parámetros ya programados. Todo esto de forma inmutable, transparente y completamente segura.
 
-### ¿ Que es Remix?
+### ¿Qué es Remix?
 >Remix es un entorno integrado de desarrollo (IDE) basado en un navegador que integra un compilador y un entorno en tiempo de ejecución para Solidity sin los componentes orientados al servidor.
 
 ### ¿Qué es Infura?
@@ -49,10 +49,10 @@ Antes de comenzar con la programación nos gustaría presentar algunos conceptos
 >El término IoT, o Internet de las cosas, se refiere a la red colectiva de dispositivos conectados y a la tecnología que facilita la comunicación entre los dispositivos y la nube, así como entre los propios dispositivos
 
 ### ¿Qué vulnerabilidades tiene el IoT?
->La seguridad de IoT siguen siendo un desafío importante esto en gran parte, debido al crecimiento en gran escala de la adopción de los dispositivos IoT y su crecimiento exponencial que ha estado aconteciendo hoy en día. Mientras las empresas que desarrollan la tecnología IoT buscan nuevas formas de proteger la infraestructura donde se guardan y manejan los datos. Por el otro lado, los atacantes también idean nuevas formas de poder infiltrarse o vulnerar la seguridad, de afectar negativamente la confidencialidad de la información de los dispositivos, de hacerse con el control de acceso a los dispositivos o sensores, así como también afectando la integridad de la información que estos envían o reciben, y por último la disponibilidad de los mismos.
+>El Internet de las cosas o IoT por sus siglas en inglés, tiene un reto muy importante que hacer frente y este es el de la seguridad, pues los dispositivos que maneja hoy en día se encuentran vulnerables. Además hoy en día existe un crecimiento de adopción de los dispositivos IoT cada vez mayor, el riesgo de recibir ataques constantes es cada vez mayor también. Así mismo, mientras las empresas que desarrollan la tecnología IoT buscan nuevas formas de proteger la infraestructura donde se guardan y manejan los datos, del mismo modo, los atacantes también idean nuevas formas vulnerar la seguridad, acceder a información confidencial, hacerse con el control de acceso a los dispositivos o sensores y así al final, de una u otra manera, afectando la integridad de la información que estos envían o reciben, y hasta la disponibilidad de los mismos para su dueño.
 
 ### ¿Cómo la tecnología blockchain puede ayudar?
->La tecnología Blockchain ayudaria en un adecuado manejo de la información, permitirá a los usuarios hacer uso de cualquier dispositivo IoT de manera segura. También permitirá una encriptación de los datos, de esta manera asegurando la privacidad de la información que el usuario envía a la red sin la posibilidad de que alguien intercepte esta información y pueda alterarla, robarla, eliminarla o usarla de manera indebida, lo que beneficia a todos los usuarios que tienen accesos a los dispositivos IoT de la organización
+>La tecnología Blockchain ayudará dando un manejo seguro de la información, permitirá a los usuarios hacer uso de cualquier dispositivo IoT tal como antes lo hacían, pero con una capa total de seguridad. Haciendo uso de tecnologías de encriptación de los datos, de esta manera asegurando la privacidad de la información que el usuario envía a la red sin la posibilidad de que alguien intercepte esta información y pueda alterarla, robarla, eliminarla o usarla de manera indebida, lo que beneficiará a todos los usuarios que tienen accesos a los dispositivos IoT que hagan uso de esta tecnología integrada en cualquier parte del mundo.
 
 ### ¿Qué es una Arduino y para qué sirve?
 > Arduino es una placa que tiene todos los elementos necesarios para conectar periféricos a las entradas y salidas de un microcontrolador. Es decir, es una placa impresa con los componentes necesarios para que funcione el microcontrolador y su comunicación con un ordenador a través de la comunicación serial.
@@ -95,7 +95,7 @@ Damos click en el botón de descarga.
 
 <img src="img/pythonDownloadEscritorio1.png" width="40%"/>
 
-> Luego simplemente damos click al botón que dice Si, y se ab>rirá esta ventana de instalación de Python, donde **primero** nos aseguramos de tener marcada la casilla donde señalo la **X** roja y luego damos click en "Customize Installation".
+> Luego simplemente damos click al botón que dice Si, y se abrirá esta ventana de instalación de Python, donde **primero** nos aseguramos de tener marcada la casilla donde señalo la **X** roja y luego damos click en "Customize Installation".
 
 <img src="img/pythonInstall.png" width="70%"/>
 
@@ -119,7 +119,7 @@ Damos click en el botón de descarga.
 
 ## ‎  
 ## 2. Instalando Visual Studio Code‎ ‎ ‎ ‎ ‎ ‎<img src="img/vscode-logo-notext.png" width="5%"/>
-Despues de descaragr Python, nos dirijimos a la siguiente pagina ['https://code.visualstudio.com/']
+Después de descargar Python, nos dirigimos a la siguiente página web ['https://code.visualstudio.com/']
 
 <img src="img/vscodeDownload.jpeg" width="70%"/>
 
@@ -136,13 +136,13 @@ Despues de descaragr Python, nos dirijimos a la siguiente pagina ['https://code.
 ## ‎ 
 
 ## 4. Creando el Smart Contract en Remix IDE ‎ ‎ ‎ ‎ ‎ ‎<img src="img/remix-logo-notext.png" width="5%"/>
-El contrato inteligente fue desarrollado en Remix con el lenjuage de programacion Solidity
+El contrato inteligente fue desarrollado en Remix con el lenguaje de programación Solidity
 ### Pasos para crear el Smart Contract
 (Agregar imagenes de los pasos para crear el smart contract en REMIX IDE)
 ## ‎ 
 
 ### Codigo del smart contract
-Este es un algoritmo sencillo que simplemente se encarga de enviar un dato a la blockchain donde esta desplegado el mismo para que de esa manera, haga llegar ese dato a nuestro sistema desarrollado en python que presentaremos mas adelante. 
+Este es un algoritmo sencillo que simplemente se encarga de enviar un dato a la blockchain donde está desplegado el mismo para que de esa manera, haga llegar ese dato a nuestro sistema desarrollado en python que presentaremos más adelante.
 
 ```python
 // SPDX-License-Identifier: MIT
@@ -162,12 +162,12 @@ contract LedIoT {
 
 ## Desarrollo del sistema en vscode
 
-Aqui mostramos los pasos para crear el programa que nos va a permitir conectar Blockchain con IoT mediante el uso de un contrato inteligente desplegado en una testnet llamada RINKEBY a la cual nos conectaremos mediante Infura, una herramienta que permite la interaccion entre sistemas web3 y web2.
+Aquí mostramos los pasos para crear el programa que nos va a permitir conectar Blockchain con IoT mediante el uso de un contrato inteligente desplegado en una testnet llamada RINKEBY a la cual nos conectaremos mediante Infura, una herramienta que permite la interacción entre sistemas web3 y web2.
 
 
 #### **Desarrollo del programa encargado de conectar arduino con nuestro contrato inteligente alojado en RINKENBY.**
 
-Aqui presentamos las importaciones que vamos a utilizar para que nuestro proyecto pueda funcionar...
+Aquí presentamos las importaciones que vamos a utilizar para que nuestro proyecto pueda funcionar...
 
 ```python
 
@@ -180,14 +180,15 @@ import pyfirmata             #nos permite manejar arduino
 from pyfirmata import Arduino, util
 
 ```
-En esta parte, se ve el codigo para que la aplicacion se pueda conectar a Infura.
+En esta parte, se ve el código para que la aplicación se pueda conectar a Infura.
+
 ```python
 infura_url =  '...'              #dentro de las comillas se coloca el enlace que Infura te proporciona una vez creada tu red de testeo dentro de su pagina
 w3= w3(w3.HTTPProvider(infura_url)) #
 print(w3.isConnected())          #
 print("...")                     #
 ```
-Aqui se muestra el codigo para que la aplicacion se pueda conectar al Smart Contract (contrato inteligente)
+Aquí se muestra el código para que la aplicación se pueda conectar al Smart Contract (contrato inteligente)
 
 ```python
 contract_Address = '...'         #
@@ -198,7 +199,7 @@ contract = w3.eth.contract(      #
     abi=contract_abi)            #
 ```
 
-### Codigo para conectar al Arduino 
+### Código para conectar al Arduino 
 ```python
 board = Arduino("COM7")                      #
 
@@ -250,9 +251,9 @@ if __name__ == "__main__":
 ```
 ```python
 ```
- ['Back to top'](#iot-blockchain)
+ ['Volver al inicio'](#iot-blockchain)
  
 ## Descripciones
-['Back to top'](#iot-blockchain)
+['Volver al inicio'](#iot-blockchain)
 
 
