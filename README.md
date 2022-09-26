@@ -1,4 +1,4 @@
-# UCV
+# IoT-Blockchain Manual 
 
 > Repositorio GitHub del proyecto [BCIOT](https://github.com/rafael1599/BCIOT).
 
