@@ -78,7 +78,7 @@ A continuación explicamos el paso a paso del desarrollo completo de esta peque�
 
 Damos click en el botón de descarga.
 
-<img src="img/pythonDownloadWindowsDescargar.png"width="70%"/>
+<img src="img/pythonDownloadWindowsDescargar.png" width="70%"/>
 
 > Guardamos el archivo de instalación.
 
