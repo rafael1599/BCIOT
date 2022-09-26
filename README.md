@@ -60,18 +60,17 @@ Antes de comenzar con la programación nos gustaría presentar algunos conceptos
 A continuación explicamos el paso a paso del desarrollo completo de esta pequeña demostración.
 
 ## 1. Instalando Python
-Necesitamos descargar python (en su última versión estable), buscamos "python Download" en nuestro navegador o directamente puedes ingresar a la página oficial de Python ['https://www.python.org/downloads/'].
-
-Damos click en el primer 
+> Necesitamos descargar python (en su última versión estable), buscamos "python Download" en nuestro navegador o directamente puedes ingresar a la página oficial de Python ['https://www.python.org/downloads/'].
+> Damos click en el primer 
 [resultado](https://www.python.org/downloads/) que encontramos.
 
 <img src="img/pythonDownload.png" width="70%"/>
 
-Una vez dentro de la página de descarga, generalmente ya tenemos lista la versión de sistema operativo que necesitamos, pero podemos verificar dando click en el nombre del sistema operativo que estamos usando.
+> Una vez dentro de la página de descarga, generalmente ya tenemos lista la versión de sistema operativo que necesitamos, pero podemos verificar dando click en el nombre del sistema operativo que estamos usando.
 
 <img src="img/pythonDownload1.png" width="70%"/>
 
-En mi caso lo voy a descargar para SO Windows y se vería así.
+> En mi caso lo voy a descargar para SO Windows y se vería así.
 
 <img src="img/pythonDownloadWindows.png" width="70%"/>
 
@@ -81,38 +80,35 @@ Damos click en el botón de descarga.
 
 <img src="img/pythonDownloadWindowsDescargar.png"width="70%"/>
 
-Guardamos el archivo de instalación.
+> Guardamos el archivo de instalación.
 
 <img src="img/pythonDownloadWindowsDescargar1.png" width="70%"/>
 
-Guardamos en nuestro escritorio.
+> Guardamos en nuestro escritorio.
 
 <img src="img/pythonDownloadEscritorio.png" width="70%"/>
 
-Ejecutamos el archivo de instalación como administrador.
+> Ejecutamos el archivo de instalación como administrador.
 
 <img src="img/pythonDownloadEscritorio1.png" width="70%"/>
 
-Luego simplemente damos click al botón que dice Si.
-
-Y se te abrirá esta ventana de instalación de Python, donde **primero** nos aseguramos de tener marcada la casilla donde señalo la **X** roja y luego damos click en "Customize Installation".
+> Luego simplemente damos click al botón que dice Si, y se ab>rirá esta ventana de instalación de Python, donde **primero** nos aseguramos de tener marcada la casilla donde señalo la **X** roja y luego damos click en "Customize Installation".
 
 <img src="img/pythonInstall.png" width="70%"/>
 
-
-En la siguiente vista lo dejamos tal cual como esta y damos click en "Next".
+> En la siguiente vista lo dejamos tal cual como esta y damos click en "Next".
 
 <img src="img/pythonInstall1.png" width="70%"/>
 
-Luego nos aseguramos que queden las opciones marcadas como en esta imagen así como también el lugar de instalación.
+> Luego nos aseguramos que queden las opciones marcadas como en esta imagen así como también el lugar de instalación.
 
 <img src="img/pythonInstall2.png" width="70%"/>
 
-Y por último vamos a dar click en "Install".
+> Y por último vamos a dar click en "Install".
 
 <img src="img/pythonInstall3.png" width="70%"/>
 
-Al final simplemente seleccionas el botón que dice "close" y listo terminamos de instalar Python!.
+> Al final simplemente seleccionas el botón que dice "close" y listo terminamos de instalar Python!.
 
 <img src="img/pythonInstall4.png" width="70%"/>
 
@@ -123,7 +119,7 @@ Al final simplemente seleccionas el botón que dice "close" y listo terminamos d
 Despues de descaragr Python, nos dirijimos a la siguiente pagina ['https://code.visualstudio.com/']
 
 <img src="img/vscodeDownload.jpeg" width="70%"/>
-
+> En desarrollo...
 ---
 
 ## ‎ 
