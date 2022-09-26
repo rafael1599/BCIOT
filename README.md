@@ -141,7 +141,6 @@ El contrato inteligente fue desarrollado en Remix con el lenjuage de programacio
 (Agregar imagenes de los pasos para crear el smart contract en REMIX IDE)
 ## ‎ 
 
-## Comenzando con el desarrollo
 ### Codigo del smart contract
 Este es un algoritmo sencillo que simplemente se encarga de enviar un dato a la blockchain donde esta desplegado el mismo para que de esa manera, haga llegar ese dato a nuestro sistema desarrollado en python que presentaremos mas adelante. 
 
@@ -184,14 +183,9 @@ from pyfirmata import Arduino, util
 En esta parte, se ve el codigo para que la aplicacion se pueda conectar a Infura.
 ```python
 infura_url =  '...'                 //dentro de las comillas se coloca el enlace que Infura te proporciona una vez creada tu red de testeo dentro de su pagina
-w3= w3(w3.HTTPProvider(infura_url))
-print(w3.isConnected())
-print("...")
-```
-En esta parte se coloca un mensjae personalizado 
-
-```python
-print("...")
+w3= w3(w3.HTTPProvider(infura_url)) //
+print(w3.isConnected())             //
+print("...")                        //
 ```
 Aqui se muestra el codigo para que la aplicacion se pueda conectar al Smart Contract (contrato inteligente)
 
