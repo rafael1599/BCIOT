@@ -171,67 +171,75 @@ Aqui presentamos las importaciones que vamos a utilizar para que nuestro proyect
 
 ```python
 
-import json                     //para poder utilizar codigo json dentro de este programa
-from web3 import Web3 as w3     //Para todo lo relacionado a blockchain
-import asyncio                  //Para ejecutar bucles asincronos
-import warnings                 //Para omitir mensajes warning
-import time                     //Para obtener hora y fecha de el sistema
-import pyfirmata                //nos permite manejar arduino
+import json                  #para poder utilizar codigo json dentro de este programa
+from web3 import Web3 as w3  #Para todo lo relacionado a blockchain
+import asyncio               #Para ejecutar bucles asincronos
+import warnings              #Para omitir mensajes warning
+import time                  #Para obtener hora y fecha de el sistema
+import pyfirmata             #nos permite manejar arduino
 from pyfirmata import Arduino, util
 
 ```
 En esta parte, se ve el codigo para que la aplicacion se pueda conectar a Infura.
 ```python
-infura_url =  '...'                 //dentro de las comillas se coloca el enlace que Infura te proporciona una vez creada tu red de testeo dentro de su pagina
-w3= w3(w3.HTTPProvider(infura_url)) //
-print(w3.isConnected())             //
-print("...")                        //
+infura_url =  '...'              #dentro de las comillas se coloca el enlace que Infura te proporciona una vez creada tu red de testeo dentro de su pagina
+w3= w3(w3.HTTPProvider(infura_url)) #
+print(w3.isConnected())          #
+print("...")                     #
 ```
 Aqui se muestra el codigo para que la aplicacion se pueda conectar al Smart Contract (contrato inteligente)
 
 ```python
-contract_Address = '...'
-contract_abi = json.loads('....')
+contract_Address = '...'         #
+contract_abi = json.loads('....')#
  
-contract = w3.eth.contract(address=contract_Address, abi=contract_abi)
+contract = w3.eth.contract(      #
+    address=contract_Address,    #
+    abi=contract_abi)            #
 ```
 
 ### Codigo para conectar al Arduino 
 ```python
-board = Arduino("COM7")
+board = Arduino("COM7")                      #
 
-def handle_event(event):
-    person_dict = json.loads(w3.toJSON(event))
-    comando = person_dict["args"]
-    print(comando["comando"])
-    if comando["comando"] == "1":
-        board.digital[13].write(1)
-        print("LED encendido")
-    elif comando["comando"] == "0":
-        board.digital[13].write(0)
-        print("LED apagado")
-    elif comando["comando"] == "2":
-        sys.exit("Bye bye!")
+def handle_event(event):                     #
+    person_dict = json.loads(w3.toJSON(event))  #
+    comando = person_dict["args"]            #
+    print(comando["comando"])                #
+    if comando["comando"] == "1":            #
+        board.digital[13].write(1)           #
+        print("LED encendido")               #
+    elif comando["comando"] == "0":          #
+        board.digital[13].write(0)           #
+        print("LED apagado")                 #
+    elif comando["comando"] == "2":          #
+        sys.exit("Bye bye!")                 #
     else:
-        print("la opción que elegiste no es correcta o reconocida. Intentalo de nuevo")
+        print("la opción que elegiste"       #
+        +"no es correcta o reconocida. 
+        +"Intentalo de nuevo")
 ```
 ```python
-async def log_loop(event_filter, poll_interval):
-    while True:
-        for manejarLED in event_filter.get_new_entries():
-            handle_event(manejarLED)
-        await asyncio.sleep(poll_interval)
+async def log_loop(event_filter,             #
+poll_interval):                              #
+    while True:                              #
+        for manejarLED in                    #
+        event_filter.get_new_entries():      #
+            handle_event(manejarLED)         #
+        await asyncio.sleep(poll_interval)   #
 ```
 ```python
 def main():
-    event_filter = contract.events.manejarLED.createFilter(fromBlock='latest')
-    loop = asyncio.get_event_loop()
+    event_filter = contract.events.manejarLED.createFilter( #
+        fromBlock='latest')                              #
+    loop = asyncio.get_event_loop()                      #
     try:
-        loop.run_until_complete(asyncio.gather(log_loop(event_filter, 2)))
+        loop.run_until_complete(asyncio.gather(          #
+            log_loop(event_filter, 2)))                  #
     finally:
         # close loop to free up system resources
         print("Error inesperado. Cerrando programa para no dañar el equipo")
-        loop.close()
+        loop.close()                                    #
  
 if __name__ == "__main__":
     main()
