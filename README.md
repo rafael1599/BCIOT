@@ -33,7 +33,7 @@ Antes de comenzar con la programación nos gustaría presentar algunos conceptos
 ### ¿Qué es un Smart Contract?
 >Un smart contract es un tipo especial de instrucciones que es almacenada en la blockchain. Y que además tiene la capacidad de autoejecutar acciones de acuerdo a una serie de parámetros ya programados. Todo esto de forma inmutable, transparente y completamente segura.
 
-## ¿ Que es Remix?
+### ¿ Que es Remix?
 >Remix es un entorno integrado de desarrollo (IDE) basado en un navegador que integra un compilador y un entorno en tiempo de ejecución para Solidity sin los componentes orientados al servidor.
 
 ### ¿Qué es Infura?
