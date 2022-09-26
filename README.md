@@ -33,6 +33,9 @@ Antes de comenzar con la programación nos gustaría presentar algunos conceptos
 ### ¿Qué es un Smart Contract?
 >Un smart contract es un tipo especial de instrucciones que es almacenada en la blockchain. Y que además tiene la capacidad de autoejecutar acciones de acuerdo a una serie de parámetros ya programados. Todo esto de forma inmutable, transparente y completamente segura.
 
+## ¿ Que es Remix?
+>Remix es un entorno integrado de desarrollo (IDE) basado en un navegador que integra un compilador y un entorno en tiempo de ejecución para Solidity sin los componentes orientados al servidor.
+
 ### ¿Qué es Infura?
 >Infura es una plataforma para conectar con redes Blockchain y permite a los desarrolladores construir Smart Contracts utilizando un API JSON-RPC para interactuar con múltiples blockchains.
 
@@ -52,7 +55,7 @@ Antes de comenzar con la programación nos gustaría presentar algunos conceptos
 >La tecnología Blockchain ayudaria en un adecuado manejo de la información, permitirá a los usuarios hacer uso de cualquier dispositivo IoT de manera segura. También permitirá una encriptación de los datos, de esta manera asegurando la privacidad de la información que el usuario envía a la red sin la posibilidad de que alguien intercepte esta información y pueda alterarla, robarla, eliminarla o usarla de manera indebida, lo que beneficia a todos los usuarios que tienen accesos a los dispositivos IoT de la organización
 
 ### ¿Qué es una Arduino y para qué sirve?
->Arduino es una placa que tiene todos los elementos necesarios para conectar periféricos a las entradas y salidas de un microcontrolador. Es decir, es una placa impresa con los componentes necesarios para que funcione el microcontrolador y su comunicación con un ordenador a través de la comunicación serial.
+> Arduino es una placa que tiene todos los elementos necesarios para conectar periféricos a las entradas y salidas de un microcontrolador. Es decir, es una placa impresa con los componentes necesarios para que funcione el microcontrolador y su comunicación con un ordenador a través de la comunicación serial.
 
 ---
 
@@ -119,6 +122,7 @@ Damos click en el botón de descarga.
 Despues de descaragr Python, nos dirijimos a la siguiente pagina ['https://code.visualstudio.com/']
 
 <img src="img/vscodeDownload.jpeg" width="70%"/>
+
 > En desarrollo...
 ---
 
@@ -132,9 +136,6 @@ Despues de descaragr Python, nos dirijimos a la siguiente pagina ['https://code.
 ## ‎ 
 
 ## 4. Creando el Smart Contract
-## ¿ Que es Remix?
->Remix es un entorno integrado de desarrollo (IDE) basado en un navegador que integra un compilador y un entorno en tiempo de ejecución para Solidity sin los componentes orientados al servidor.
-
 El contrato inteligente fue desarrollado en Remix con el lenjuage de programacion Solidity
 ### Pasos para crear el Smart Contract
 (Agregar imagenes de los pasos para crear el smart contract en REMIX IDE)
@@ -187,7 +188,7 @@ w3= w3(w3.HTTPProvider(infura_url))
 print(w3.isConnected())
 print("...")
 ```
-### - En esta parte se coloca un mensjae personalizado 
+En esta parte se coloca un mensjae personalizado 
 
 ```python
 print("...")
