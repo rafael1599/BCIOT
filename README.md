@@ -34,7 +34,7 @@ Antes de comenzar con la programación nos gustaría presentar algunos conceptos
 ## ¿Qué es una red de pruebas?
     Una red testnet es una herramienta imprescindible en el desarrollo de criptomonedas como Bitcoin. Gracias a este tipo de redes los equipos de desarrollo pueden hacer pruebas sin afectar el funcionamiento de la red original.
 
-## ¿Qué es RINKENBY?
+## ¿Qué es RINKEBY?
 
 ## ¿Qué es IoT?
 
@@ -59,6 +59,7 @@ Damos click en el primer
 Una vez dentro de la página de descarga, generalmente ya tenemos lista la versión de sistema operativo que necesitamos, pero podemos verificar dando click en el nombre del sistema operativo que estamos usando.
 
 ![<img src="img/pythonDownload1.png" width="70%"/>]
+
 En mi caso lo voy a descargar para SO Windows y se vería así.
 
 ![<img src="img/pythonDownloadWindows.png" width="70%"/>]
