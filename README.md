@@ -62,7 +62,7 @@ Antes de comenzar con la programación nos gustaría presentar algunos conceptos
 # Instalación de herramientas de desarrollo
 A continuación explicamos el paso a paso del desarrollo completo de esta pequeña demostración.
 
-## 1. Instalando Python
+## 1. Instalando Python‎ ‎ ‎ ‎ ‎ ‎<img src="img/Python-logo-notext.png" width="5%"/>
 > Necesitamos descargar python (en su última versión estable), buscamos "python Download" en nuestro navegador o directamente puedes ingresar a la página oficial de Python ['https://www.python.org/downloads/'].
 > Damos click en el primer 
 [resultado](https://www.python.org/downloads/) que encontramos.
