@@ -1,4 +1,4 @@
-# IoT-Blockchain Manual 
+# prueba
 
 > Repositorio GitHub del proyecto [BCIOT](https://github.com/rafael1599/BCIOT).
 
@@ -14,6 +14,7 @@
 Un pequeño preámbulo que será agregado más adelante explicando de manera general nuestro proyecto.
 
 # Caracteristicas
+
 ¿Qué es lo que hace? aún en desarrollo...
 # Contenido
 ## Conceptos clave
