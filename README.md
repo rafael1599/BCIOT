@@ -51,7 +51,7 @@ Antes de comenzar con la programación nos gustaría presentar algunos conceptos
 ### ¿Qué vulnerabilidades tiene el IoT?
 >El Internet de las cosas o IoT por sus siglas en inglés, tiene un reto muy importante que hacer frente y este es el de la seguridad, pues los dispositivos que maneja hoy en día se encuentran vulnerables. Además hoy en día existe un crecimiento de adopción de los dispositivos IoT cada vez mayor, el riesgo de recibir ataques constantes es cada vez mayor también. Así mismo, mientras las empresas que desarrollan la tecnología IoT buscan nuevas formas de proteger la infraestructura donde se guardan y manejan los datos, del mismo modo, los atacantes también idean nuevas formas vulnerar la seguridad, acceder a información confidencial, hacerse con el control de acceso a los dispositivos o sensores y así al final, de una u otra manera, afectando la integridad de la información que estos envían o reciben, y hasta la disponibilidad de los mismos para su dueño.
 
-### ¿Cómo la tecnología blockchain puede ayudar?
+### ¿Cómo la tecnología blockchain puede ayudar en esto?
 >La tecnología Blockchain ayudará dando un manejo seguro de la información, permitirá a los usuarios hacer uso de cualquier dispositivo IoT tal como antes lo hacían, pero con una capa total de seguridad. Haciendo uso de tecnologías de encriptación de los datos, de esta manera asegurando la privacidad de la información que el usuario envía a la red sin la posibilidad de que alguien intercepte esta información y pueda alterarla, robarla, eliminarla o usarla de manera indebida, lo que beneficiará a todos los usuarios que tienen accesos a los dispositivos IoT que hagan uso de esta tecnología integrada en cualquier parte del mundo.
 
 ### ¿Qué es una Arduino y para qué sirve?
