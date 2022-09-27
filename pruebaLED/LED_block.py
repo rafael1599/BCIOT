@@ -15,7 +15,11 @@ warnings.filterwarnings("ignore", category = DeprecationWarning)
 infura_url =  'https://rinkeby.infura.io/v3/eb28ba0d5b2848d39c6a5367837d5ce2'
 w3= w3(w3.HTTPProvider(infura_url))
 print(w3.isConnected())
-print("En el SC escribe uno de estos numeros segun desees: \n1. Encender LED./n0. Apagar LED. \n2. Finalizar programa.")
+print(
+    "BIENVENIDO: En Remix escribe uno de estos numeros segun desees:" +
+    "\nEscriba Encender para encender LED."+
+    "\nEscriba Apagar para apagar LED. "+
+    "\nEscriba Cerrar programa para finalizar programa.")
  
 contract_Address = '0xA795c368906d8Ef99Cc94330cCad284365F2c991'
 contract_abi = json.loads('[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comando", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comando", 				"type": "string" 			} 		], 		"name": "enviarComando", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	} ]')
