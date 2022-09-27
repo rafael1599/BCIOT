@@ -129,8 +129,36 @@ Después de descargar Python, nos dirigimos a la siguiente página web ['https:/
 ## ‎ 
 
 ## 3. Creando red de prueba en‎ ‎ ‎ ‎<img src="img/logos/infura-logo-notext.png" width="20%"/>
-> very soon..
 
+> Buscamos infura en nuestro navegador e ingresamos al primer resultado de la busqueda.
+
+<img src="img/infura/infura1.png" width="70%"/>
+
+>Damos click en unete.
+
+<img src="img/infura/infura2.png" width="70%"/>
+
+> Nos creamos una cuenta gratuita.
+
+<img src="img/infura/infura3.png" width="70%"/>
+
+> Ingresamos a nuestro correo y confirmamos la creación de la cuenta.
+
+<img src="img/infura/infura4.png" width="70%"/>
+
+>Completamos la iformación que nos pide y presionamos el último botón.
+
+<img src="img/infura/infura5.png" width="70%"/>
+
+>Procedemos a crear nuestra primera red de prueba donde primero elegimos "Ethereum Beacon Chain" y despues colocamos un nombre a nuestro proyecto.
+
+<img src="img/infura/infura6.png" width="70%"/>
+
+>Luego nos muestra algunas opciones y algo de información.
+
+<img src="img/infura/infura7.png" width="70%"/>
+
+> **Listo, ya habremos creado nuestra red de pruebas en Infura, mas adelante mostramos como usarla.**
 ---
 
 ## ‎ 
