@@ -12,10 +12,18 @@ import pyfirmata
 from pyfirmata import Arduino, util
 warnings.filterwarnings("ignore", category = DeprecationWarning)
 
+#importa libreria para medir el rendimiento en relacion al tiempo
+from time import perf_counter, sleep
+
+
 infura_url =  'https://rinkeby.infura.io/v3/eb28ba0d5b2848d39c6a5367837d5ce2'
 w3= w3(w3.HTTPProvider(infura_url))
 print(w3.isConnected())
-print("En el SC escribe uno de estos numeros segun desees: \n1. Encender LED./n0. Apagar LED. \n2. Finalizar programa.")
+print(
+    "En el SC escribe uno de estos numeros segun desees:" +
+    "\nEscriba Encender para encender LED."+
+    "\nEscriba Apagar para apagar LED. "+
+    "\nEscriba Cerrar programa para finalizar programa.")
  
 contract_Address = '0xA795c368906d8Ef99Cc94330cCad284365F2c991'
 contract_abi = json.loads('[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comando", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comando", 				"type": "string" 			} 		], 		"name": "enviarComando", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	} ]')
@@ -25,18 +33,20 @@ contract = w3.eth.contract(address=contract_Address, abi=contract_abi)
 board = Arduino("COM7")
  
 comando = ""
- 
+#comienza cuenta de tiempo
+start = perf_counter()  
+
 def handle_event(event):
     person_dict = json.loads(w3.toJSON(event))
     comando = person_dict["args"]
     print(comando["comando"])
-    if comando["comando"] == "1":
+    if comando["comando"] == "Encender":
         board.digital[13].write(1)
         print("LED encendido")
-    elif comando["comando"] == "0":
+    elif comando["comando"] == "Apagar":
         board.digital[13].write(0)
         print("LED apagado")
-    elif comando["comando"] == "2":
+    elif comando["comando"] == "Cerrar programa":
         sys.exit("Bye bye!")
     else:
         print("la opción que elegiste no es correcta o reconocida. Intentalo de nuevo")
