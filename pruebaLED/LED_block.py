@@ -19,10 +19,13 @@ print(
     "BIENVENIDO: En Remix escribe uno de estos numeros segun desees:" +
     "\nEscriba Encender para encender LED."+
     "\nEscriba Apagar para apagar LED. "+
-    "\nEscriba Cerrar programa para finalizar programa.")
+    "\nEscriba Cerrar para finalizar programa.")
  
 contract_Address = '0xA795c368906d8Ef99Cc94330cCad284365F2c991'
-contract_abi = json.loads('[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comando", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comando", 				"type": "string" 			} 		], 		"name": "enviarComando", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	} ]')
+
+contract_abi = json.loads(
+'[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comando","type": "string"}], "name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_comando", "type": "string" }],"name": "enviarComando", "outputs": [],"stateMutability": "nonpayable", "type": "function" }]'
+    )
  
 contract = w3.eth.contract(address=contract_Address, abi=contract_abi)
  
@@ -34,13 +37,13 @@ def handle_event(event):
     person_dict = json.loads(w3.toJSON(event))
     comando = person_dict["args"]
     print(comando["comando"])
-    if comando["comando"] == "1":
+    if comando["comando"] == "Encendido":
         board.digital[13].write(1)
         print("LED encendido")
-    elif comando["comando"] == "0":
+    elif comando["comando"] == "Apagado":
         board.digital[13].write(0)
         print("LED apagado")
-    elif comando["comando"] == "2":
+    elif comando["comando"] == "Cerrar":
         sys.exit("Bye bye!")
     else:
         print("la opción que elegiste no es correcta o reconocida. Intentalo de nuevo")
