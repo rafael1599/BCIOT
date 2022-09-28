@@ -67,63 +67,106 @@ A continuación explicamos el paso a paso del desarrollo completo de esta peque�
 > Damos click en el primer 
 [resultado](https://www.python.org/downloads/) que encontramos.
 
+<p style ="text-align: center" >
 <img src="img/python/pythonDownload.png" width="70%"/>
+</p>
+
 
 > Una vez dentro de la página de descarga, generalmente ya tenemos lista la versión de sistema operativo que necesitamos, pero podemos verificar dando click en el nombre del sistema operativo que estamos usando.
 
-<img src="img/python/pythonDownload1.png" width="70%"/>
+
+<p style ="text-align: center" ><img src="img/python/pythonDownload1.png" width="70%"/></p>
 
 > En mi caso lo voy a descargar para SO Windows y se vería así.
 
-<img src="img/python/pythonDownloadWindows.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/python/pythonDownloadWindows.png" width="70%"/></p>
 
 > En este caso sería la versión seria la version 3.10.7
 
 Damos click en el botón de descarga.
 
-<img src="img/python/pythonDownloadWindowsDescargar.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/python/pythonDownloadWindowsDescargar.png" width="70%"/></p>
 
 > Guardamos el archivo de instalación.
 
-<img src="img/python/pythonDownloadWindowsDescargar1.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/python/pythonDownloadWindowsDescargar1.png" width="70%"/></p>
 
 > Guardamos en nuestro escritorio.
 
-<img src="img/python/pythonDownloadEscritorio.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/python/pythonDownloadEscritorio.png" width="70%"/></p>
 
 > Ejecutamos el archivo de instalación como administrador.
 
-<img src="img/python/pythonDownloadEscritorio1.png" width="40%"/>
+<p style ="text-align: center" ><img src="img/python/pythonDownloadEscritorio1.png" width="40%"/></p>
 
 > Luego simplemente damos click al botón que dice Si, y se abrirá esta ventana de instalación de Python, donde **primero** nos aseguramos de tener marcada la casilla donde señalo la **X** roja y luego damos click en "Customize Installation".
 
-<img src="img/python/pythonInstall.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/python/pythonInstall.png" width="70%"/></p>
 
 > En la siguiente vista lo dejamos tal cual como esta y damos click en "Next".
 
-<img src="img/python/pythonInstall1.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/python/pythonInstall1.png" width="70%"/></p>
 
 > Luego nos aseguramos que queden las opciones marcadas como en esta imagen así como también el lugar de instalación.
 
-<img src="img/python/pythonInstall2.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/python/pythonInstall2.png" width="70%"/></p>
 
 > Y por último vamos a dar click en "Install".
 
-<img src="img/python/pythonInstall3.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/python/pythonInstall3.png" width="70%"/></p>
 
 > Al final simplemente seleccionas el botón que dice "close" y listo terminamos de instalar Python!.
 
-<img src="img/python/pythonInstall4.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/python/pythonInstall4.png" width="70%"/></p>
 
 ---
 
 ## ‎  
 ## 2. Instalando Visual Studio Code‎ ‎ ‎ ‎ ‎ ‎<img src="img/logos/vscode-logo-notext.png" width="5%"/>
-Después de descargar Python, nos dirigimos a la siguiente página web ['https://code.visualstudio.com/']
+> Necesitamos descargar python (en su última versión estable), buscamos "python Download" en nuestro navegador o directamente puedes ingresar a la página oficial de Python ['https://code.visualstudio.com/'].
 
-<img src="img/vscode/vscodeDownload.jpeg" width="70%"/>
+> Damos click en el primer 
+[resultado](https://code.visualstudio.com/) que encontramos.
+<p style ="text-align: center" ><img src="img/vscode/paso1.png" width="70%"/></p>
 
-> En desarrollo...
+> Dentro de la pagina, veremos la opcion de Download for Windows, seleccionamos la flecha del costado
+
+<p style ="text-align: center" ><img src="img/vscode/paso2.png" width="70%"/></p>
+
+> Dspues de seleccionar, le saldra las opciones de descaragr segun el sistema operativo que tien, en este caso se selecciona para Windows
+<p style ="text-align: center" ><img src="img/vscode/paso3.png" width="70%"/></p>
+
+> Despues de seleccionado la descarga para windows saldra la descarga, este caso sale en la parte inferior.
+
+<p style ="text-align: center" ><img src="img/vscode/paso4.png" width="70%"/></p>
+
+> despues abrimos la descarga y le aparecera la siguiente ventana, en esta parte seleccionamos aceptamos el acuerdo
+
+<p style ="text-align: center" ><img src="img/vscode/paso5.png" width="70%"/></p>
+
+>Despues de acepta el acuerdo seleccionas siguiente y te saldra la opción de Seleccionar la carpeta de destino, selecionamos el destino de la carpetay le damos siguiente 
+
+<p style ="text-align: center" ><img src="img/vscode/paos5.2.png" width="70%"/></p>
+
+> En esta parte le damos Siguiente 
+
+<p style ="text-align: center" ><img src="img/vscode/paso5.3.png" width="70%"/></p>
+
+> En esta parte le damos Siguiente 
+<p style ="text-align: center" ><img src="img/vscode/paso6.png" width="70%"/></p>
+
+> En esta parte le Instalar
+<p style ="text-align: center" ><img src="img/vscode/paso7.png" width="70%"/></p>
+
+> Esperemos a que termine de instalar
+<p style ="text-align: center" ><img src="img/vscode/paso8.png" width="70%"/></p>
+
+> Terminado la descarga ponemos finalizar.
+<p style ="text-align: center" ><img src="img/vscode/paso9.png" width="70%"/></p>
+
+> Ahora si el Visual Studio Code esta listo para poder utlizarlo.
+<p style ="text-align: center" ><img src="img/vscode/poas10.png" width="70%"/></p>
+
 ---
 
 ## ‎ 
@@ -132,31 +175,31 @@ Después de descargar Python, nos dirigimos a la siguiente página web ['https:/
 
 > Buscamos infura en nuestro navegador e ingresamos al primer resultado de la busqueda.
 
-<img src="img/infura/infura1.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/infura/infura1.png" width="70%"/></p>
 
 >Damos click en unete.
 
-<img src="img/infura/infura2.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/infura/infura2.png" width="70%"/></p>
 
 > Nos creamos una cuenta gratuita.
 
-<img src="img/infura/infura3.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/infura/infura3.png" width="70%"/></p>
 
 > Ingresamos a nuestro correo y confirmamos la creación de la cuenta.
 
-<img src="img/infura/infura4.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/infura/infura4.png" width="70%"/></p>
 
 >Completamos la iformación que nos pide y presionamos el último botón.
 
-<img src="img/infura/infura5.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/infura/infura5.png" width="70%"/></p>
 
 >Procedemos a crear nuestra primera red de prueba donde primero elegimos "Ethereum Beacon Chain" y despues colocamos un nombre a nuestro proyecto.
 
-<img src="img/infura/infura6.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/infura/infura6.png" width="70%"/></p>
 
 >Luego nos muestra algunas opciones y algo de información.
 
-<img src="img/infura/infura7.png" width="70%"/>
+<p style ="text-align: center" ><img src="img/infura/infura7.png" width="70%"/></p>
 
 > **Listo, ya habremos creado nuestra red de pruebas en Infura, mas adelante mostramos como usarla.**
 ---
