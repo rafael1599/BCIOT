@@ -231,7 +231,7 @@ contract LedIoT {
 
 ---
 
-## Desarrollo del sistema en vscode
+## Desarrollo del sistema en VScode
 
 Aquí mostramos los pasos para crear el programa que nos va a permitir conectar Blockchain con IoT mediante el uso de un contrato inteligente desplegado en una testnet llamada RINKEBY a la cual nos conectaremos mediante Infura, una herramienta que permite la interacción entre sistemas web3 y web2.
 
