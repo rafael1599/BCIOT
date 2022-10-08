@@ -1,7 +1,6 @@
 # Aqui solo podemos controlar al arduino desde el IDE Remix de Ethereum, una vez desplegado el contrato
 # podemos comenzar a enviar comandos al contrato para controlar el led.
 
-
 import sys
 import json
 from web3 import Web3 as w3
