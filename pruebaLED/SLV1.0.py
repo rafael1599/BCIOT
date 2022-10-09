@@ -1,3 +1,6 @@
+# Version donde le cambio los comandos de numeros a palabras
+# para que funcione con comandos de voz
+
 import warnings
 from turtle import color
 import serial  # para cominicarse con arduino
@@ -10,9 +13,9 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 arduinoCMD = serial.Serial("COM5", 9600)
 
 # Funciones
-def enviar_comando(comando):
-    comando = comando + "\r"
-    arduinoCMD.write(comando.encode())
+def enviar_comando(comandoArd):
+    comandoArd = comandoArd + "\r"
+    arduinoCMD.write(comandoArd.encode())
 
 
 def avisar_arduino(event):
@@ -20,20 +23,19 @@ def avisar_arduino(event):
     verde = "0:255:0"
     azul = "0:0:255"
     apagar = "0:0:0"
-
     person_dict = json.loads(w3.toJSON(event))
-    comando = person_dict["args"]
-    print(comando["comando"])
-    if comando["comando"] == "1":
+    comandoVoz = person_dict["args"]
+    print(comandoVoz["comando"])
+    if comandoVoz["comando"] == "rojo":
         enviar_comando(rojo)
-        print("tu color elegido, se encendio")
-    elif comando["comando"] == "2":
+        print("el color " + comandoVoz + " se encendio")
+    elif comandoVoz["comando"] == "verde":
         enviar_comando(verde)
-        print("tu color elegido, se encendio")
-    elif comando["comando"] == "3":
+        print("el color " + comandoVoz + " se encendio")
+    elif comandoVoz["comando"] == "azul":
         enviar_comando(azul)
-        print("tu color elegido, se encendio")
-    elif comando["comando"] == "Finalizar":
+        print("el color " + comandoVoz + " se encendio")
+    elif comandoVoz["comando"] == "finalizar":
         print("Apagando led")
         enviar_comando(apagar)
         sys.exit()
@@ -53,7 +55,7 @@ w3 = w3(w3.HTTPProvider(infura_url))
 print(w3.isConnected())
 
 print(
-    "BIENVENIDO: En Remix, Ingrese el numero correspondiente a su color a cambiar:\n1. Rojo\n2. Verde\n3. Azul"
+    "BIENVENIDO: Diga el numero correspondiente a su color a cambiar:\n- Rojo\n- Verde\n- Azul \n- Finalizar programa"
 )
 
 contract_Address = "0x4a6F8f71814a8C8bd6a82591FD86ab89E5f9F125"
