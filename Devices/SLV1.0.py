@@ -1,3 +1,4 @@
+# SMART LIGHT CONECTADA CON BLOCKCHAIN VERSIÓN 1.0
 # Version donde le cambio los comandos de numeros a palabras
 # para que funcione con comandos de voz
 
