@@ -1,8 +1,6 @@
 import serial  # para cominicarse con arduino
 
 arduinoData = serial.Serial("com5")
-
-
 # def color_elegido(color):
 color = input("Ingrese 1 para Abrir, 2 para Cerrar: ")
 verde = "0:10:0"
@@ -16,4 +14,4 @@ elif color == "2":
     arduinoData.write(rojo.encode())
     print("Se cerró")
 else:
-    print("La opcion elegida no existe")
+    print("La opción elegida no existe")
