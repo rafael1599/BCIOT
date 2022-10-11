@@ -1,3 +1,4 @@
+# Se usa con el archivo: importante codigo SmartLight arduino.txt
 import serial  # para cominicarse con arduino
 
 arduinoData = serial.Serial("com5")

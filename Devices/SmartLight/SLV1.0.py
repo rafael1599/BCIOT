@@ -24,6 +24,7 @@ def avisar_arduino(event):
     verde = "0:255:0"
     azul = "0:0:255"
     apagar = "0:0:0"
+
     person_dict = json.loads(w3.toJSON(event))
     comandoVoz = person_dict["args"]
     print(comandoVoz["comando"])
