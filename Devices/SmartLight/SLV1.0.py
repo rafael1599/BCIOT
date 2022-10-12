@@ -25,19 +25,19 @@ def avisar_arduino(event):
     azul = "0:0:255"
     apagar = "0:0:0"
 
-    person_dict = json.loads(w3.toJSON(event))
-    comandoVoz = person_dict["args"]
+    orden = json.loads(w3.toJSON(event))
+    comandoVoz = orden["args"]
     print(comandoVoz["comando"])
-    if comandoVoz["comando"] == "rojo":
+    if comandoVoz["comando"] == "Red":
         enviar_comando(rojo)
         print("el color " + comandoVoz + " se encendio")
-    elif comandoVoz["comando"] == "verde":
+    elif comandoVoz["comando"] == "Green":
         enviar_comando(verde)
         print("el color " + comandoVoz + " se encendio")
-    elif comandoVoz["comando"] == "azul":
+    elif comandoVoz["comando"] == "Blue":
         enviar_comando(azul)
         print("el color " + comandoVoz + " se encendio")
-    elif comandoVoz["comando"] == "finalizar":
+    elif comandoVoz["comando"] == "Finish":
         print("Apagando led")
         enviar_comando(apagar)
         sys.exit()

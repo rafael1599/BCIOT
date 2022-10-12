@@ -9,18 +9,18 @@ from web3 import Web3 as w3
 # Informacion de la conexion a BC
 infura_url = "https://goerli.infura.io/v3/f1ee978b04d04b4e8bb83d51b731c973"
 web3 = w3(w3.HTTPProvider(infura_url))
-chain_id = 4
+chainId = 4
 
 account = "0xc8f39fC331f0799F655490Bb7dc2D0d484018Bc0"
 private_key = "abff363e849b97ba975265f8d28eafb56f0851011fcd37b211c78f0febd0b55a"
 
 # Direccion del contrato y su ABI
-contract_Address = "0x4a6F8f71814a8C8bd6a82591FD86ab89E5f9F125"
-contract_abi = json.loads(
+contratoDir = "0x4a6F8f71814a8C8bd6a82591FD86ab89E5f9F125"
+contractABI = json.loads(
     '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comando", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comando", 				"type": "string" 			} 		], 		"name": "enviarComando", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	} ]'
 )
 
-contract = web3.eth.contract(address=contract_Address, abi=contract_abi)
+contrato = web3.eth.contract(address=contratoDir, abi=contractABI)
 
 nonce = web3.eth.getTransactionCount(account)
 
@@ -29,25 +29,26 @@ comando = ""
 
 def enviarEstado(estado):
     # Esperar que la transaccion se mine
-    transaction = contract.functions.enviarComando(estado).buildTransaction(
+    transaccion = contrato.functions.enviarComando(estado).buildTransaction(
         {
             "gasPrice": web3.eth.gas_price,
-            "chainId": chain_id,
+            "chainId": chainId,
             "from": account,
             "nonce": nonce,
         }
     )
-    signed_transaction = web3.eth.account.sign_transaction(
-        transaction, private_key=private_key
+    transaccionFirmada = web3.eth.account.sign_transaction(
+        transaccion, private_key=private_key
     )
-    print(signed_transaction)
+    print(transaccionFirmada)
     print("\n")
-    transaction_hash = web3.eth.send_raw_transaction(signed_transaction.rawTransaction)
+    transaction_hash = web3.eth.send_raw_transaction(transaccionFirmada.rawTransaction)
     print(transaction_hash)
 
     # transaction_receipt = web3.eth.wait_for_transaction_receipt(transaction_hash)
 
 
+# Esta funcion pasa el audio a String
 def speak(msg):
     engine = pyttsx3.init("sapi5")
     engine.setProperty("volume", 1.0)
@@ -65,13 +66,13 @@ def speak(msg):
 def oir_microfono():
     # Habilita el microfono para oir al usuario
     microfono = sr.Recognizer()
-    with sr.Microphone() as source:
+    with sr.Microphone() as recurso:
         # Funcion de speech_recognition para eliminar el ruido
-        microfono.adjust_for_ambient_noise(source)
+        microfono.adjust_for_ambient_noise(recurso)
         # Deja saber que esta oyendo al usuario
-        speak("Cual es su comando ?: ")
+        speak("What is your command?: ")
         # Almacene la información de audio en la variable audio
-        audio = microfono.listen(source)
+        audio = microfono.listen(recurso)
     try:
         # Pasa el audio al reconocedor de patrones speech_recognition
         estado = microfono.recognize_google(audio, language="es-Es")
