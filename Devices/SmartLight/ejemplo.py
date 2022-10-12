@@ -49,12 +49,14 @@ def run_María():
             print("Reproduciendo" + music)
             talk("Reproduciendo" + music)
             pywhatkit.playonyt(music)
+
         elif "busca" in rec:
             search = rec.replace("busca", "")
             wikipedia.set_lang("es")
             wiki = wikipedia.summary(search, 1)
             print(search + ": " + wiki)
             talk(wiki)
+
         elif "alarma" in rec:
             num = rec.replace("alarma", "")
             num = num.strip()
@@ -68,7 +70,6 @@ def run_María():
                     if keyboard.read_key() == "s":
                         mixer.music.stop()
                         break
-
 
 if __name__ == "__main__":
     run_María()

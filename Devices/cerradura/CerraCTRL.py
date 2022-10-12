@@ -18,7 +18,7 @@ print(
     + "comando por voz, sus opciones son:\n1. Open\n2. Close\n3. Off"
 )
 
-contract_Address = "0x5b2f3a01031b5AcB1fE60Aa1EF1a73a6457cd5E7"
+contract_Address = "0x20407b46FbB470857bA10267E6A56A6d035aD2DD"
 contract_abi = json.loads(
     '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comando","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_comando","type": "string"}],"name": "enviarComando","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
 )

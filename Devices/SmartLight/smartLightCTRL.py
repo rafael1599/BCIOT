@@ -1,7 +1,6 @@
 import warnings
 from turtle import color
 import serial  # para cominicarse con arduino
-import sys
 import json
 from web3 import Web3 as w3
 import asyncio
@@ -55,7 +54,7 @@ print(
     "BIENVENIDO: En Remix, Ingrese el numero correspondiente a su color a cambiar:\n1. Rojo\n2. Verde\n3. Azul"
 )
 
-contract_Address = "0x5b2f3a01031b5AcB1fE60Aa1EF1a73a6457cd5E7"
+contract_Address = "0x20407b46FbB470857bA10267E6A56A6d035aD2DD"
 contract_abi = json.loads(
     '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comando","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_comando","type": "string"}],"name": "enviarComando","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
 )

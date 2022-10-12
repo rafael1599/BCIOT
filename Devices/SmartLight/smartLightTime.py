@@ -1,11 +1,12 @@
 # Esta version esta intacta, deberia funcionar con el archivo LED_Block
-# que tiene como comandos de entrada palabras, NO NUMEROS.
+# Toma el tiempo inicial y lo muestra.
 
 import json
 from time import time
 import speech_recognition as sr
 import pyttsx3
 from web3 import Web3 as w3
+import time as t
 
 # Informacion de la conexion a BC
 infura_url = "https://goerli.infura.io/v3/f1ee978b04d04b4e8bb83d51b731c973"
@@ -16,12 +17,12 @@ account = "0xc8f39fC331f0799F655490Bb7dc2D0d484018Bc0"
 private_key = "abff363e849b97ba975265f8d28eafb56f0851011fcd37b211c78f0febd0b55a"
 
 # Direccion del contrato y su ABI
-contratoDir = "0x5b2f3a01031b5AcB1fE60Aa1EF1a73a6457cd5E7"
+contratoKey = "0x20407b46FbB470857bA10267E6A56A6d035aD2DD"
 contractABI = json.loads(
     '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comando", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comando", 				"type": "string" 			} 		], 		"name": "enviarComando", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	} ]'
 )
 
-contrato = web3.eth.contract(address=contratoDir, abi=contractABI)
+contrato = web3.eth.contract(address=contratoKey, abi=contractABI)
 
 nonce = web3.eth.getTransactionCount(account)
 
@@ -81,6 +82,8 @@ def oir_microfono():
         print("Voz dice: " + estado)
         speak("Voz dice: " + estado)
         enviarEstado(estado)
+        tiempoI = t.time()
+        print(tiempoI)
         # Si no reconoció el patrón de voz, muestra este mensaje que no entendió
     except sr.UnknownValueError:
         print("No entendí")
