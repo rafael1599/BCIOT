@@ -9,7 +9,7 @@ from web3 import Web3 as w3
 # Informacion de la conexion a BC
 infura_url = "https://goerli.infura.io/v3/f1ee978b04d04b4e8bb83d51b731c973"
 web3 = w3(w3.HTTPProvider(infura_url))
-chainId = 4
+chainId = 5
 
 account = "0xc8f39fC331f0799F655490Bb7dc2D0d484018Bc0"
 private_key = "abff363e849b97ba975265f8d28eafb56f0851011fcd37b211c78f0febd0b55a"

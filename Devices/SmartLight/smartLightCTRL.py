@@ -24,16 +24,16 @@ def avisar_arduino(event):
     person_dict = json.loads(w3.toJSON(event))
     comando = person_dict["args"]
     print(comando["comando"])
-    if comando["comando"] == "Red":
+    if comando["comando"] == "red":
         enviar_comando(rojo)
         print("tu color elegido, se encendió")
-    elif comando["comando"] == "Green":
+    elif comando["comando"] == "green":
         enviar_comando(verde)
         print("tu color elegido, se encendió")
-    elif comando["comando"] == "Blue":
+    elif comando["comando"] == "blue":
         enviar_comando(azul)
         print("tu color elegido, se encendió")
-    elif comando["comando"] == "Off":
+    elif comando["comando"] == "off":
         print("Apagando led")
         enviar_comando(apagar)
     else:
