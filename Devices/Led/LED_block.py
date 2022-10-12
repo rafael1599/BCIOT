@@ -1,6 +1,7 @@
 # Aqui solo podemos controlar al arduino desde el IDE Remix de Ethereum, una vez desplegado el contrato
 # podemos comenzar a enviar comandos al contrato para controlar el led.
 
+from base64 import encode
 import sys
 import json
 from web3 import Web3 as w3
@@ -41,20 +42,22 @@ async def log_loop(event_filter, poll_interval):
 
 
 comando = ""
+encender = "Encender"
+apagar = "Apagar"
 
 
 def handle_event(event):
-    person_dict = json.loads(w3.toJSON(event))
-    comando = person_dict["args"]
+    orden = json.loads(w3.toJSON(event))
+    comando = orden["args"]
     print(comando["comando"])
     if comando["comando"] == "Encender":
-        conexion.write(comando.encode())
+        print("Se está enviando: " + encender)
+        conexion.write(encender.encode())
         print("LED encendido")
     elif comando["comando"] == "Apagar":
-        conexion.write(comando.encode())
+        print("Se está enviando: " + apagar)
+        conexion.write(apagar.encode())
         print("LED apagado")
-    elif comando["comando"] == "Finalizar":
-        sys.exit("Finalizando...")
     else:
         print("la opción que elegiste no es correcta o reconocida. Intentalo de nuevo")
 

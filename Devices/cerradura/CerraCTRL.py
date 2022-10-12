@@ -1,13 +1,12 @@
 # Controlar la cerradura desde REMIX
 import warnings
-import serial  # para cominicarse con arduino
-import sys
+import serial as s  # para cominicarse con arduino
 import json
 from web3 import Web3 as w3
 import asyncio
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-arduinoCMD = serial.Serial("COM5", 9600)
+arduinoCMD = s.Serial("COM5", 9600)
 
 # ---> Declaraciones y presentación
 infura_url = "https://goerli.infura.io/v3/f1ee978b04d04b4e8bb83d51b731c973"
@@ -16,7 +15,7 @@ print(w3.isConnected())
 
 print(
     "BIENVENIDO!: Ingrese su comando en REMIX o use el "
-    + "comando por voz, sus opciones son:\n1. Open\n2. Close\n3. Finish"
+    + "comando por voz, sus opciones son:\n1. Open\n2. Close\n3. Off"
 )
 
 contract_Address = "0x5b2f3a01031b5AcB1fE60Aa1EF1a73a6457cd5E7"
