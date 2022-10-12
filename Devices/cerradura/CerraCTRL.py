@@ -6,7 +6,7 @@ from web3 import Web3 as w3
 import asyncio
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-arduinoCMD = s.Serial("COM5", 9600)
+conexion = s.Serial("COM5", 9600)
 
 # ---> Declaraciones y presentación
 infura_url = "https://goerli.infura.io/v3/f1ee978b04d04b4e8bb83d51b731c973"
@@ -27,9 +27,10 @@ contract = w3.eth.contract(address=contract_Address, abi=contract_abi)
 # <---
 
 # Funciones
-# def enviar_comando(comando):
-#     comando = comando + "\r"
-#     arduinoCMD.write(comando.encode())
+def enviar_comando(comando):
+    comando = comando + "\r"
+    print("Comando a ser enviado arduinoCMD: " + comando)
+    conexion.write(comando.encode())
 
 
 def avisar_arduino(event):
@@ -42,18 +43,14 @@ def avisar_arduino(event):
     comando = orden["args"]
     print("Comando proviniente de REMIX:", comando["comando"])
     if comando["comando"] == "Open":
-        comando = verde + "\r"
-        print("Comando a ser enviado arduinoCMD: " + comando)
-        arduinoCMD.write(comando.encode())
+        enviar_comando(verde)
         print("La cerradura se abrió")
     elif comando["comando"] == "Close":
-        comando = rojo + "\r"
-        arduinoCMD.write(comando.encode())
+        enviar_comando(rojo)
         print("La cerradura se bloqueó")
     elif comando["comando"] == "Off":
         print("Finalizando...")
-        comando = apagar + "\r"
-        arduinoCMD.write(comando.encode())
+        enviar_comando(apagar)
     else:
         print("Comando no reconocido, intentelo de nuevo")
 

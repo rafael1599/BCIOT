@@ -16,27 +16,26 @@ def enviar_comando(comando):
 
 
 def avisar_arduino(event):
-    rojo = "255:0:0"
-    verde = "0:255:0"
-    azul = "0:0:255"
+    rojo = "250:0:0"
+    verde = "0:250:0"
+    azul = "0:0:250"
     apagar = "0:0:0"
 
     person_dict = json.loads(w3.toJSON(event))
     comando = person_dict["args"]
     print(comando["comando"])
-    if comando["comando"] == "1":
+    if comando["comando"] == "Red":
         enviar_comando(rojo)
-        print("tu color elegido, se encendio")
-    elif comando["comando"] == "2":
+        print("tu color elegido, se encendió")
+    elif comando["comando"] == "Green":
         enviar_comando(verde)
-        print("tu color elegido, se encendio")
-    elif comando["comando"] == "3":
+        print("tu color elegido, se encendió")
+    elif comando["comando"] == "Blue":
         enviar_comando(azul)
-        print("tu color elegido, se encendio")
-    elif comando["comando"] == "Finalizar":
+        print("tu color elegido, se encendió")
+    elif comando["comando"] == "Off":
         print("Apagando led")
         enviar_comando(apagar)
-        sys.exit()
     else:
         print("Comando no reconocido, intentelo de nuevo")
 
@@ -56,7 +55,7 @@ print(
     "BIENVENIDO: En Remix, Ingrese el numero correspondiente a su color a cambiar:\n1. Rojo\n2. Verde\n3. Azul"
 )
 
-contract_Address = "0x4a6F8f71814a8C8bd6a82591FD86ab89E5f9F125"
+contract_Address = "0x5b2f3a01031b5AcB1fE60Aa1EF1a73a6457cd5E7"
 contract_abi = json.loads(
     '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comando","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_comando","type": "string"}],"name": "enviarComando","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
 )

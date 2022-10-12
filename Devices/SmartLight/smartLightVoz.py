@@ -15,7 +15,7 @@ account = "0xc8f39fC331f0799F655490Bb7dc2D0d484018Bc0"
 private_key = "abff363e849b97ba975265f8d28eafb56f0851011fcd37b211c78f0febd0b55a"
 
 # Direccion del contrato y su ABI
-contratoDir = "0x4a6F8f71814a8C8bd6a82591FD86ab89E5f9F125"
+contratoDir = "0x5b2f3a01031b5AcB1fE60Aa1EF1a73a6457cd5E7"
 contractABI = json.loads(
     '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comando", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comando", 				"type": "string" 			} 		], 		"name": "enviarComando", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	} ]'
 )

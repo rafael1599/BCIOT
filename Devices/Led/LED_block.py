@@ -42,6 +42,14 @@ async def log_loop(event_filter, poll_interval):
 
 
 comando = ""
+
+
+def enviar_comando(comando):
+    comando = comando + "\r"
+    print("Comando a ser enviado arduinoCMD: " + comando)
+    conexion.write(comando.encode())
+
+
 encender = "Encender"
 apagar = "Apagar"
 
@@ -51,12 +59,10 @@ def handle_event(event):
     comando = orden["args"]
     print(comando["comando"])
     if comando["comando"] == "Encender":
-        print("Se está enviando: " + encender)
-        conexion.write(encender.encode())
+        enviar_comando(encender)
         print("LED encendido")
     elif comando["comando"] == "Apagar":
-        print("Se está enviando: " + apagar)
-        conexion.write(apagar.encode())
+        enviar_comando(apagar)
         print("LED apagado")
     else:
         print("la opción que elegiste no es correcta o reconocida. Intentalo de nuevo")
