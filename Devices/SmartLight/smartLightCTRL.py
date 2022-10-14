@@ -1,7 +1,6 @@
 import warnings
 from turtle import color
 import serial  # para cominicarse con arduino
-import sys
 import json
 from web3 import Web3 as w3
 import asyncio
@@ -10,40 +9,40 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 arduinoCMD = serial.Serial("COM5", 9600)
 
 # Funciones
-def enviarComando(comando):
+def enviar_comando(comando):
     comando = comando + "\r"
     arduinoCMD.write(comando.encode())
 
 
-def handle_event(event):
-    rojo = "255:0:0"
-    verde = "0:255:0"
-    azul = "0:0:255"
+def avisar_arduino(event):
+    rojo = "250:0:0"
+    verde = "0:250:0"
+    azul = "0:0:250"
     apagar = "0:0:0"
+
     person_dict = json.loads(w3.toJSON(event))
     comando = person_dict["args"]
     print(comando["comando"])
-    if comando["comando"] == "1":
-        enviarComando(rojo)
-        print("tu color elegido, se encendio")
-    elif comando["comando"] == "2":
-        enviarComando(verde)
-        print("tu color elegido, se encendio")
-    elif comando["comando"] == "3":
-        enviarComando(azul)
-        print("tu color elegido, se encendio")
-    elif comando["comando"] == "Finalizar":
+    if comando["comando"] == "red":
+        enviar_comando(rojo)
+        print("tu color elegido, se encendió")
+    elif comando["comando"] == "green":
+        enviar_comando(verde)
+        print("tu color elegido, se encendió")
+    elif comando["comando"] == "blue":
+        enviar_comando(azul)
+        print("tu color elegido, se encendió")
+    elif comando["comando"] == "off":
         print("Apagando led")
-        enviarComando(apagar)
-        sys.exit()
+        enviar_comando(apagar)
     else:
         print("Comando no reconocido, intentelo de nuevo")
 
 
-async def log_loop(event_filter, poll_interval):
+async def bucle_registro(event_filter, poll_interval):
     while True:
         for manejarLED in event_filter.get_new_entries():
-            handle_event(manejarLED)
+            avisar_arduino(manejarLED)
         await asyncio.sleep(poll_interval)
 
 
@@ -55,7 +54,7 @@ print(
     "BIENVENIDO: En Remix, Ingrese el numero correspondiente a su color a cambiar:\n1. Rojo\n2. Verde\n3. Azul"
 )
 
-contract_Address = "0xdda3bd75cA66012daf90be12BF2836d447B47380"
+contract_Address = "0x20407b46FbB470857bA10267E6A56A6d035aD2DD"
 contract_abi = json.loads(
     '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comando","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_comando","type": "string"}],"name": "enviarComando","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
 )
@@ -67,7 +66,7 @@ def main():
     event_filter = contract.events.manejarLED.createFilter(fromBlock="latest")
     loop = asyncio.get_event_loop()
     try:
-        loop.run_until_complete(asyncio.gather(log_loop(event_filter, 2)))
+        loop.run_until_complete(asyncio.gather(bucle_registro(event_filter, 2)))
     finally:
         # close loop to free up system resources
         print("Finalizando procesos")

@@ -1,17 +1,15 @@
-# Aqui solo podemos controlar al arduino desde el IDE Remix de Ethereum, una vez desplegado el contrato
-# podemos comenzar a enviar comandos al contrato para controlar el led.
+import time
+
+# Aqui se estan haciendo las pruebas para medir el tiempo
 
 import sys
 import json
 from web3 import Web3 as w3
 import asyncio
 import warnings
-import time
 from pyfirmata import Arduino, util
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-
-
 # Generalidades
 infura_url = "https://goerli.infura.io/v3/f1ee978b04d04b4e8bb83d51b731c973"
 w3 = w3(w3.HTTPProvider(infura_url))
@@ -51,12 +49,24 @@ def handle_event(event):
     if comando["comando"] == "Encender":
         board.digital[13].write(1)
         print("LED encendido")
+        # Tiempo final
+        tiempoFinal = time.time()
+        print("El tiempo al culminar la ejecucion es:", tiempoFinal)
     elif comando["comando"] == "Apagar":
         board.digital[13].write(0)
         print("LED apagado")
+        # Tiempo final
+        tiempoFinal = time.time()
+        print("El tiempo al culminar la ejecucion es:", tiempoFinal)
     elif comando["comando"] == "Finalizar":
+        # Tiempo final
+        tiempoFinal = time.time()
+        print("El tiempo al culminar la ejecucion es:", tiempoFinal)
         sys.exit("Finalizando...")
     else:
+        # Tiempo final
+        tiempoFinal = time.time()
+        print("El tiempo al culminar la ejecucion es:", tiempoFinal)
         print("la opción que elegiste no es correcta o reconocida. Intentalo de nuevo")
 
 
@@ -67,7 +77,7 @@ def main():
         loop.run_until_complete(asyncio.gather(log_loop(event_filter, 2)))
     finally:
         # close loop to free up system resources
-        print("Error inesperado. Cerrando programa para no dañar el equipo")
+        print("Finalizando procesos...")
         loop.close()
 
 
