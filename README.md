@@ -209,7 +209,32 @@ Damos click en el botón de descarga.
 ## 4. Creando el Smart Contract en Remix IDE ‎ ‎ ‎ ‎ ‎ ‎<img src="img/logos/remix-logo-notext.png" width="5%"/>
 El contrato inteligente fue desarrollado en Remix con el lenguaje de programación Solidity
 ### Pasos para crear el Smart Contract
-(Agregar imagenes de los pasos para crear el smart contract en REMIX IDE)
+> Para poder desarrollar el Smart Contract primero debes abrir Remix.
+
+Primero se deb poner en el busacdor Remix ethereum o Remix ethe, despues seleccionamos la primera opcion como se muestra en la imagen.
+
+<p style ="text-align: center" ><img src="img/Smart_Contract/paso1.png" width="70%"/></p>
+
+> Al abrir se puede visualizar la siguiente pagina
+<p style ="text-align: center" ><img src="img/Smart_Contract/paso02.png" width="70%"/></p>
+
+> En esta parte seleccionamos la opcion "Remix IDE" que es para entrar a la parte de desarrollo y poder codificar el Smart Contract.
+<p style ="text-align: center" ><img src="img/Smart_Contract/3.png" width="70%"/></p>
+
+>Aqui se desarrolla el Smart Contract
+<p style ="text-align: center" ><img src="img/Smart_Contract/4.PNG" width="70%"/></p>
+
+> En esta parte se muetra algunos archivos por default
+<p style ="text-align: center" ><img src="img/Smart_Contract/5.png" width="70%"/></p>
+
+> Para comenzar a desarrollar el Smart Contract Primero se debe crear un nuevo archivo '.sol' asi se crear los archivos Solidity 
+<p style ="text-align: center" ><img src="img/Smart_Contract/6.png" width="70%"/></p>
+
+> Como se muestra en la Imagen
+<p style ="text-align: center" ><img src="img/Smart_Contract/7.png" width="70%"/></p>
+
+> Parte principal de un Smart Contract es colocar la licencia y la version de Solidity que se va a utilizar.
+<p style ="text-align: center" ><img src="img/Smart_Contract/8.png" width="70%"/></p>
 ## ‎ 
 
 ### Codigo del smart contract
