@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+ 
+contract LedIoT {
+    
+    string public comandoLED;
+    event manejarLED(string comandoLED);
+ 
+    function enviarComandoLED(string memory _comandoLED) public {
+        comandoLED = _comandoLED;
+        emit manejarLED(_comandoLED);
+    }
+
+    function getComandoLED() public view returns(string memory){
+        return comandoLED;
+    }
+}

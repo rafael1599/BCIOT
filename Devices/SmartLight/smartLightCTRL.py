@@ -1,5 +1,5 @@
+from time import time
 import warnings
-from turtle import color
 import serial  # para cominicarse con arduino
 import json
 from web3 import Web3 as w3
@@ -26,23 +26,29 @@ def avisar_arduino(event):
     if comando["comando"] == "red":
         enviar_comando(rojo)
         print("tu color elegido, se encendió")
+        print(time.time())
     elif comando["comando"] == "green":
         enviar_comando(verde)
         print("tu color elegido, se encendió")
+        print(time.time())
     elif comando["comando"] == "blue":
         enviar_comando(azul)
         print("tu color elegido, se encendió")
+        print(time.time())
     elif comando["comando"] == "off":
         print("Apagando led")
         enviar_comando(apagar)
+        print(time.time())
     else:
         print("Comando no reconocido, intentelo de nuevo")
+        print(time.time())
 
 
 async def bucle_registro(event_filter, poll_interval):
     while True:
         for manejarLED in event_filter.get_new_entries():
-            avisar_arduino(manejarLED)
+            print
+            # avisar_arduino(manejarLED)
         await asyncio.sleep(poll_interval)
 
 
@@ -54,7 +60,7 @@ print(
     "BIENVENIDO: En Remix, Ingrese el numero correspondiente a su color a cambiar:\n1. Rojo\n2. Verde\n3. Azul"
 )
 
-contract_Address = "0x20407b46FbB470857bA10267E6A56A6d035aD2DD"
+contract_Address = "0xE23579feD3997C5185Dcd6D049131542446e78D6"
 contract_abi = json.loads(
     '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comando","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_comando","type": "string"}],"name": "enviarComando","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
 )

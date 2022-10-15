@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+ 
+contract lockIot {
+    
+    string public comandoLock;
+    event manejarLock(string comandoLock);
+ 
+    function enviarComandoLock(string memory _comandoLock) public {
+        comandoLock = _comandoLock;
+        emit manejarLock(_comandoLock);
+    }
+
+    function getComandoLock() public view returns(string memory){
+        return comandoLock;
+    }
+}

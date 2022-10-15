@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+ 
+contract smartLight {
+    
+    string public comandoSML;
+    event manejarSML(string comandoSML);
+ 
+    function enviarComandoSML(string memory _comandoSML) public {
+        comandoSML = _comandoSML;
+        emit manejarSML(_comandoSML);
+    }
+
+    function getComandoSML() public view returns(string memory){
+        return comandoSML;
+    }
+}

@@ -81,6 +81,7 @@ def oir_microfono():
         print("Voz dice: " + estado)
         speak("Voz dice: " + estado)
         enviarEstado(estado)
+        print(time.time())
         # Si no reconoció el patrón de voz, muestra este mensaje que no entendió
     except sr.UnknownValueError:
         print("No entendí")
