@@ -10,14 +10,6 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 infura_url = "https://goerli.infura.io/v3/f1ee978b04d04b4e8bb83d51b731c973"
 w3 = w3(w3.HTTPProvider(infura_url))
-print(w3.isConnected())
-
-contract_Address = "0x4D6CC2C750A8213E4e702231a525e44d2Ac0abc8"
-contract_abi = json.loads(
-    '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comandoLED", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "comandoLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comandoLED", 				"type": "string" 			} 		], 		"name": "enviarComandoLED", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getComandoLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
-)
-
-contract = w3.eth.contract(address=contract_Address, abi=contract_abi)
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:3000"}})
@@ -50,6 +42,66 @@ async def hashTransaction(signedTransaction):
 
 
 base = "/api"
+# **************************************************** #
+# **************************************************** #
+# **************************************************** #
+# *********************SML**************************** #
+# **************************************************** #
+# **************************************************** #
+# **************************************************** #
+
+# contractAddressSML = "0x4D6CC2C750A8213E4e702231a525e44d2Ac0abc8"
+# contractAbiSML = json.loads(
+#     '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comandoLED", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "comandoLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comandoLED", 				"type": "string" 			} 		], 		"name": "enviarComandoLED", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getComandoLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
+# )
+
+# contractSML = w3.eth.contract(address=contractAddressSML, abi=contractAbiSML)
+
+# baseSML = "/SML"
+
+
+# async def buildTransactionSML(state, nonce):
+#     return contractSML.functions.enviarComandoSML(state).buildTransaction(
+#         {
+#             "gasPrice": w3.eth.gas_price,
+#             "chainId": chainId,
+#             "from": account,
+#             "nonce": nonce,
+#         }
+#     )
+
+
+# @app.route(base + baseSML + "/sendState/<state>", methods=["POST"])
+# async def sendStateSML(state):
+#     # Esperar que la transaccion se mine
+#     nonce = await getNonce()
+#     transaccion = await buildTransactionSML(state, nonce)
+#     signedTransaction = await signTransaction(transaccion)
+#     hashedTransaction = await hashTransaction(signedTransaction)
+#     res = {}
+
+#     res["message"] = "API - /sendState - Ejecutada satisfactoriamente!"
+#     res["status"] = 200
+#     res["data"] = {}
+
+#     return jsonify(res)
+
+
+# @app.route(base + baseSML + "/getState")
+# async def getStateSML():
+#     data = contractSML.functions.getComandoSML().call()
+#     typeLight = "Encendido"
+#     if data == "Rojo":
+#         typeLight = "Apagado"
+
+#     res = {}
+#     res["message"] = "Valor de SML obtenido!"
+#     res["success"] = True
+#     res["status"] = 200
+#     res["data"] = {"comando": data, "typeLight": typeLight}
+
+#     return jsonify(res)
+
 
 # **************************************************** #
 # **************************************************** #
@@ -59,11 +111,19 @@ base = "/api"
 # **************************************************** #
 # **************************************************** #
 
+
+contractAddressLED = "0x71B68430Bc65a43d6AcdFf61c444b060b29E5Ca6"
+contractAbiLED = json.loads(
+    '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comandoLED", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "comandoLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comandoLED", 				"type": "string" 			} 		], 		"name": "enviarComandoLED", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getComandoLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
+)
+
+contractLED = w3.eth.contract(address=contractAddressLED, abi=contractAbiLED)
+
 baseLED = "/LED"
 
 
 async def buildTransactionLED(state, nonce):
-    return contract.functions.enviarComandoLED(state).buildTransaction(
+    return contractLED.functions.enviarComandoLED(state).buildTransaction(
         {
             "gasPrice": w3.eth.gas_price,
             "chainId": chainId,
@@ -80,6 +140,9 @@ async def sendStateLED(state):
     transaccion = await buildTransactionLED(state, nonce)
     signedTransaction = await signTransaction(transaccion)
     hashedTransaction = await hashTransaction(signedTransaction)
+
+    #### PARA VER EL HASH CON EL QUE VEMOS LAS TRANSACCIONES EN EL ETHERSCAN ####
+    print("#####################################################\n", signedTransaction)
     res = {}
 
     res["message"] = "API - /sendState - Ejecutada satisfactoriamente!"
@@ -91,7 +154,7 @@ async def sendStateLED(state):
 
 @app.route(base + baseLED + "/getState")
 async def getStateLED():
-    data = contract.functions.getComandoLED().call()
+    data = contractLED.functions.getComandoLED().call()
     typeLight = "Encendido"
     if data == "Rojo":
         typeLight = "Apagado"
@@ -113,50 +176,57 @@ async def getStateLED():
 # **************************************************** #
 # **************************************************** #
 
-baseSmartLock = "/smartLock"
+# contractAddressLOCK = "0x4D6CC2C750A8213E4e702231a525e44d2Ac0abc8"
+# contractAbiLOCK = json.loads(
+#         '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comandoLock", 				"type": "string" 			} 		], 		"name": "manejarLock", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "comandoLock", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comandoLock", 				"type": "string" 			} 		], 		"name": "enviarComandoLock", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getComandoLock", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
+#     )
+
+# contractLOCK = w3.eth.contract(address=contractAddressLOCK, abi=contractAbiLOCK)
+
+# baseSmartLock = "/smartLock"
 
 
-async def buildTransactionLOCK(state, nonce):
-    return contract.functions.enviarComandoLOCK(state).buildTransaction(
-        {
-            "gasPrice": w3.eth.gas_price,
-            "chainId": chainId,
-            "from": account,
-            "nonce": nonce,
-        }
-    )
+# async def buildTransactionLOCK(state, nonce):
+#     return contractLOCK.functions.enviarComandoLOCK(state).buildTransaction(
+#         {
+#             "gasPrice": w3.eth.gas_price,
+#             "chainId": chainId,
+#             "from": account,
+#             "nonce": nonce,
+#         }
+#     )
 
 
-@app.route(base + baseSmartLock + "/sendState/<state>", methods=["POST"])
-async def sendStateLock(state):
-    # Esperar que la transaccion se mine
-    nonce = await getNonce()
-    transaccion = await buildTransactionLOCK(state, nonce)
-    signedTransaction = await signTransaction(transaccion)
-    hashedTransaction = await hashTransaction(signedTransaction)
-    res = {}
+# @app.route(base + baseSmartLock + "/sendState/<state>", methods=["POST"])
+# async def sendStateLock(state):
+#     # Esperar que la transaccion se mine
+#     nonce = await getNonce()
+#     transaccion = await buildTransactionLOCK(state, nonce)
+#     signedTransaction = await signTransaction(transaccion)
+#     hashedTransaction = await hashTransaction(signedTransaction)
+#     res = {}
 
-    res["message"] = "API - /sendState - Ejecutada satisfactoriamente!"
-    res["status"] = 200
-    res["data"] = {}
+#     res["message"] = "API - /sendState - Ejecutada satisfactoriamente!"
+#     res["status"] = 200
+#     res["data"] = {}
 
-    return jsonify(res)
+#     return jsonify(res)
 
 
-@app.route(base + baseSmartLock + "/getState")
-async def getState():
-    data = contract.functions.getComandoLOCK().call()
-    typeLock = "Encendido"
-    if data == "Rojo":
-        typeLock = "Apagado"
+# @app.route(base + baseSmartLock + "/getState")
+# async def getState():
+#     data = contractLOCK.functions.getComandoLOCK().call()
+#     typeLock = "Encendido"
+#     if data == "Rojo":
+#         typeLock = "Apagado"
 
-    res = {}
-    res["message"] = "Valor de LOCK obtenido!"
-    res["success"] = True
-    res["status"] = 200
-    res["data"] = {"comando": data, "typeLock": typeLock}
+#     res = {}
+#     res["message"] = "Valor de LOCK obtenido!"
+#     res["success"] = True
+#     res["status"] = 200
+#     res["data"] = {"comando": data, "typeLock": typeLock}
 
-    return jsonify(res)
+#     return jsonify(res)
 
 
 if __name__ == "__main__":

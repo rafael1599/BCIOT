@@ -1,0 +1,35 @@
+#include <Servo.h>
+Servo ServoMotor;
+
+int redPin = 3;
+int greenPin = 5;
+int energyRed = 0;
+int energyGreen = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+
+  ServoMotor.attach(11);
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  ServoMotor.write(2);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  while (Serial.available() == 0) {
+  }
+  energyRed = Serial.readStringUntil(':').toInt();
+  energyGreen = Serial.readStringUntil('\r').toInt();
+
+    if (energyGreen == 10){
+      analogWrite(greenPin, energyGreen);
+      ServoMotor.write(50);
+
+    }else{
+      ServoMotor.write(2);
+	    analogWrite(greenPin, 0);
+      analogWrite(redPin, 10);
+  }
+}

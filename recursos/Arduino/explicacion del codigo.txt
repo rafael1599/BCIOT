@@ -1,0 +1,16 @@
+speechblock.py
+
+importamos todas las dependencias
+creamos una variable infura y le asignamos como valor el link de un proyecto que creamos previamente en infura que nos va a permitir conectarnos una red de pruebas llamada RINKENBY en la plataforma Infura
+creamos una variable llamada web3 donde vamos a indicar el proveedor de http que va a ser INFURA en este caso, con el link que ya se puso en la variable infura_url
+la siguiente variable lleva guardado el Id de esta red de pruebas llamada RINKENBY, la cual es "4".
+
+la variable account se declara para guardar la llave publica de la cuenta con la que se va a disparar la transaccion
+la variable private_key se utiliza para guardar la llave privada de esta misma cuenta y esta sirve para confirmar de manera automatica la transacción, sin la necesidad de metamask, Esta llave privada debe ser bien resguardada dada su importancia para validar cualquier transaccion con la cuenta.
+
+contract_address es la direccion del contrato, una vez desplegado en la red RINKENBY
+contract_abi es mismo contrato en su version JSON, sirve para ejecutar el contrato desde este sistema.
+
+Dentro de contract vamos a colocar la direccion del contrato y el abi que ya fuenron declarados antes.
+El nonce es el contador de las transacciones.
+
