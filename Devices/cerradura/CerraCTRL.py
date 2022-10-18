@@ -18,9 +18,9 @@ print(
     + "comando por voz, sus opciones son:\n1. Open\n2. Close\n3. Off"
 )
 
-contract_Address = "0x20407b46FbB470857bA10267E6A56A6d035aD2DD"
+contract_Address = "0x1d0DB50A11C3AAE2A2821D0dB69D44f27b391fFB"
 contract_abi = json.loads(
-    '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comando","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_comando","type": "string"}],"name": "enviarComando","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
+    '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comandoLock", 				"type": "string" 			} 		], 		"name": "manejarLock", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "comandoLock", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comandoLock", 				"type": "string" 			} 		], 		"name": "enviarComandoLock", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getComandoLock", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
 )
 
 contract = w3.eth.contract(address=contract_Address, abi=contract_abi)
@@ -29,7 +29,7 @@ contract = w3.eth.contract(address=contract_Address, abi=contract_abi)
 # Funciones
 def enviar_comando(comando):
     comando = comando + "\r"
-    print("Comando a ser enviado arduinoCMD: " + comando)
+    print("Se esta enviando el comando <<" + comando + ">> al arduino")
     conexion.write(comando.encode())
 
 
@@ -57,13 +57,13 @@ def avisar_arduino(event):
 
 async def bucle_registro(event_filter, poll_interval):
     while True:
-        for manejarLED in event_filter.get_new_entries():
-            avisar_arduino(manejarLED)
+        for manejarLock in event_filter.get_new_entries():
+            avisar_arduino(manejarLock)
         await asyncio.sleep(poll_interval)
 
 
 def main():
-    event_filter = contract.events.manejarLED.createFilter(fromBlock="latest")
+    event_filter = contract.events.manejarLock.createFilter(fromBlock="latest")
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(asyncio.gather(bucle_registro(event_filter, 2)))

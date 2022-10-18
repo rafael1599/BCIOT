@@ -1,0 +1,25 @@
+int led =2;
+String comando;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  while (Serial.available() == 0){
+
+    }
+  comando = Serial.readStringUntil('\r');
+
+  if (comando == "Encender")
+     digitalWrite(led, HIGH);
+
+  if (comando == "Apagar")
+     digitalWrite(led, LOW);
+
+  if (comando == "")
+      Serial.println("Comando incorrecto, intentelo de nuevo");
+}
