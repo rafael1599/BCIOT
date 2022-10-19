@@ -1,26 +1,10 @@
 # IoT-Blockchain Manual 
 
-> Repositorio GitHub del proyecto [BCIOT](https://github.com/rafael1599/BCIOT).
+> Ver codigo y demás recursos en [BCIOT](https://github.com/rafael1599/BCIOT).
 
-**Contenido:** [ Introducción](#introduccion) -[ Características](#caracteristicas) -[ Descripciones](#descripciones)
->falta corregir el contenido **NO OLVIDAR**
-  
+**Contenido:** [ Instalación](#Instalacion) -[ Desarrollo](#desarrollo)
 
-## Introducción
-
-Un pequeño preámbulo que será agregado más adelante explicando de manera general nuestro proyecto.
-
----
-
-## Caracteristicas
-¿Qué es lo que hace? aún en desarrollo..
-
-
----
-
-## Contenido
-
-
+## TEORIA
 ### **Algunos conceptos clave**
 Antes de comenzar con la programación nos gustaría presentar algunos conceptos necesarios para poder comprender el funcioniamento de lo que estamos desarrollando en este proyecto.
 
@@ -59,7 +43,10 @@ Antes de comenzar con la programación nos gustaría presentar algunos conceptos
 
 ---
 
-# Instalación de herramientas de desarrollo
+## **Instalacion**
+
+['Volver al inicio'](#TEORIA)
+# de herramientas de desarrollo
 A continuación explicamos el paso a paso del desarrollo completo de esta pequeña demostración.
 
 ## 1. Instalando Python‎ ‎ ‎ ‎ ‎ ‎<img src="img/logos/Python-logo-notext.png" width="5%"/>
@@ -347,11 +334,11 @@ if __name__ == "__main__":
 ```
 ```python
 ```
- ['Volver al inicio'](#Contenido)
+ [Volver al inicio](#TEORIA)
  
-## Descripciones
+## **Desarrollo**
 
-['Volver al inicio'](#Contenido)
+ [Volver al inicio](#TEORIA)
 
 # Blockchain Privada 
 Para la creacion de una blockchain privada es necesario descargar un programa que simulana ser un nodo de la misma red de Ethereumeste programa es GO ethereum o Geth abrebiado https://geth.ethereum.org/

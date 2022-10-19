@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+ 
+contract BCIOT {
+    
+    string public comando;
+    event manejar(string comando);
+ 
+    function enviarComando(string memory _comando) public {
+        comando = _comando;
+        emit manejar(_comando);
+    }
+
+    function getComando() public view returns(string memory){
+        return comando;
+    }
+}
