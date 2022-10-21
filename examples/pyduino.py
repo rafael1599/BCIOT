@@ -8,7 +8,7 @@ class Arduino():
     Models an Arduino connection
     """
 
-    def __init__(self, serial_port='COM3', baud_rate=9600,
+    def __init__(self, serial_port='/dev/ttyCOM3', baud_rate=9600,
             read_timeout=5):
         """
         Initializes the serial connection to the Arduino board

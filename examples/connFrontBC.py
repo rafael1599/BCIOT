@@ -1,27 +1,30 @@
 import json
 import asyncio
-import serial as s  # para cominicarse con arduino
+import serial
 import warnings
+import time
 from web3 import Web3 as w3
 
 from flask import Flask, jsonify
-from flask_cors import CORS
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 # =========================
 # VARIABLES COMUNES       ||
 # =========================
-app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:3000"}})
 infura_url = "https://goerli.infura.io/v3/f1ee978b04d04b4e8bb83d51b731c973"
 w3 = w3(w3.HTTPProvider(infura_url))
-conexion = s.Serial("COM1", 9600)
 actualEvent = ""
 chainId = 5
 account = "0xc8f39fC331f0799F655490Bb7dc2D0d484018Bc0"
 nonce = w3.eth.getTransactionCount(account)
 private_key = "abff363e849b97ba975265f8d28eafb56f0851011fcd37b211c78f0febd0b55a"
+
+# ARDUINO
+serialcom = serial.Serial('COM3', 9600)
+serialcom.timeout = 1
+
+app = Flask(__name__)
 # _______________________________________________________________________________
 
 # =================================================
@@ -30,7 +33,7 @@ private_key = "abff363e849b97ba975265f8d28eafb56f0851011fcd37b211c78f0febd0b55a"
 def enviar_comando(comando):
     comando = comando + "\r"
     print("Se esta enviando el comando <<" + comando + ">> al arduino")
-    conexion.write(comando.encode())
+    serialcom.write(comando.encode())
 
 
 # ========================================
@@ -47,6 +50,8 @@ async def signTransaction(transaccion):
 async def hashTransaction(signedTransaction):
     return w3.eth.send_raw_transaction(signedTransaction.rawTransaction)
 
+def disconnect():
+	serialcom.close()
 
 # ______________________________________________________________________________
 
@@ -56,7 +61,7 @@ async def hashTransaction(signedTransaction):
 # ======================================================
 
 # contractAddressSML = "0x4D6CC2C750A8213E4e702231a525e44d2Ac0abc8"
-contractAddressLED = "0x71B68430Bc65a43d6AcdFf61c444b060b29E5Ca6"
+contractAddressLED = "0x4c79072Fb97c479C580004A090271494bcE6dD71"
 # contractAddressLOCK = "0x4D6CC2C750A8213E4e702231a525e44d2Ac0abc8"
 # ___________________________________________________________________
 
@@ -68,7 +73,7 @@ contractAddressLED = "0x71B68430Bc65a43d6AcdFf61c444b060b29E5Ca6"
 #     '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comandoLED","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [],"name": "comandoLED","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "string","name": "_comandoLED","type": "string"}],"name": "enviarComandoLED","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "getComandoLED","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"} ]'
 # )
 contractAbiLED = json.loads(
-    '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comandoLED","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [],"name": "comandoLED","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "string","name": "_comandoLED","type": "string"}],"name": "enviarComandoLED","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "getComandoLED","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"} ]'
+    '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comandoLED", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "comandoLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comandoLED", 				"type": "string" 			} 		], 		"name": "enviarComandoLED", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getComandoLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
 )
 # contractAbiLOCK = json.loads(
 #         '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comandoLock","type": "string"}],"name": "manejarLock","type": "event"},{"inputs": [],"name": "comandoLock","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "string","name": "_comandoLock","type": "string"}],"name": "enviarComandoLock","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "getComandoLock","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"} ]'
@@ -167,7 +172,8 @@ baseLED = "/LED"
 #     elif orden == "Apagar":
 #         enviar_comando(Apagar)
 #     else:
-#         print("El color elegido no existe")
+#         print("<<ERROR GRAVE>> El color elegido no existe")
+#         disconnect()
 
 #     res = {}
 #     res["message"] = "Valor de SML obtenido!"
@@ -193,27 +199,30 @@ async def sendStateLED(state):
     transaccion = await buildTransactionLED(state, nonce)
     signedTransaction = await signTransaction(transaccion)
     hashedTransaction = await hashTransaction(signedTransaction)
+    await enviar_comando(state)
 
     #### PARA VER EL HASH CON EL QUE VEMOS LAS TRANSACCIONES EN EL ETHERSCAN ####
     print("#####################################################\n", signedTransaction)
     res = {}
 
-    res["message"] = "API - /sendState - Ejecutada satisfactoriamente!"
+    res["message"] = "Comando enviado satisfactoriamente!"
     res["status"] = 200
-    res["orden"] = {}
+    res["data"] = {
+        "hashedTransaction": hashedTransaction
+    }
+    if state == '':
+        disconnect()
 
     return jsonify(res)
 
 
 @app.route(base + baseLED + "/getState")
 async def getStateLED():
-    orden = contractLED.functions.getComandoLED().call()
+    command = contractLED.functions.getComandoLED().call()
     typeLight = "Encendido"
-    if orden == "Apagar":
-        enviar_comando(orden)
+    if command == "Apagar":
         typeLight = "Apagado"
-    elif orden == "Encender":
-        enviar_comando(orden)
+    elif command == "Encender":
         typeLight = "Encendido"
     else:
         typeLight = "Error al intentar ejecutar el comando"
@@ -223,7 +232,7 @@ async def getStateLED():
     res["message"] = "Valor de LED obtenido!"
     res["success"] = True
     res["status"] = 200
-    res["orden"] = {"comando": orden, "typeLight": typeLight}
+    res["data"] = {"comando": command, "typeLight": typeLight}
 
     return jsonify(res)
 
