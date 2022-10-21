@@ -6,11 +6,9 @@ import time
 from web3 import Web3 as w3
 import json
 
-
-
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-serialcom = serial.Serial('COM3', 9600)
+serialcom = serial.Serial('COM4', 9600)
 serialcom.timeout = 1
 
 infura_url = "https://goerli.infura.io/v3/f1ee978b04d04b4e8bb83d51b731c973"

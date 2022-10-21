@@ -1,10 +1,10 @@
 from __main__ import app, time, base, json, w3, chainId, account, nonce, private_key, serialcom, jsonify, getNonce, signTransaction, hashTransaction
-import string
 
 baseLock = "/smartLock"
-contractAddressLOCK = "0x4D6CC2C750A8213E4e702231a525e44d2Ac0abc8"
+
+contractAddressLOCK = "0x564154eF75B7833d5DA2B08E9344591a944a0c8E"
 contractAbiLOCK = json.loads(
-        '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comandoLock","type": "string"}],"name": "manejarLock","type": "event"},{"inputs": [],"name": "comandoLock","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "string","name": "_comandoLock","type": "string"}],"name": "enviarComandoLock","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "getComandoLock","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"} ]'
+        '[ 	{"anonymous": false,"inputs": [	{"indexed": false,"internalType": "string","name": "comandoLOCK","type": "string"	}],"name": "manejarLOCK","type": "event" 	}, 	{"inputs": [],"name": "comandoLOCK","outputs": [	{"internalType": "string","name": "","type": "string"	}],"stateMutability": "view","type": "function" 	}, 	{"inputs": [	{"internalType": "string","name": "_comandoLOCK","type": "string"	}],"name": "enviarComandoLOCK","outputs": [],"stateMutability": "nonpayable","type": "function" 	}, 	{"inputs": [],"name": "getComandoLOCK","outputs": [	{"internalType": "string","name": "","type": "string"	}],"stateMutability": "view","type": "function" 	} ]'
     )
 contractLock = w3.eth.contract(address=contractAddressLOCK, abi=contractAbiLOCK)
 
@@ -18,26 +18,18 @@ async def buildTransactionLOCK(state, nonce):
         }
     )
 
-open = "0:10:0"
-close = "10:0:0"
-ledOff = "0:0:0"
-
 def LockOpen():
-    serialcom.write(str(open).encode())
+    serialcom.write(str('1').encode())
     
 def lockClose():
-	serialcom.write(str(close).encode())
-
-#pasar a modo hibernacion, HM: Hibernation mode
-def lockHM():
-    serialcom.write(str(ledOff).encode())
+	serialcom.write(str('0').encode())
 
 def disconnect():
 	serialcom.close()
 
 ############################################################## ESTUDIAR #
 async def validateChangeCommand(state):
-    command = contractLock.functions.getComandoLock().call()
+    command = contractLock.functions.getComandoLOCK().call()
     if state == command:
         return True
     else:
@@ -53,20 +45,17 @@ async def sendStateLock(state):
     
     transaccion = await buildTransactionLOCK(state, nonce)
     signedTransaction = await signTransaction(transaccion)
+    print("signedTransaction", signedTransaction)
     hashedTransaction = await hashTransaction(signedTransaction)
     await validateChangeCommand(state)
     
     timeEnd = time.time()
 
-    if state == open:
+    if state == "open":
         LockOpen()
 
-    if state == close:
+    if state == "close":
         lockClose()
-
-    # Hibernation mode
-    if state == ledOff:
-        lockHM()
 
     if state == '':
         disconnect()
@@ -85,21 +74,17 @@ async def sendStateLock(state):
 @app.route(base + baseLock + "/getState")
 async def getStateLOCK():
     command = contractLock.functions.getComandoLOCK().call()
-    typeLight = "Cerradura bloqueada"
-    if command == close:
-        typeLight = "Cerradura bloqueada"
-    elif command == open:
-        typeLight = "Cerradura desbloqueada"
-    elif command == ledOff:
-        typeLight = "Cerradura en modo hibernación"
+    typeLock = "Cerradura bloqueada"
+    if command == "open":
+        typeLock = "Cerradura desbloqueada"
     else:
-        typeLight = "Error al intentar ejecutar el comando"
-        print("El LOCK no puede realizar esta peticion")
+        command = "close"
+        typeLock = "Cerradura bloqueada"
 
     res = {}
     res["message"] = "Valor de LOCK obtenido!"
     res["success"] = True
     res["status"] = 200
-    res["data"] = {"comando": command, "typeLight": typeLight}
+    res["data"] = {"comando": command, "typeLock": typeLock}
 
     return jsonify(res)

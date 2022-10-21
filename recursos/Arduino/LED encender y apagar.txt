@@ -12,14 +12,17 @@ void loop() {
   while (Serial.available() == 0){
 
     }
-  comando = Serial.readStringUntil('\r');
+  comando = Serial.readStringUntil('\n');
 
-  if (comando == "Encender")
+  if (comando == "1")
+  {
+  
      digitalWrite(led, HIGH);
-
-  if (comando == "Apagar")
+}
+  if (comando == "0")
+  {
      digitalWrite(led, LOW);
-
+}
   if (comando == "")
       Serial.println("Comando incorrecto, intentelo de nuevo");
 }

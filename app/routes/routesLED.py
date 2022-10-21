@@ -69,13 +69,11 @@ async def sendStateLED(state):
 async def getStateLED():
     command = contractLED.functions.getComandoLED().call()
     typeLight = "Apagado"
-    if command == "Apagar":
-        typeLight = "Apagado"
-    elif command == "Encender":
+    if command == "Encender":
         typeLight = "Encendido"
     else:
-        typeLight = "Error al intentar ejecutar el comando"
-        print("El LED no puede realizar esta peticion")
+        command = "Apagar"
+        typeLight = "Apagado"
 
     res = {}
     res["message"] = "Valor de LED obtenido!"
