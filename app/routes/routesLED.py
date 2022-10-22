@@ -79,6 +79,6 @@ async def getStateLED():
     res["message"] = "Valor de LED obtenido!"
     res["success"] = True
     res["status"] = 200
-    res["data"] = {"comando": command, "typeLight": typeLight}
+    res["data"] = {"command": command, "typeLight": typeLight}
 
     return jsonify(res)

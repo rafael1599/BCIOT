@@ -85,6 +85,6 @@ async def getStateLOCK():
     res["message"] = "Valor de LOCK obtenido!"
     res["success"] = True
     res["status"] = 200
-    res["data"] = {"comando": command, "typeLock": typeLock}
+    res["data"] = {"command": command, "typeLock": typeLock}
 
     return jsonify(res)

@@ -25,7 +25,7 @@ void loop() {
     if (comando == "0"){
       analogWrite(greenPin, 0);
       analogWrite(redPin, 10);
-      ServoMotor.write(50);
+      ServoMotor.write(37);
 
     }
     if (comando == "1")
