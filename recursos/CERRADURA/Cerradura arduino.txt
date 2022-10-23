@@ -12,7 +12,7 @@ void setup() {
   ServoMotor.attach(11);
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
-  ServoMotor.write(2);
+  ServoMotor.write(5);
 }
 
 void loop() {
@@ -25,12 +25,12 @@ void loop() {
     if (comando == "0"){
       analogWrite(greenPin, 0);
       analogWrite(redPin, 10);
-      ServoMotor.write(37);
+      ServoMotor.write(50);
 
     }
     if (comando == "1")
     {
-      ServoMotor.write(2);
+      ServoMotor.write(5);
 	    analogWrite(greenPin, 10);
       analogWrite(redPin, 0);
   }

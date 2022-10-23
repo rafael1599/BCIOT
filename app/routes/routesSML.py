@@ -43,6 +43,8 @@ async def sendStateSML(state):
     transaccion = await buildTransactionSML(state, nonce)
     signedTransaction = await signTransaction(transaccion)
     hashedTransaction = await hashTransaction(signedTransaction)
+    print("################################################################")
+    print(signedTransaction)
     await validateChangeCommand(state)
     
     timeEnd = time.time()

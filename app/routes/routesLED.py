@@ -43,11 +43,14 @@ async def sendStateLED(state):
     transaccion = await buildTransactionLED(state, nonce)
     signedTransaction = await signTransaction(transaccion)
     hashedTransaction = await hashTransaction(signedTransaction)
+    print(signedTransaction)
     await validateChangeCommand(state)
+    
     
     timeEnd = time.time()
 
     if state == 'Encender':
+        print(signedTransaction)
         ledOn()
     if state == 'Apagar':
         ledOff()
