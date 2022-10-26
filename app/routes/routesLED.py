@@ -37,43 +37,34 @@ async def validateChangeCommand(state):
 @app.route(base + baseLED + "/sendState/<state>", methods=["POST"])
 async def sendStateLED(state):
     res = {}
-    try:
-        nonce = await getNonce()
-        
-        timeStart = time.time()
-        
-        transaccion = await buildTransactionLED(state, nonce)
-        signedTransaction = await signTransaction(transaccion)
-        hashedTransaction = await hashTransaction(signedTransaction)
+    nonce = await getNonce()
+    
+    timeStart = time.time()
+    
+    transaccion = await buildTransactionLED(state, nonce)
+    signedTransaction = await signTransaction(transaccion)
+    hashedTransaction = await hashTransaction(signedTransaction)
+    print(signedTransaction)
+    await validateChangeCommand(state)
+    
+    
+    timeEnd = time.time()
+
+    if state == 'Encender':
         print(signedTransaction)
-        await validateChangeCommand(state)
-        
-        
-        timeEnd = time.time()
+        ledOn()
+    if state == 'Apagar':
+        ledOff()
+    if state == '':
+        disconnect()
 
-        if state == 'Encender':
-            print(signedTransaction)
-            ledOn()
-        if state == 'Apagar':
-            ledOff()
-        if state == '':
-            disconnect()
-
-        res["message"] = "Comando enviado satisfactoriamente!"
-        res["status"] = 200
-        res["data"] = {
-            "success": True,
-            "duration": timeEnd - timeStart
-        }
-    except ValueError as err:
-        res["message"] = "Ocurrió un Error!"
-        res["status"] = 500
-        res["data"] = {
-            "success": False,
-            "error": str(err)
-        }
-    finally:
-        return jsonify(res), 500
+    res["message"] = "Comando enviado satisfactoriamente!"
+    res["status"] = 200
+    res["data"] = {
+        "success": True,
+        "duration": timeEnd - timeStart
+    }
+    return jsonify(res), 200
 
 @app.route(base + baseLED + "/getState")
 async def getStateLED():
