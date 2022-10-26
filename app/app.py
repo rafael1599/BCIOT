@@ -36,8 +36,8 @@ async def hashTransaction(signedTransaction):
 
 base = "/api"
 
-import errors.errors
-import routes.routes
+import errors
+import routes
 
 if __name__ == "__main__":
     app.run()
