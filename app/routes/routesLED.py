@@ -1,4 +1,4 @@
-from __main__ import app, time, base, json, w3, chainId, account, nonce, private_key, serialcom, jsonify, getNonce, signTransaction, hashTransaction
+from routes import app, time, base, json, w3, chainId, account, nonce, private_key, serialcom, jsonify, getNonce, signTransaction, hashTransaction
 
 baseLED = "/LED"
 
@@ -36,37 +36,44 @@ async def validateChangeCommand(state):
 
 @app.route(base + baseLED + "/sendState/<state>", methods=["POST"])
 async def sendStateLED(state):
-    nonce = await getNonce()
-    
-    timeStart = time.time()
-    
-    transaccion = await buildTransactionLED(state, nonce)
-    signedTransaction = await signTransaction(transaccion)
-    hashedTransaction = await hashTransaction(signedTransaction)
-    print(signedTransaction)
-    await validateChangeCommand(state)
-    
-    
-    timeEnd = time.time()
-
-    if state == 'Encender':
-        print(signedTransaction)
-        ledOn()
-    if state == 'Apagar':
-        ledOff()
-    if state == '':
-        disconnect()
-
     res = {}
+    try:
+        nonce = await getNonce()
+        
+        timeStart = time.time()
+        
+        transaccion = await buildTransactionLED(state, nonce)
+        signedTransaction = await signTransaction(transaccion)
+        hashedTransaction = await hashTransaction(signedTransaction)
+        print(signedTransaction)
+        await validateChangeCommand(state)
+        
+        
+        timeEnd = time.time()
 
-    res["message"] = "Comando enviado satisfactoriamente!"
-    res["status"] = 200
-    res["data"] = {
-        "success": True,
-        "duration": timeEnd - timeStart
-    }
+        if state == 'Encender':
+            print(signedTransaction)
+            ledOn()
+        if state == 'Apagar':
+            ledOff()
+        if state == '':
+            disconnect()
 
-    return jsonify(res)
+        res["message"] = "Comando enviado satisfactoriamente!"
+        res["status"] = 200
+        res["data"] = {
+            "success": True,
+            "duration": timeEnd - timeStart
+        }
+    except ValueError as err:
+        res["message"] = "Ocurrió un Error!"
+        res["status"] = 500
+        res["data"] = {
+            "success": False,
+            "error": str(err)
+        }
+    finally:
+        return jsonify(res), 500
 
 @app.route(base + baseLED + "/getState")
 async def getStateLED():

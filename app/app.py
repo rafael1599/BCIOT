@@ -6,12 +6,12 @@ import time
 from web3 import Web3 as w3
 import json
 import sys
-sys.setrecursionlimit(2000)
+sys.setrecursionlimit(5000)
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 serialcom = serial.Serial('COM5', 9600)
-#PONER COM COMO VARIABLE PARA HACERLO AUTOMATICO, SEGUN EL DISPOSITIVO (LED = COM3, CERRADURA = COM4, FOCO INTELIGENTE = COM5)
+# PONER COM COMO VARIABLE PARA HACERLO AUTOMATICO, SEGUN EL DISPOSITIVO (LED = COM3, CERRADURA = COM4, FOCO INTELIGENTE = COM5)
 serialcom.timeout = 1
 
 infura_url = "https://goerli.infura.io/v3/f1ee978b04d04b4e8bb83d51b731c973"
@@ -36,9 +36,8 @@ async def hashTransaction(signedTransaction):
 
 base = "/api"
 
-import routes.routesLED
-import routes.routesLOCK
-import routes.routesSML
+import errors.errors
+import routes.routes
 
 if __name__ == "__main__":
     app.run()
