@@ -45,8 +45,9 @@ async def sendStateLock(state):
     
     transaccion = await buildTransactionLOCK(state, nonce)
     signedTransaction = await signTransaction(transaccion)
-    print("signedTransaction", signedTransaction)
     hashedTransaction = await hashTransaction(signedTransaction)
+    print("################################################################")
+    print(signedTransaction)
     await validateChangeCommand(state)
     
     timeEnd = time.time()

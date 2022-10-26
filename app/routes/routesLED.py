@@ -44,6 +44,7 @@ async def sendStateLED(state):
     transaccion = await buildTransactionLED(state, nonce)
     signedTransaction = await signTransaction(transaccion)
     hashedTransaction = await hashTransaction(signedTransaction)
+    print("################################################################")
     print(signedTransaction)
     await validateChangeCommand(state)
     
