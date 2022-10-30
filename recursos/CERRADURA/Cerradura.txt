@@ -3,15 +3,15 @@ pragma solidity ^0.8.0;
  
 contract lockIot {
     
-    string public comandoLOCK;
-    event manejarLOCK(string comandoLOCK);
+    string public commandLOCK;
+    event manejarLOCK(string commandLOCK);
  
-    function enviarComandoLOCK(string memory _comandoLOCK) public {
-        comandoLOCK = _comandoLOCK;
-        emit manejarLOCK(_comandoLOCK);
+    function enviarcommandLOCK(string memory _commandLOCK) public {
+        commandLOCK = _commandLOCK;
+        emit manejarLOCK(_commandLOCK);
     }
 
-    function getComandoLOCK() public view returns(string memory){
-        return comandoLOCK;
+    function getcommandLOCK() public view returns(string memory){
+        return commandLOCK;
     }
 }

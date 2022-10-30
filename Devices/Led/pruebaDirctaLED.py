@@ -2,21 +2,21 @@ import serial as s
 
 conexion = s.Serial("COM3", 9600)
 
-comando = input("Ingrese Encender o Apagar: ")
+command = input("Ingrese Encender o Apagar: ")
 
-if comando == "Encender":
-    comando = comando + "\r"
-    print("El comando que esta siendo enviado al arduino es: " + comando)
-    conexion.write(comando.encode())
+if command == "Encender":
+    command = command + "\r"
+    print("El command que esta siendo enviado al arduino es: " + command)
+    conexion.write(command.encode())
     print("LED encendido")
-elif comando == "1":
-    comando = comando + "\r"
-    print("El comando que esta siendo enviado al arduino es: " + comando)
-    conexion.write(comando.encode())
+elif command == "1":
+    command = command + "\r"
+    print("El command que esta siendo enviado al arduino es: " + command)
+    conexion.write(command.encode())
     print("LED 0")
 
 # int led =2;
-# String comando;
+# String command;
 
 # void setup() {
 #   // put your setup code here, to run once:
@@ -29,14 +29,14 @@ elif comando == "1":
 #   while (Serial.available() == 0){
 
 #     }
-#   comando = Serial.readStringUntil('\r');
+#   command = Serial.readStringUntil('\r');
 
-#   if (comando == "Encender")
+#   if (command == "Encender")
 #      digitalWrite(led, HIGH);
 
-#   if (comando == "Apagar")
+#   if (command == "Apagar")
 #      digitalWrite(led, LOW);
 
-#   if (comando == "")
-#       Serial.println("Comando incorrecto, intentelo de nuevo");
+#   if (command == "")
+#       Serial.println("command incorrecto, intentelo de nuevo");
 # }

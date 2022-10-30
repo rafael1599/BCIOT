@@ -4,7 +4,7 @@ Servo ServoMotor;
 int redPin = 3;
 int greenPin = 5;
 
-String comando;
+String command;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -19,16 +19,16 @@ void loop() {
   // put your main code here, to run repeatedly:
   while (Serial.available() == 0) {
   }
-    comando = Serial.readStringUntil('\n');
+    command = Serial.readStringUntil('\n');
 
 
-    if (comando == "0"){
+    if (command == "0"){
       analogWrite(greenPin, 0);
       analogWrite(redPin, 10);
       ServoMotor.write(50);
 
     }
-    if (comando == "1")
+    if (command == "1")
     {
       ServoMotor.write(5);
 	    analogWrite(greenPin, 10);

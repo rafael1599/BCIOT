@@ -9,9 +9,9 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 arduinoCMD = serial.Serial("COM5", 9600)
 
 # Funciones
-def enviar_comando(comando):
-    comando = comando + "\r"
-    arduinoCMD.write(comando.encode())
+def enviar_command(command):
+    command = command + "\r"
+    arduinoCMD.write(command.encode())
 
 
 def avisar_arduino(event):
@@ -21,26 +21,26 @@ def avisar_arduino(event):
     apagar = "0:0:0"
 
     person_dict = json.loads(w3.toJSON(event))
-    comando = person_dict["args"]
-    print(comando["comando"])
-    if comando["comando"] == "red":
-        enviar_comando(rojo)
+    command = person_dict["args"]
+    print(command["command"])
+    if command["command"] == "red":
+        enviar_command(rojo)
         print("tu color elegido, se encendió")
         print(time.time())
-    elif comando["comando"] == "green":
-        enviar_comando(verde)
+    elif command["command"] == "green":
+        enviar_command(verde)
         print("tu color elegido, se encendió")
         print(time.time())
-    elif comando["comando"] == "blue":
-        enviar_comando(azul)
+    elif command["command"] == "blue":
+        enviar_command(azul)
         print("tu color elegido, se encendió")
         print(time.time())
-    elif comando["comando"] == "off":
+    elif command["command"] == "off":
         print("Apagando led")
-        enviar_comando(apagar)
+        enviar_command(apagar)
         print(time.time())
     else:
-        print("Comando no reconocido, intentelo de nuevo")
+        print("command no reconocido, intentelo de nuevo")
         print(time.time())
 
 
@@ -62,7 +62,7 @@ print(
 
 contract_Address = "0xE23579feD3997C5185Dcd6D049131542446e78D6"
 contract_abi = json.loads(
-    '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comando","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_comando","type": "string"}],"name": "enviarComando","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
+    '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "command","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_command","type": "string"}],"name": "enviarcommand","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
 )
 
 contract = w3.eth.contract(address=contract_Address, abi=contract_abi)

@@ -233,10 +233,10 @@ pragma solidity ^0.8.0;
  
 contract LedIoT {
  
-    event manejarLED(string comando);
+    event manejarLED(string command);
  
-    function enviarComando(string memory _comando) public {
-        emit manejarLED(_comando);
+    function enviarcommand(string memory _command) public {
+        emit manejarLED(_command);
     }
 }
 ```
@@ -288,15 +288,15 @@ board = Arduino("COM7")                      #
 
 def handle_event(event):                     #
     person_dict = json.loads(w3.toJSON(event))  #
-    comando = person_dict["args"]            #
-    print(comando["comando"])                #
-    if comando["comando"] == "1":            #
+    command = person_dict["args"]            #
+    print(command["command"])                #
+    if command["command"] == "1":            #
         board.digital[13].write(1)           #
         print("LED encendido")               #
-    elif comando["comando"] == "0":          #
+    elif command["command"] == "0":          #
         board.digital[13].write(0)           #
         print("LED apagado")                 #
-    elif comando["comando"] == "2":          #
+    elif command["command"] == "2":          #
         sys.exit("Bye bye!")                 #
     else:
         print("la opción que elegiste"       #
@@ -350,7 +350,7 @@ Para la creacion de una blockchain privada es necesario descargar un programa qu
 Primero de debe descaragr el instalador de geth
 <p style ="text-align: center" ><img src="img/block/3.png" width="70%"/></p>
 <p style ="text-align: center" ><img src="img/block/4.png" width="70%"/></p>
-Despues de descargo Geth vamos a realizar por comando la manipulacion de la blockchain privada, para eso vamos a utilizar PowerShell o Cmd 
+Despues de descargo Geth vamos a realizar por command la manipulacion de la blockchain privada, para eso vamos a utilizar PowerShell o Cmd 
 
 <p style ="text-align: center" ><img src="img/block/5.png" width="70%"/></p>
 Primero crearemos una carpeta donde se creara el bloque 0 o genesis, para realizar la creacion de la carpeta por medio de PowerShell o Cmd encribimos mkdir "El nombre que deseas ponerle a la Bc Privada "
@@ -359,39 +359,39 @@ Seguido entramos dentro de la carpeta creada para eso utilizaremos cd " y el nom
 <p style ="text-align: center" ><img src="img/block/6.png" width="70%"/></p>
 
 <p style ="text-align: center" ><img src="img/block/7.png" width="70%"/></p>
-Realizado eso por comando, nosotros dentro de la carpetacreada creamos un archico con lo escrito a continuación
+Realizado eso por command, nosotros dentro de la carpetacreada creamos un archico con lo escrito a continuación
 
 Esta es la codificacion del bloque genesis
 
-Dentro del comando para saber que el tu Bc privada funciona lanzamos el sigueinte comando: geth --datadir "./ "init genesis.json 
+Dentro del command para saber que el tu Bc privada funciona lanzamos el sigueinte command: geth --datadir "./ "init genesis.json 
 
 <p style ="text-align: center" ><img src="img/block/8.png" width="70%"/></p>
 
-Esto es lo que te tiene uqe salir a la hora de correr el comando si sale de esta manera es que la creacion del bloque genesis se creo correctamente.
+Esto es lo que te tiene uqe salir a la hora de correr el command si sale de esta manera es que la creacion del bloque genesis se creo correctamente.
 <p style ="text-align: center" ><img src="img/block/9.png" width="70%"/></p>
 Para poder comenzar a interactuar con el contrato inteligente dentro de la pequeña Bc privada hacemos los siguientes pasos:
 
-Primero ejecutamos la el sigueite comando:   ``` geth --dev --http --http.api 'eth,web3,personal,net' --allow-insecure-unlock --http.corsdomain "*" ```
+Primero ejecutamos la el sigueite command:   ``` geth --dev --http --http.api 'eth,web3,personal,net' --allow-insecure-unlock --http.corsdomain "*" ```
 <p style ="text-align: center" ><img src="img/block/10.png" width="70%"/></p>
-> donde ``` geth ```es el comando para poder interactuar con el nodo
+> donde ``` geth ```es el command para poder interactuar con el nodo
 
-> ```http``` es el comando para que poder interactuar con el contrato digital
+> ```http``` es el command para que poder interactuar con el contrato digital
 
-> ```  allow-insecure-unlock ``` este comando te ayudara a desbloquear las cuenta de los demas nodos que podamos crear dentro de la blockchain
+> ```  allow-insecure-unlock ``` este command te ayudara a desbloquear las cuenta de los demas nodos que podamos crear dentro de la blockchain
 
-> ``` http.corsdomain " * "``` este comando hace que la conexion por medio Rcp se haga posible para que se pueda conectar con la blockchain creada
+> ``` http.corsdomain " * "``` este command hace que la conexion por medio Rcp se haga posible para que se pueda conectar con la blockchain creada
 
 <p style ="text-align: center" ><img src="img/block/11.png" width="70%"/></p>
-Este es el resultado que debe salir a la hora de correr este comando 
+Este es el resultado que debe salir a la hora de correr este command 
 
 ---------------------------------------------------------------------------
 
-Seguido a este procedimiento  abrimos otro terminal o PowerShell donde colocaremos el siguiente comando : geth attac http://localhost o 127.0.0.1:8545 
+Seguido a este procedimiento  abrimos otro terminal o PowerShell donde colocaremos el siguiente command : geth attac http://localhost o 127.0.0.1:8545 
 <p style ="text-align: center" ><img src="img/block/12.png" width="70%"/></p>
 
 > ``` 8545 ``` es el puerto por donde se ejecuta el nodo 
 
-Al lazar este comadno se ejecutara en modo comando como se muestra en la siguiente imagen 
+Al lazar este comadno se ejecutara en modo command como se muestra en la siguiente imagen 
 
 <p style ="text-align: center" ><img src="img/block/13.png" width="70%"/></p>
 
@@ -399,22 +399,22 @@ Dentro de esta consola podras crear cuentas, se podra observar cuantas cuentas c
 
 En este terminal realizaremos lo sieguiente 
 
-> colocamos este comando ```eth.accounts ``` este mostrara las cuentas que dentro de la blockchain  
+> colocamos este command ```eth.accounts ``` este mostrara las cuentas que dentro de la blockchain  
 <p style ="text-align: center" ><img src="img/block/14.png" width="70%"/></p>
  La cuenta que aparece ahi es la cuenta base o el nodo base que se crea y que tiene ether de preba para poder realizar las transacciones
 
 
-> despues de eso colocaremos este siguiente comano ``` personal.newAccount ()```, con este comando se acreara nuevas cuentas 
+> despues de eso colocaremos este siguiente comano ``` personal.newAccount ()```, con este command se acreara nuevas cuentas 
 <p style ="text-align: center" ><img src="img/block/15.png" width="70%"/></p>
-a la hora de colocar este comando te dira que pongas la contraseña y despues la pongas de nueva para vereficicar. 
+a la hora de colocar este command te dira que pongas la contraseña y despues la pongas de nueva para vereficicar. 
 
-Despues de realizado eso ponemos en comando anterior para poder vizualizar la cuenta creada.
+Despues de realizado eso ponemos en command anterior para poder vizualizar la cuenta creada.
 
-Para que la cuenta pueda tener ether hacemos una transferencia de la cuenta base a la nueva cuenta creada, para realizar eso ejecutamos el siguiente comando:
+Para que la cuenta pueda tener ether hacemos una transferencia de la cuenta base a la nueva cuenta creada, para realizar eso ejecutamos el siguiente command:
 ``` eth.sendTransaction({from: eth.coinbase, to: eth.accounts[1], value: web3.toWei(50, "ether")}) ```
 <p style ="text-align: center" ><img src="img/block/17.png" width="70%"/></p>
 Donde:
-> ``` eth.sendTransaction ``` es el comando para realizar la transacción
+> ``` eth.sendTransaction ``` es el command para realizar la transacción
 
 
 >```from: eth.coinbase ``` este es que se llama a la cuenta base 
@@ -425,7 +425,7 @@ Donde:
 
 
 #### **NOTA:** 
-Mientras reaizas la ejecucion de los comandos anteriores, en el terminal anterior (que debe estar ejecutandose mientras se realiza la interaccion de la blockchain con el Smart Contract) se iran vizualizando los movimientos que se realizan en la blockchain.
+Mientras reaizas la ejecucion de los commands anteriores, en el terminal anterior (que debe estar ejecutandose mientras se realiza la interaccion de la blockchain con el Smart Contract) se iran vizualizando los movimientos que se realizan en la blockchain.
 <p style ="text-align: center" ><img src="img/block/18.png" width="70%"/></p>
 Despues de relaizado todo eso nos vamos a remix, para interactuar con el Remix, se descargo el Remix est este link ['pagina wed'] 
 
@@ -444,7 +444,7 @@ En esta parte se colocara el siguiente enlace que es ``` http://localhost:8545``
 
 Despues seleccionamos con la cuenta que quiere que haga la interaccion, te saldra la cuenta base y la creada hace unos moemntos con los ether que ya hemos transaferido, seleccionamos la cuenta creada.
 <p style ="text-align: center" ><img src="img/block/cuentas.png" width="70%"/></p>
-A la hora que le ponemos Deploy que es para desplegar el Smart Contract no se podra ya que la cuenta esta bloqueada, para poder desbloquearla nos vamos al termianl donde se allá ejecutado por comando y colocamos ```personal.unlockAccount("0x..... # el addrees de la ceunta creada") ``` 
+A la hora que le ponemos Deploy que es para desplegar el Smart Contract no se podra ya que la cuenta esta bloqueada, para poder desbloquearla nos vamos al termianl donde se allá ejecutado por command y colocamos ```personal.unlockAccount("0x..... # el addrees de la ceunta creada") ``` 
 <p style ="text-align: center" ><img src="img/block/unlock.png" width="70%"/></p>
 Te pedira la contraseña para poder desbloquearla
 <p style ="text-align: center" ><img src="img/block/password_unlock.png" width="70%"/></p>

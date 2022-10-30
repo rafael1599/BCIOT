@@ -28,10 +28,10 @@ cors = CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:3000"}})
 # =================================================
 # FUNCIONES PARA CONTROLAR LOS DISPOSITIVOS       ||
 # =================================================
-def enviar_comando(comando):
-    comando = comando + "\r"
-    print("Se esta enviando el comando <<" + comando + ">> al arduino")
-    conexion.write(comando.encode())
+def enviar_command(command):
+    command = command + "\r"
+    print("Se esta enviando el command <<" + command + ">> al arduino")
+    conexion.write(command.encode())
 
 # ========================================
 # FUNCIONES PARA CREAR EL CONTRATO       ||
@@ -65,7 +65,7 @@ base = "/api"
 #     contractSML = w3.eth.contract(address=contractAddressSML, abi=contractAbiSML)
 #     # CREANDO TRANSACCIONES #
 #     async def buildTransactionSML(state, nonce):
-#         return contractSML.functions.enviarComandoSML(state).buildTransaction(
+#         return contractSML.functions.enviarcommandSML(state).buildTransaction(
 #             {
 #                 "gasPrice": w3.eth.gas_price,
 #                 "chainId": chainId,
@@ -94,13 +94,13 @@ base = "/api"
 
 #     @app.route(base + baseSML + "/getState")
 #     async def getStateSML():
-#         orden = contractSML.functions.getComandoSML().call()
+#         orden = contractSML.functions.getcommandSML().call()
 #         Apagar = "0:0:0"
 #         if orden == colorElegido:
-#             enviar_comando(orden)
+#             enviar_command(orden)
 #             typeLight = "Custom color"
 #         elif orden == "Apagar":
-#             enviar_comando(Apagar)
+#             enviar_command(Apagar)
 #         else:
 #             print("El color elegido no existe")
 
@@ -108,7 +108,7 @@ base = "/api"
 #         res["message"] = "Valor de SML obtenido!"
 #         res["success"] = True
 #         res["status"] = 200
-#         res["orden"] = {"comando": orden, "typeLight": typeLight}
+#         res["orden"] = {"command": orden, "typeLight": typeLight}
 
 #         return jsonify(res)
 # # ______________________________________________________________________________
@@ -117,14 +117,14 @@ base = "/api"
 contractAddress = "0x71B68430Bc65a43d6AcdFf61c444b060b29E5Ca6"
 # DEFINIENDO EL ABI DEL CONTRATO #
 contractAbi = json.loads(
-'[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comando", 				"type": "string" 			} 		], 		"name": "manejar", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "comando", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comando", 				"type": "string" 			} 		], 		"name": "enviarComando", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getComando", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
+'[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "command", 				"type": "string" 			} 		], 		"name": "manejar", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "command", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_command", 				"type": "string" 			} 		], 		"name": "enviarcommand", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommand", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
 )
 # OBTENIENDO EL CONTRATO DE LA BC #
 contract = w3.eth.contract(address=contractAddress, abi=contractAbi)
 
 # CREANDO TRANSACCIONES #
 async def buildTransaction(state, nonce):
-    return contract.functions.enviarComando(state).buildTransaction(
+    return contract.functions.enviarcommand(state).buildTransaction(
         {
             "gasPrice": w3.eth.gas_price,
             "chainId": chainId,
@@ -153,38 +153,38 @@ async def sendState(state):
 #OBTENER ESTADO DE LA BLOCKCHAIN
 @app.route(base + "/getState")
 async def getState():
-    orden = contract.functions.getComando().call()
+    orden = contract.functions.getcommand().call()
     #*********LED*********#
     typeLight = "Encendido"
     if orden == "ApagarLED":
-        enviar_comando(orden)
+        enviar_command(orden)
         typeLight = "Apagado"
     elif orden == "EncenderLED":
-        enviar_comando(orden)
+        enviar_command(orden)
         typeLight = "Encendido"
     #*********SMART LOCK*********#
     elif orden == "ActivarLock":
-        enviar_comando(orden)
+        enviar_command(orden)
         typeLight = "Cerradura activada"
     elif orden == "DesactivarLock":
-        enviar_comando(orden)
+        enviar_command(orden)
         typeLight = "Cerradura desactivada"   
     #*********SMART LIGHT*********#
     elif orden == "EncenderSML":
-        enviar_comando(orden)
+        enviar_command(orden)
         typeLight = "Smart Light encendida"
     elif orden == "ApagarSML":
-        enviar_comando(orden)
+        enviar_command(orden)
         typeLight = "Smart Light apagada"
     else:
-        enviar_comando(orden)
+        enviar_command(orden)
         typeLight = "Color personalizado"
 
     res = {}
     res["message"] = "Valor obtenido!"
     res["success"] = True
     res["status"] = 200
-    res["orden"] = {"comando": orden, "typeLight": typeLight}
+    res["orden"] = {"command": orden, "typeLight": typeLight}
 
     return jsonify(res)
 
@@ -201,13 +201,13 @@ async def getState():
 #     contractAddressLOCK = "0x4D6CC2C750A8213E4e702231a525e44d2Ac0abc8"
 #     # DEFINIENDO EL ABI DEL CONTRATO #
 #     contractAbiLOCK = json.loads(
-#         '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comandoLock","type": "string"}],"name": "manejarLock","type": "event"},{"inputs": [],"name": "comandoLock","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "string","name": "_comandoLock","type": "string"}],"name": "enviarComandoLock","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "getComandoLock","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"} ]'
+#         '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "commandLock","type": "string"}],"name": "manejarLock","type": "event"},{"inputs": [],"name": "commandLock","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "string","name": "_commandLock","type": "string"}],"name": "enviarcommandLock","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "getcommandLock","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"} ]'
 #     )
 #     # OBTENIENDO EL CONTRATO DE LA BC #
 #     contractLOCK = w3.eth.contract(address=contractAddressLOCK, abi=contractAbiLOCK)
 #     # CREANDO TRANSACCIONES #
 #     async def buildTransactionLOCK(state, nonce):
-#         return contractLOCK.functions.enviarComandoLOCK(state).buildTransaction(
+#         return contractLOCK.functions.enviarcommandLOCK(state).buildTransaction(
 #             {
 #                 "gasPrice": w3.eth.gas_price,
 #                 "chainId": chainId,
@@ -237,29 +237,29 @@ async def getState():
 #     @app.route(base + baseSmartLock + "/getState")
     
 #     async def getState():
-#         orden = contractLOCK.functions.getComandoLOCK().call()
+#         orden = contractLOCK.functions.getcommandLOCK().call()
 #         typeLock = "Desbloqueada"
 #         Verde = "0:10:0"
 #         Rojo = "10:0:0"
 #         Apagar = "0:0:0"
 #         if orden == "Rojo":
-#             enviar_comando(Rojo)
+#             enviar_command(Rojo)
 #             typeLock = "Cerradura Bloqueada"
 #         elif orden == "Verde":
-#             enviar_comando(Verde)
+#             enviar_command(Verde)
 #             typeLock = "Cerradura Abierta"
 #         elif orden == "Apagar":
-#             enviar_comando(Apagar)
+#             enviar_command(Apagar)
 #             typeLock = "Cerradura Bloqueada"
 #         else:
-#             print("Comando no reconocido, intentelo de nuevo")
+#             print("command no reconocido, intentelo de nuevo")
     
 
 #         res = {}
 #         res["message"] = "Valor de LOCK obtenido!"
 #         res["success"] = True
 #         res["status"] = 200
-#         res["orden"] = {"comando": orden, "typeLock": typeLock}
+#         res["orden"] = {"command": orden, "typeLock": typeLock}
 
 #         return jsonify(res)
 

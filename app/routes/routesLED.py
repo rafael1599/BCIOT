@@ -1,15 +1,15 @@
-from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, serialcom, jsonify, getNonce, signTransaction, hashTransaction
+from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, serialcom
 
 baseLED = "/LED"
 
-contractAddressLED = "0x4c79072Fb97c479C580004A090271494bcE6dD71"
+contractAddressLED = "0x161864A8ef70876567FA72ed5F03B60ed7D7E52b"
 contractAbiLED = json.loads(
-    '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comandoLED", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "comandoLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comandoLED", 				"type": "string" 			} 		], 		"name": "enviarComandoLED", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getComandoLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
+    '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLED", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLED", 				"type": "string" 			} 		], 		"name": "enviarcommandLED", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
 )
 contractLED = w3.eth.contract(address=contractAddressLED, abi=contractAbiLED)
 
 async def buildTransactionLED(state, nonce):
-    return contractLED.functions.enviarComandoLED(state).buildTransaction(
+    return contractLED.functions.enviarcommandLED(state).buildTransaction(
         {
             "gasPrice": w3.eth.gas_price,
             "chainId": chainId,
@@ -28,7 +28,7 @@ def disconnect():
 	serialcom.close()
 
 async def validateChangeCommand(state):
-    command = contractLED.functions.getComandoLED().call()
+    command = contractLED.functions.getcommandLED().call()
     if state == command:
         return True
     else:
@@ -59,7 +59,7 @@ async def sendStateLED(state):
     if state == '':
         disconnect()
 
-    res["message"] = "Comando enviado satisfactoriamente!"
+    res["message"] = "command enviado satisfactoriamente!"
     res["status"] = 200
     res["data"] = {
         "success": True,
@@ -69,7 +69,8 @@ async def sendStateLED(state):
 
 @app.route(base + baseLED + "/getState")
 async def getStateLED():
-    command = contractLED.functions.getComandoLED().call()
+    command = contractLED.functions.getcommandLED().call()
+    print("Comando obtenido"+command)
     typeLight = "Apagado"
     if command == "Encender":
         typeLight = "Encendido"

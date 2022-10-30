@@ -1,6 +1,6 @@
 # SMART LIGHT CONECTADA CON BLOCKCHAIN VERSIÓN 1.0
-# Version donde le cambio los comandos de numeros a palabras
-# para que funcione con comandos de voz
+# Version donde le cambio los commands de numeros a palabras
+# para que funcione con commands de voz
 
 import warnings
 from turtle import color
@@ -14,9 +14,9 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 arduinoCMD = serial.Serial("COM5", 9600)
 
 # Funciones
-def enviar_comando(comandoArd):
-    comandoArd = comandoArd + "\r"
-    arduinoCMD.write(comandoArd.encode())
+def enviar_command(commandArd):
+    commandArd = commandArd + "\r"
+    arduinoCMD.write(commandArd.encode())
 
 
 def avisar_arduino(event):
@@ -26,23 +26,23 @@ def avisar_arduino(event):
     apagar = "0:0:0"
 
     orden = json.loads(w3.toJSON(event))
-    comandoVoz = orden["args"]
-    print(comandoVoz["comando"])
-    if comandoVoz["comando"] == "Red":
-        enviar_comando(rojo)
-        print("el color " + comandoVoz + " se encendio")
-    elif comandoVoz["comando"] == "Green":
-        enviar_comando(verde)
-        print("el color " + comandoVoz + " se encendio")
-    elif comandoVoz["comando"] == "Blue":
-        enviar_comando(azul)
-        print("el color " + comandoVoz + " se encendio")
-    elif comandoVoz["comando"] == "Finish":
+    commandVoz = orden["args"]
+    print(commandVoz["command"])
+    if commandVoz["command"] == "Red":
+        enviar_command(rojo)
+        print("el color " + commandVoz + " se encendio")
+    elif commandVoz["command"] == "Green":
+        enviar_command(verde)
+        print("el color " + commandVoz + " se encendio")
+    elif commandVoz["command"] == "Blue":
+        enviar_command(azul)
+        print("el color " + commandVoz + " se encendio")
+    elif commandVoz["command"] == "Finish":
         print("Apagando led")
-        enviar_comando(apagar)
+        enviar_command(apagar)
         sys.exit()
     else:
-        print("Comando no reconocido, intentelo de nuevo")
+        print("command no reconocido, intentelo de nuevo")
 
 
 async def bucle_registro(event_filter, poll_interval):
@@ -62,7 +62,7 @@ print(
 
 contract_Address = "0x4a6F8f71814a8C8bd6a82591FD86ab89E5f9F125"
 contract_abi = json.loads(
-    '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comando","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_comando","type": "string"}],"name": "enviarComando","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
+    '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "command","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_command","type": "string"}],"name": "enviarcommand","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
 )
 
 contract = w3.eth.contract(address=contract_Address, abi=contract_abi)

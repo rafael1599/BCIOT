@@ -24,7 +24,7 @@ print(
 
 contract_Address = "0x021df6de933553DfB30a5A4926db55F1D3C9609c"
 contract_abi = json.loads(
-    '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comando","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_comando","type": "string"}],"name": "enviarComando","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
+    '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "command","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_command","type": "string"}],"name": "enviarcommand","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
 )
 
 contract = w3.eth.contract(address=contract_Address, abi=contract_abi)
@@ -39,26 +39,26 @@ async def log_loop(event_filter, poll_interval):
         await asyncio.sleep(poll_interval)
 
 
-comando = ""
+command = ""
 
 
 def handle_event(event):
     person_dict = json.loads(w3.toJSON(event))
-    comando = person_dict["args"]
-    print(comando["comando"])
-    if comando["comando"] == "Encender":
+    command = person_dict["args"]
+    print(command["command"])
+    if command["command"] == "Encender":
         board.digital[13].write(1)
         print("LED encendido")
         # Tiempo final
         tiempoFinal = time.time()
         print("El tiempo al culminar la ejecucion es:", tiempoFinal)
-    elif comando["comando"] == "Apagar":
+    elif command["command"] == "Apagar":
         board.digital[13].write(0)
         print("LED apagado")
         # Tiempo final
         tiempoFinal = time.time()
         print("El tiempo al culminar la ejecucion es:", tiempoFinal)
-    elif comando["comando"] == "Finalizar":
+    elif command["command"] == "Finalizar":
         # Tiempo final
         tiempoFinal = time.time()
         print("El tiempo al culminar la ejecucion es:", tiempoFinal)

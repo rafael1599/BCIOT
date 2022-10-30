@@ -3,15 +3,15 @@ pragma solidity ^0.8.0;
  
 contract smartLight {
     
-    string public comandoSML;
-    event manejarSML(string comandoSML);
+    string public commandSML;
+    event manejarSML(string commandSML);
  
-    function enviarComandoSML(string memory _comandoSML) public {
-        comandoSML = _comandoSML;
-        emit manejarSML(_comandoSML);
+    function enviarcommandSML(string memory _commandSML) public {
+        commandSML = _commandSML;
+        emit manejarSML(_commandSML);
     }
 
-    function getComandoSML() public view returns(string memory){
-        return comandoSML;
+    function getcommandSML() public view returns(string memory){
+        return commandSML;
     }
 }

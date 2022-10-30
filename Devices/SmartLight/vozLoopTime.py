@@ -1,5 +1,5 @@
 # Esta version esta intacta, deberia funcionar con el archivo LED_Block
-# que tiene como comandos de entrada palabras, NO NUMEROS.
+# que tiene como commands de entrada palabras, NO NUMEROS.
 
 import json
 import speech_recognition as sr
@@ -17,19 +17,19 @@ private_key = "abff363e849b97ba975265f8d28eafb56f0851011fcd37b211c78f0febd0b55a"
 # Direccion del contrato y su ABI
 contratoDir = "0x5b2f3a01031b5AcB1fE60Aa1EF1a73a6457cd5E7"
 contractABI = json.loads(
-    '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comando", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comando", 				"type": "string" 			} 		], 		"name": "enviarComando", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	} ]'
+    '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "command", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_command", 				"type": "string" 			} 		], 		"name": "enviarcommand", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	} ]'
 )
 
 contrato = web3.eth.contract(address=contratoDir, abi=contractABI)
 
 nonce = web3.eth.getTransactionCount(account)
 
-comando = ""
+command = ""
 
 
 def enviarEstado(estado):
     # Esperar que la transaccion se mine
-    transaccion = contrato.functions.enviarComando(estado).buildTransaction(
+    transaccion = contrato.functions.enviarcommand(estado).buildTransaction(
         {
             "gasPrice": web3.eth.gas_price,
             "chainId": chainId,

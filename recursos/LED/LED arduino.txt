@@ -1,5 +1,5 @@
 int led =2;
-String comando;
+String command;
 
 void setup() {
   // put your setup code here, to run once:
@@ -12,17 +12,17 @@ void loop() {
   while (Serial.available() == 0){
 
     }
-  comando = Serial.readStringUntil('\n');
+  command = Serial.readStringUntil('\n');
 
-  if (comando == "1")
+  if (command == "1")
   {
   
      digitalWrite(led, HIGH);
 }
-  if (comando == "0")
+  if (command == "0")
   {
      digitalWrite(led, LOW);
 }
-  if (comando == "")
-      Serial.println("Comando incorrecto, intentelo de nuevo");
+  if (command == "")
+      Serial.println("command incorrecto, intentelo de nuevo");
 }

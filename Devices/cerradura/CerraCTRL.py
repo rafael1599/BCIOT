@@ -14,23 +14,23 @@ w3 = w3(w3.HTTPProvider(infura_url))
 print(w3.isConnected())
 
 print(
-    "BIENVENIDO!: Ingrese su comando en REMIX o use el "
-    + "comando por voz, sus opciones son:\n1. Open\n2. Close\n3. Off"
+    "BIENVENIDO!: Ingrese su command en REMIX o use el "
+    + "command por voz, sus opciones son:\n1. Open\n2. Close\n3. Off"
 )
 
 contract_Address = "0x1d0DB50A11C3AAE2A2821D0dB69D44f27b391fFB"
 contract_abi = json.loads(
-    '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comandoLock", 				"type": "string" 			} 		], 		"name": "manejarLock", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "comandoLock", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comandoLock", 				"type": "string" 			} 		], 		"name": "enviarComandoLock", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getComandoLock", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
+    '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLock", 				"type": "string" 			} 		], 		"name": "manejarLock", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLock", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLock", 				"type": "string" 			} 		], 		"name": "enviarcommandLock", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLock", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
 )
 
 contract = w3.eth.contract(address=contract_Address, abi=contract_abi)
 # <---
 
 # Funciones
-def enviar_comando(comando):
-    comando = comando + "\r"
-    print("Se esta enviando el comando <<" + comando + ">> al arduino")
-    conexion.write(comando.encode())
+def enviar_command(command):
+    command = command + "\r"
+    print("Se esta enviando el command <<" + command + ">> al arduino")
+    conexion.write(command.encode())
 
 
 def avisar_arduino(event):
@@ -40,19 +40,19 @@ def avisar_arduino(event):
 
     orden = json.loads(w3.toJSON(event))
     # print("La orden es: ", orden)
-    comando = orden["args"]
-    print("Comando proviniente de REMIX:", comando["comando"])
-    if comando["comando"] == "Open":
-        enviar_comando(verde)
+    command = orden["args"]
+    print("command proviniente de REMIX:", command["command"])
+    if command["command"] == "Open":
+        enviar_command(verde)
         print("La cerradura se abrió")
-    elif comando["comando"] == "Close":
-        enviar_comando(rojo)
+    elif command["command"] == "Close":
+        enviar_command(rojo)
         print("La cerradura se bloqueó")
-    elif comando["comando"] == "Off":
+    elif command["command"] == "Off":
         print("Finalizando...")
-        enviar_comando(apagar)
+        enviar_command(apagar)
     else:
-        print("Comando no reconocido, intentelo de nuevo")
+        print("command no reconocido, intentelo de nuevo")
 
 
 async def bucle_registro(event_filter, poll_interval):

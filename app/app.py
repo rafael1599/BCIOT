@@ -11,15 +11,14 @@ sys.setrecursionlimit(5000)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 serialcom = serial.Serial('COM5', 9600)
-# PONER COM COMO VARIABLE PARA HACERLO AUTOMATICO, SEGUN EL DISPOSITIVO (LED = COM3, CERRADURA = COM4, FOCO INTELIGENTE = COM5)
 serialcom.timeout = 1
 
-infura_url = "https://goerli.infura.io/v3/f1ee978b04d04b4e8bb83d51b731c973"
+infura_url = "https://sepolia.infura.io/v3/06fab9ba7d4840e4bda61a197b3f27df"
 w3 = w3(w3.HTTPProvider(infura_url))
-chainId = 5
-account = "0xc8f39fC331f0799F655490Bb7dc2D0d484018Bc0"
+chainId = 11155111
+account = "0xdc07AF52989E4ddA498918C9fa169d60134141f8"
 nonce = w3.eth.getTransactionCount(account)
-private_key = "abff363e849b97ba975265f8d28eafb56f0851011fcd37b211c78f0febd0b55a"
+private_key = "6aa764ea368f0d774061518b15866c3453a4ade37171ac9f2561109b3bc4823b"
 
 app = Flask(__name__)
 

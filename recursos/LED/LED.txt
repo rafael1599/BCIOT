@@ -3,15 +3,15 @@ pragma solidity ^0.8.0;
  
 contract LedIoT {
     
-    string public comandoLED;
-    event manejarLED(string comandoLED);
+    string public commandLED;
+    event manejarLED(string commandLED);
  
-    function enviarComandoLED(string memory _comandoLED) public {
-        comandoLED = _comandoLED;
-        emit manejarLED(_comandoLED);
+    function enviarcommandLED(string memory _commandLED) public {
+        commandLED = _commandLED;
+        emit manejarLED(_commandLED);
     }
 
-    function getComandoLED() public view returns(string memory){
-        return comandoLED;
+    function getcommandLED() public view returns(string memory){
+        return commandLED;
     }
 }

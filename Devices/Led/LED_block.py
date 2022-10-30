@@ -1,5 +1,5 @@
 # Aqui solo podemos controlar al arduino desde el IDE Remix de Ethereum, una vez desplegado el contrato
-# podemos comenzar a enviar comandos al contrato para controlar el led.
+# podemos comenzar a enviar commands al contrato para controlar el led.
 
 from base64 import encode
 import sys
@@ -26,7 +26,7 @@ print(
 
 contract_Address = "0x5b2f3a01031b5AcB1fE60Aa1EF1a73a6457cd5E7"
 contract_abi = json.loads(
-    '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comando","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_comando","type": "string"}],"name": "enviarComando","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
+    '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "command","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [{"internalType": "string","name": "_command","type": "string"}],"name": "enviarcommand","outputs": [],"stateMutability": "nonpayable","type": "function"} ]'
 )
 
 contract = w3.eth.contract(address=contract_Address, abi=contract_abi)
@@ -41,13 +41,13 @@ async def log_loop(event_filter, poll_interval):
         await asyncio.sleep(poll_interval)
 
 
-comando = ""
+command = ""
 
 
-def enviar_comando(comando):
-    comando = comando + "\r"
-    print("Comando a ser enviado arduinoCMD: " + comando)
-    conexion.write(comando.encode())
+def enviar_command(command):
+    command = command + "\r"
+    print("command a ser enviado arduinoCMD: " + command)
+    conexion.write(command.encode())
 
 
 encender = "Encender"
@@ -56,13 +56,13 @@ apagar = "Apagar"
 
 def handle_event(event):
     orden = json.loads(w3.toJSON(event))
-    comando = orden["args"]
-    print(comando["comando"])
-    if comando["comando"] == "Encender":
-        enviar_comando(encender)
+    command = orden["args"]
+    print(command["command"])
+    if command["command"] == "Encender":
+        enviar_command(encender)
         print("LED encendido")
-    elif comando["comando"] == "Apagar":
-        enviar_comando(apagar)
+    elif command["command"] == "Apagar":
+        enviar_command(apagar)
         print("LED apagado")
     else:
         print("la opción que elegiste no es correcta o reconocida. Intentalo de nuevo")

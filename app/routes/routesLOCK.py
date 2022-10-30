@@ -1,15 +1,15 @@
-from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, serialcom, jsonify, getNonce, signTransaction, hashTransaction
+from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, serialcom
 
 baseLock = "/smartLock"
 
-contractAddressLOCK = "0x564154eF75B7833d5DA2B08E9344591a944a0c8E"
+contractAddressLOCK = "0x76508615457ceE3bb2EA93aE01bCF7C13EC16Af9"
 contractAbiLOCK = json.loads(
-        '[ 	{"anonymous": false,"inputs": [	{"indexed": false,"internalType": "string","name": "comandoLOCK","type": "string"	}],"name": "manejarLOCK","type": "event" 	}, 	{"inputs": [],"name": "comandoLOCK","outputs": [	{"internalType": "string","name": "","type": "string"	}],"stateMutability": "view","type": "function" 	}, 	{"inputs": [	{"internalType": "string","name": "_comandoLOCK","type": "string"	}],"name": "enviarComandoLOCK","outputs": [],"stateMutability": "nonpayable","type": "function" 	}, 	{"inputs": [],"name": "getComandoLOCK","outputs": [	{"internalType": "string","name": "","type": "string"	}],"stateMutability": "view","type": "function" 	} ]'
+        '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLOCK", 				"type": "string" 			} 		], 		"name": "manejarLOCK", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLOCK", 				"type": "string" 			} 		], 		"name": "enviarcommandLOCK", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
     )
 contractLock = w3.eth.contract(address=contractAddressLOCK, abi=contractAbiLOCK)
 
 async def buildTransactionLOCK(state, nonce):
-    return contractLock.functions.enviarComandoLOCK(state).buildTransaction(
+    return contractLock.functions.enviarcommandLOCK(state).buildTransaction(
         {
             "gasPrice": w3.eth.gas_price,
             "chainId": chainId,
@@ -29,7 +29,7 @@ def disconnect():
 
 ############################################################## ESTUDIAR #
 async def validateChangeCommand(state):
-    command = contractLock.functions.getComandoLOCK().call()
+    command = contractLock.functions.getcommandLOCK().call()
     if state == command:
         return True
     else:
@@ -63,7 +63,7 @@ async def sendStateLock(state):
 
     res = {}
 
-    res["message"] = "Comando enviado satisfactoriamente!"
+    res["message"] = "command enviado satisfactoriamente!"
     res["status"] = 200
     res["data"] = {
         "success": True,
@@ -74,7 +74,8 @@ async def sendStateLock(state):
 
 @app.route(base + baseLock + "/getState")
 async def getStateLOCK():
-    command = contractLock.functions.getComandoLOCK().call()
+    command = contractLock.functions.getcommandLOCK().call()
+    print("Comando obtenido"+command)
     typeLock = "Cerradura bloqueada"
     if command == "open":
         typeLock = "Cerradura desbloqueada"

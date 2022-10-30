@@ -30,10 +30,10 @@ app = Flask(__name__)
 # =================================================
 # FUNCIONES PARA CONTROLAR LOS DISPOSITIVOS       ||
 # =================================================
-def enviar_comando(comando):
-    comando = comando + "\r"
-    print("Se esta enviando el comando <<" + comando + ">> al arduino")
-    serialcom.write(comando.encode())
+def enviar_command(command):
+    command = command + "\r"
+    print("Se esta enviando el command <<" + command + ">> al arduino")
+    serialcom.write(command.encode())
 
 
 # ========================================
@@ -70,13 +70,13 @@ contractAddressLED = "0x4c79072Fb97c479C580004A090271494bcE6dD71"
 # ================================
 
 # contractAbiSML = json.loads(
-#     '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comandoLED","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [],"name": "comandoLED","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "string","name": "_comandoLED","type": "string"}],"name": "enviarComandoLED","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "getComandoLED","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"} ]'
+#     '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "commandLED","type": "string"}],"name": "manejarLED","type": "event"},{"inputs": [],"name": "commandLED","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "string","name": "_commandLED","type": "string"}],"name": "enviarcommandLED","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "getcommandLED","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"} ]'
 # )
 contractAbiLED = json.loads(
-    '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "comandoLED", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "comandoLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_comandoLED", 				"type": "string" 			} 		], 		"name": "enviarComandoLED", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getComandoLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
+    '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLED", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLED", 				"type": "string" 			} 		], 		"name": "enviarcommandLED", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
 )
 # contractAbiLOCK = json.loads(
-#         '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "comandoLock","type": "string"}],"name": "manejarLock","type": "event"},{"inputs": [],"name": "comandoLock","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "string","name": "_comandoLock","type": "string"}],"name": "enviarComandoLock","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "getComandoLock","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"} ]'
+#         '[{"anonymous": false,"inputs": [{"indexed": false,"internalType": "string","name": "commandLock","type": "string"}],"name": "manejarLock","type": "event"},{"inputs": [],"name": "commandLock","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "string","name": "_commandLock","type": "string"}],"name": "enviarcommandLock","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "getcommandLock","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"} ]'
 #     )
 # __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -94,7 +94,7 @@ contractLED = w3.eth.contract(address=contractAddressLED, abi=contractAbiLED)
 # ========================
 
 # async def buildTransactionSML(state, nonce):
-#     return contractSML.functions.enviarComandoSML(state).buildTransaction(
+#     return contractSML.functions.enviarcommandSML(state).buildTransaction(
 #         {
 #             "gasPrice": w3.eth.gas_price,
 #             "chainId": chainId,
@@ -105,7 +105,7 @@ contractLED = w3.eth.contract(address=contractAddressLED, abi=contractAbiLED)
 
 
 async def buildTransactionLED(state, nonce):
-    return contractLED.functions.enviarComandoLED(state).buildTransaction(
+    return contractLED.functions.enviarcommandLED(state).buildTransaction(
         {
             "gasPrice": w3.eth.gas_price,
             "chainId": chainId,
@@ -116,7 +116,7 @@ async def buildTransactionLED(state, nonce):
 
 
 # async def buildTransactionLOCK(state, nonce):
-#     return contractLOCK.functions.enviarComandoLOCK(state).buildTransaction(
+#     return contractLOCK.functions.enviarcommandLOCK(state).buildTransaction(
 #         {
 #             "gasPrice": w3.eth.gas_price,
 #             "chainId": chainId,
@@ -164,13 +164,13 @@ baseLED = "/LED"
 
 # @app.route(base + baseSML + "/getState")
 # async def getStateSML():
-#     orden = contractSML.functions.getComandoSML().call()
+#     orden = contractSML.functions.getcommandSML().call()
 #     Apagar = "0:0:0"
 #     if orden == colorElegido:
-#         enviar_comando(orden)
+#         enviar_command(orden)
 #         typeLight = "Custom color"
 #     elif orden == "Apagar":
-#         enviar_comando(Apagar)
+#         enviar_command(Apagar)
 #     else:
 #         print("<<ERROR GRAVE>> El color elegido no existe")
 #         disconnect()
@@ -179,7 +179,7 @@ baseLED = "/LED"
 #     res["message"] = "Valor de SML obtenido!"
 #     res["success"] = True
 #     res["status"] = 200
-#     res["orden"] = {"comando": orden, "typeLight": typeLight}
+#     res["orden"] = {"command": orden, "typeLight": typeLight}
 
 #     return jsonify(res)
 # _____________________________________________________________________
@@ -199,13 +199,13 @@ async def sendStateLED(state):
     transaccion = await buildTransactionLED(state, nonce)
     signedTransaction = await signTransaction(transaccion)
     hashedTransaction = await hashTransaction(signedTransaction)
-    await enviar_comando(state)
+    await enviar_command(state)
 
     #### PARA VER EL HASH CON EL QUE VEMOS LAS TRANSACCIONES EN EL ETHERSCAN ####
     print("#####################################################\n", signedTransaction)
     res = {}
 
-    res["message"] = "Comando enviado satisfactoriamente!"
+    res["message"] = "command enviado satisfactoriamente!"
     res["status"] = 200
     res["data"] = {
         "hashedTransaction": hashedTransaction
@@ -218,21 +218,21 @@ async def sendStateLED(state):
 
 @app.route(base + baseLED + "/getState")
 async def getStateLED():
-    command = contractLED.functions.getComandoLED().call()
+    command = contractLED.functions.getcommandLED().call()
     typeLight = "Encendido"
     if command == "Apagar":
         typeLight = "Apagado"
     elif command == "Encender":
         typeLight = "Encendido"
     else:
-        typeLight = "Error al intentar ejecutar el comando"
+        typeLight = "Error al intentar ejecutar el command"
         print("El LED no puede realizar esta peticion")
 
     res = {}
     res["message"] = "Valor de LED obtenido!"
     res["success"] = True
     res["status"] = 200
-    res["data"] = {"comando": command, "typeLight": typeLight}
+    res["data"] = {"command": command, "typeLight": typeLight}
 
     return jsonify(res)
 
