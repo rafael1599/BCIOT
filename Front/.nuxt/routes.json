@@ -1,0 +1,44 @@
+[
+  {
+    "name": "dashboard",
+    "path": "/dashboard",
+    "component": "C:\\\\Users\\\\rafae\\\\Mi unidad\\\\Repositorios\\\\bciot\\\\src\\\\pages\\\\dashboard.vue",
+    "chunkName": "pages/dashboard",
+    "_name": "_d3b4dad0"
+  },
+  {
+    "name": "inspire",
+    "path": "/inspire",
+    "component": "C:\\\\Users\\\\rafae\\\\Mi unidad\\\\Repositorios\\\\bciot\\\\src\\\\pages\\\\inspire.vue",
+    "chunkName": "pages/inspire",
+    "_name": "_d9f31a44"
+  },
+  {
+    "name": "devices-led",
+    "path": "/devices/led",
+    "component": "C:\\\\Users\\\\rafae\\\\Mi unidad\\\\Repositorios\\\\bciot\\\\src\\\\pages\\\\devices\\\\led.vue",
+    "chunkName": "pages/devices/led",
+    "_name": "_5ab99f0c"
+  },
+  {
+    "name": "devices-smart-light",
+    "path": "/devices/smart-light",
+    "component": "C:\\\\Users\\\\rafae\\\\Mi unidad\\\\Repositorios\\\\bciot\\\\src\\\\pages\\\\devices\\\\smart-light.vue",
+    "chunkName": "pages/devices/smart-light",
+    "_name": "_e7fcdffe"
+  },
+  {
+    "name": "devices-smart-lock",
+    "path": "/devices/smart-lock",
+    "component": "C:\\\\Users\\\\rafae\\\\Mi unidad\\\\Repositorios\\\\bciot\\\\src\\\\pages\\\\devices\\\\smart-lock.vue",
+    "chunkName": "pages/devices/smart-lock",
+    "_name": "_2a9d9090"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\Users\\\\rafae\\\\Mi unidad\\\\Repositorios\\\\bciot\\\\src\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_827dd054"
+  }
+]
