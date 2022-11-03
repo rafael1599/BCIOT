@@ -1,8 +1,8 @@
-from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, serialcom
-
+from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction
+# Pegar esto arriba --> , serialcom
 baseLED = "/LED"
 
-contractAddressLED = "0x161864A8ef70876567FA72ed5F03B60ed7D7E52b"
+contractAddressLED = "0x181Ebcb99c15d23eC0670E6Afdd9EBc46eA855eA"
 contractAbiLED = json.loads(
     '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLED", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLED", 				"type": "string" 			} 		], 		"name": "enviarcommandLED", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
 )
@@ -18,14 +18,14 @@ async def buildTransactionLED(state, nonce):
         }
     )
 
-def ledOn():
-    serialcom.write(str('1').encode())
+# def ledOn():
+#     serialcom.write(str('1').encode())
     
-def ledOff():
-	serialcom.write(str('0').encode())
+# def ledOff():
+# 	serialcom.write(str('0').encode())
 
-def disconnect():
-	serialcom.close()
+# def disconnect():
+# 	serialcom.close()
 
 async def validateChangeCommand(state):
     command = contractLED.functions.getcommandLED().call()
@@ -49,15 +49,15 @@ async def sendStateLED(state):
     await validateChangeCommand(state)
     
     
+    
     timeEnd = time.time()
 
-    if state == 'Encender':
-        print(signedTransaction)
-        ledOn()
-    if state == 'Apagar':
-        ledOff()
-    if state == '':
-        disconnect()
+    # if state == 'Encender':
+    #     ledOn()
+    # if state == 'Apagar':
+    #     ledOff()
+    # if state == '':
+    #     disconnect()
 
     res["message"] = "command enviado satisfactoriamente!"
     res["status"] = 200
