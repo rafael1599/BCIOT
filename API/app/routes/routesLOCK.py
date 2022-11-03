@@ -2,11 +2,21 @@ from routes.routes import app, time, base, json, w3, chainId, account, nonce, pr
 
 baseLock = "/smartLock"
 
-contractAddressLOCK = "0x76508615457ceE3bb2EA93aE01bCF7C13EC16Af9"
-contractAbiLOCK = json.loads(
+# BC PUBLICA
+publicContractLOCK = "0x76508615457ceE3bb2EA93aE01bCF7C13EC16Af9"
+publicAbiLock = json.loads(
         '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLOCK", 				"type": "string" 			} 		], 		"name": "manejarLOCK", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLOCK", 				"type": "string" 			} 		], 		"name": "enviarcommandLOCK", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
     )
-contractLock = w3.eth.contract(address=contractAddressLOCK, abi=contractAbiLOCK)
+contractLock = w3.eth.contract(address=publicContractLOCK, abi=publicAbiLock)
+
+# BC PRIVADA
+
+# privateContractLOCK = "0x76508615457ceE3bb2EA93aE01bCF7C13EC16Af9"
+# privateAbiLock = json.loads(
+#         '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLOCK", 				"type": "string" 			} 		], 		"name": "manejarLOCK", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLOCK", 				"type": "string" 			} 		], 		"name": "enviarcommandLOCK", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
+#     )
+# contractLock = w3.eth.contract(address=privateContractLOCK, abi=privateAbiLock)
+
 
 async def buildTransactionLOCK(state, nonce):
     return contractLock.functions.enviarcommandLOCK(state).buildTransaction(
@@ -26,8 +36,7 @@ def lockClose():
 
 def disconnect():
 	serialcom.close()
-
-############################################################## ESTUDIAR #
+    
 async def validateChangeCommand(state):
     command = contractLock.functions.getcommandLOCK().call()
     if state == command:
