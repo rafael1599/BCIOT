@@ -1,4 +1,4 @@
-from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, serialcom
+from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction
 
 baseLock = "/smartLock"
 
@@ -27,15 +27,6 @@ async def buildTransactionLOCK(state, nonce):
             "nonce": nonce,
         }
     )
-
-def LockOpen():
-    serialcom.write(str('1').encode())
-    
-def lockClose():
-	serialcom.write(str('0').encode())
-
-def disconnect():
-	serialcom.close()
     
 async def validateChangeCommand(state):
     command = contractLock.functions.getcommandLOCK().call()
@@ -60,15 +51,6 @@ async def sendStateLock(state):
     await validateChangeCommand(state)
     
     timeEnd = time.time()
-
-    if state == "open":
-        LockOpen()
-
-    if state == "close":
-        lockClose()
-
-    if state == '':
-        disconnect()
 
     res = {}
 

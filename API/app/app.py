@@ -5,13 +5,9 @@ import time
 from web3 import Web3 as w3
 import json
 import sys
-import serial
 sys.setrecursionlimit(5000)
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-
-serialcom = serial.Serial('COM5', 9600)
-serialcom.timeout = 1
 # BC PUBLICA
 infura_url = "https://sepolia.infura.io/v3/06fab9ba7d4840e4bda61a197b3f27df"
 w3 = w3(w3.HTTPProvider(infura_url))

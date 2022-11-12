@@ -1,4 +1,4 @@
-from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, serialcom
+from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction
 baseLED = "/LED"
 
 contractAddressLED = "0x181Ebcb99c15d23eC0670E6Afdd9EBc46eA855eA"
@@ -16,15 +16,6 @@ async def buildTransactionLED(state, nonce):
             "nonce": nonce,
         }
     )
-
-def ledOn():
-    serialcom.write(str('1').encode())
-    
-def ledOff():
-	serialcom.write(str('0').encode())
-
-def disconnect():
-	serialcom.close()
 
 async def validateChangeCommand(state):
     command = contractLED.functions.getcommandLED().call()
@@ -47,16 +38,7 @@ async def sendStateLED(state):
     print(signedTransaction)
     await validateChangeCommand(state)
     
-    
-    
     timeEnd = time.time()
-
-    if state == 'Encender':
-        ledOn()
-    if state == 'Apagar':
-        ledOff()
-    if state == '':
-        disconnect()
 
     res["message"] = "command enviado satisfactoriamente!"
     res["status"] = 200
