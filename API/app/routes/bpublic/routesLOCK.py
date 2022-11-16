@@ -66,7 +66,7 @@ async def sendStateLockPublic(state):
 @app.route(base + baseBlockchain + baseLock + "/getState")
 async def getStateLOCKPublic():
     command = contractLock.functions.getcommandLOCK().call()
-    print("Comando obtenido"+command)
+    print("Comando obtenido publica"+command)
     typeLock = "Cerradura bloqueada"
     if command == "open":
         typeLock = "Cerradura desbloqueada"
