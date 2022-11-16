@@ -1,4 +1,4 @@
-from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction
+from routes.bpublic.bpublic import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain
 
 baseLock = "/smartLock"
 
@@ -36,9 +36,9 @@ async def validateChangeCommand(state):
         await validateChangeCommand(state)
 
 
-@app.route(base + baseLock + "/sendState/<state>", methods=["POST"])
+@app.route(base + baseBlockchain + baseLock + "/sendState/<state>", methods=["POST"])
 
-async def sendStateLock(state):
+async def sendStateLockPublic(state):
     nonce = await getNonce()
     
     timeStart = time.time()
@@ -63,8 +63,8 @@ async def sendStateLock(state):
 
     return jsonify(res)
 
-@app.route(base + baseLock + "/getState")
-async def getStateLOCK():
+@app.route(base + baseBlockchain + baseLock + "/getState")
+async def getStateLOCKPublic():
     command = contractLock.functions.getcommandLOCK().call()
     print("Comando obtenido"+command)
     typeLock = "Cerradura bloqueada"

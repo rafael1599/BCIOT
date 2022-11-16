@@ -1,4 +1,4 @@
-from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction
+from routes.bpublic.bpublic import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain
 
 baseSML = "/smartLight"
 
@@ -24,8 +24,8 @@ async def validateChangeCommand(state):
     else:
         await validateChangeCommand(state)
 
-@app.route(base + baseSML + "/sendState/<state>", methods=["POST"])
-async def sendStateSML(state):
+@app.route(base + baseBlockchain + baseSML + "/sendState/<state>", methods=["POST"])
+async def sendStateSMLPublic(state):
     nonce = await getNonce()
     
     timeStart = time.time()
@@ -50,8 +50,8 @@ async def sendStateSML(state):
 
     return jsonify(res)
 
-@app.route(base + baseSML + "/getState")
-async def getStateSML():
+@app.route(base + baseBlockchain + baseSML + "/getState")
+async def getStateSMLPublic():
     command = contractSML.functions.getcommandSML().call()
     typeLight = "Apagado"
     if command == "Apagar":

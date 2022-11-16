@@ -1,4 +1,4 @@
-from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction
+from routes.bpublic.bpublic import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain
 baseLED = "/LED"
 
 contractAddressLED = "0x181Ebcb99c15d23eC0670E6Afdd9EBc46eA855eA"
@@ -24,8 +24,8 @@ async def validateChangeCommand(state):
     else:
         await validateChangeCommand(state)
 
-@app.route(base + baseLED + "/sendState/<state>", methods=["POST"])
-async def sendStateLED(state):
+@app.route(base + baseBlockchain + baseLED + "/sendState/<state>", methods=["POST"])
+async def sendStateLEDPublic(state):
     res = {}
     nonce = await getNonce()
     
@@ -48,10 +48,10 @@ async def sendStateLED(state):
     }
     return jsonify(res), 200
 
-@app.route(base + baseLED + "/getState")
-async def getStateLED():
+@app.route(base + baseBlockchain + baseLED + "/getState")
+async def getStateLEDPublic():
     command = contractLED.functions.getcommandLED().call()
-    print("Comando obtenido"+command)
+    print("Comando obtenido publica"+command)
     typeLight = "Apagado"
     if command == "Encender":
         typeLight = "Encendido"
