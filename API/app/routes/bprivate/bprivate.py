@@ -1,4 +1,4 @@
-from routes.routes import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify
+from routes.routes import app, time, base, json, jsonify, localhost, private_w3, private_chainId, private_account, private_nonce
 
 baseBlockchain = '/Private'
 

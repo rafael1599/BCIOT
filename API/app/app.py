@@ -21,8 +21,8 @@ private_key = "6aa764ea368f0d774061518b15866c3453a4ade37171ac9f2561109b3bc4823b"
 localhost =  'http://127.0.0.1:8545'
 private_w3 = private_w3(private_w3.HTTPProvider(localhost))
 private_chainId = 1337
-# account = "0xdc07AF52989E4ddA498918C9fa169d60134141f8"
-# nonce = w3.eth.getTransactionCount(account)
+private_account = "0x4d7e8dcf3f4bc4bae10acf4ba40e3092b88d9acd"
+private_nonce = private_w3.eth.getTransactionCount(account)
 # private_key = "6aa764ea368f0d774061518b15866c3453a4ade37171ac9f2561109b3bc4823b"
 
 app = Flask(__name__)
