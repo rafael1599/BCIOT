@@ -1,4 +1,4 @@
-from routes.bprivate.bprivate import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain
+from routes.bprivate.bprivate import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, baseBlockchain
 baseLED = "/LED"
 
 contractAddressLED = "0x181Ebcb99c15d23eC0670E6Afdd9EBc46eA855eA"
@@ -27,15 +27,15 @@ async def validateChangeCommand(state):
 @app.route(base + baseBlockchain + baseLED + "/sendState/<state>", methods=["POST"])
 async def sendStateLEDPrivate(state):
     res = {}
-    nonce = await getNonce()
+    # nonce = await getNonce()
     
     timeStart = time.time()
     
     transaccion = await buildTransactionLED(state, nonce)
-    signedTransaction = await signTransaction(transaccion)
-    hashedTransaction = await hashTransaction(signedTransaction)
-    print("################################################################")
-    print(signedTransaction)
+    # signedTransaction = await signTransaction(transaccion)
+    # hashedTransaction = await hashTransaction(signedTransaction)
+    # print("################################################################")
+    # print(signedTransaction)
     await validateChangeCommand(state)
     
     timeEnd = time.time()

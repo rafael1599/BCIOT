@@ -1,21 +1,12 @@
-from routes.bprivate.bprivate import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain
+from routes.bprivate.bprivate import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, baseBlockchain
 
 baseLock = "/smartLock"
 
-# BC PUBLICA
-publicContractLOCK = "0x76508615457ceE3bb2EA93aE01bCF7C13EC16Af9"
-publicAbiLock = json.loads(
+contractAddressLOCK = "0x76508615457ceE3bb2EA93aE01bCF7C13EC16Af9"
+contractAbiLOCK = json.loads(
         '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLOCK", 				"type": "string" 			} 		], 		"name": "manejarLOCK", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLOCK", 				"type": "string" 			} 		], 		"name": "enviarcommandLOCK", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
     )
-contractLock = w3.eth.contract(address=publicContractLOCK, abi=publicAbiLock)
-
-# BC PRIVADA
-
-# privateContractLOCK = "0x76508615457ceE3bb2EA93aE01bCF7C13EC16Af9"
-# privateAbiLock = json.loads(
-#         '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLOCK", 				"type": "string" 			} 		], 		"name": "manejarLOCK", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLOCK", 				"type": "string" 			} 		], 		"name": "enviarcommandLOCK", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
-#     )
-# contractLock = w3.eth.contract(address=privateContractLOCK, abi=privateAbiLock)
+contractLock = w3.eth.contract(address=contractAddressLOCK, abi=contractAbiLOCK)
 
 
 async def buildTransactionLOCK(state, nonce):
@@ -39,15 +30,15 @@ async def validateChangeCommand(state):
 @app.route(base + baseBlockchain + baseLock + "/sendState/<state>", methods=["POST"])
 
 async def sendStateLockPrivate(state):
-    nonce = await getNonce()
+    # nonce = await getNonce()
     
     timeStart = time.time()
     
     transaccion = await buildTransactionLOCK(state, nonce)
-    signedTransaction = await signTransaction(transaccion)
-    hashedTransaction = await hashTransaction(signedTransaction)
-    print("################################################################")
-    print(signedTransaction)
+    # signedTransaction = await signTransaction(transaccion)
+    # hashedTransaction = await hashTransaction(signedTransaction)
+    # print("################################################################")
+    # print(signedTransaction)
     await validateChangeCommand(state)
     
     timeEnd = time.time()

@@ -1,4 +1,4 @@
-from routes.bprivate.bprivate import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain
+from routes.bprivate.bprivate import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, baseBlockchain
 
 baseSML = "/smartLight"
 
@@ -7,6 +7,7 @@ contractAbiSML = json.loads(
     '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandSML", 				"type": "string" 			} 		], 		"name": "manejarSML", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandSML", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandSML", 				"type": "string" 			} 		], 		"name": "enviarcommandSML", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandSML", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
 )
 contractSML = w3.eth.contract(address=contractAddressSML, abi=contractAbiSML)
+
 async def buildTransactionSML(state, nonce):
     return contractSML.functions.enviarcommandSML(state).buildTransaction(
         {
@@ -26,15 +27,15 @@ async def validateChangeCommand(state):
 
 @app.route(base + baseBlockchain + baseSML + "/sendState/<state>", methods=["POST"])
 async def sendStateSMLPrivate(state):
-    nonce = await getNonce()
+    # nonce = await getNonce()
     
     timeStart = time.time()
     
     transaccion = await buildTransactionSML(state, nonce)
-    signedTransaction = await signTransaction(transaccion)
-    hashedTransaction = await hashTransaction(signedTransaction)
-    print("################################################################")
-    print(signedTransaction)
+    # signedTransaction = await signTransaction(transaccion)
+    # hashedTransaction = await hashTransaction(signedTransaction)
+    # print("################################################################")
+    # print(signedTransaction)
     await validateChangeCommand(state)
     
     timeEnd = time.time()
