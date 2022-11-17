@@ -1,4 +1,4 @@
-from routes.bprivate.bprivate import app, time, base, json, jsonify, baseBlockchain, localhost, private_w3, private_chainId, private_account, private_nonce
+from routes.bprivate.bprivate import app, time, base, json, jsonify, baseBlockchain, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate
 
 baseSML = "/smartLight"
 
@@ -6,14 +6,14 @@ contractAddressSML = "0x59488D5d49d5f00270E15F184566893Ef2bF0457"
 contractAbiSML = json.loads(
     '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandSML", 				"type": "string" 			} 		], 		"name": "manejarSML", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandSML", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandSML", 				"type": "string" 			} 		], 		"name": "enviarcommandSML", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandSML", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
 )
-contractSML = w3.eth.contract(address=contractAddressSML, abi=contractAbiSML)
+contractSML = private_w3.eth.contract(address=contractAddressSML, abi=contractAbiSML)
 
 async def buildTransactionSML(state, nonce):
     return contractSML.functions.enviarcommandSML(state).buildTransaction(
         {
-            "gasPrice": w3.eth.gas_price,
-            "chainId": chainId,
-            "from": account,
+            "gasPrice": private_w3.eth.gas_price,
+            "chainId": private_chainId,
+            "from": private_account,
             "nonce": nonce,
         }
     )

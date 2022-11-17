@@ -1,4 +1,4 @@
-from routes.bprivate.bprivate import app, time, base, json, jsonify, baseBlockchain, localhost, private_w3, private_chainId, private_account, private_nonce
+from routes.bprivate.bprivate import app, time, base, json, jsonify, baseBlockchain, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate
 
 baseLock = "/smartLock"
 
@@ -6,15 +6,15 @@ contractAddressLOCK = "0x76508615457ceE3bb2EA93aE01bCF7C13EC16Af9"
 contractAbiLOCK = json.loads(
         '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLOCK", 				"type": "string" 			} 		], 		"name": "manejarLOCK", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLOCK", 				"type": "string" 			} 		], 		"name": "enviarcommandLOCK", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
     )
-contractLock = w3.eth.contract(address=contractAddressLOCK, abi=contractAbiLOCK)
+contractLock = private_w3.eth.contract(address=contractAddressLOCK, abi=contractAbiLOCK)
 
 
 async def buildTransactionLOCK(state, nonce):
     return contractLock.functions.enviarcommandLOCK(state).buildTransaction(
         {
-            "gasPrice": w3.eth.gas_price,
-            "chainId": chainId,
-            "from": account,
+            "gasPrice": private_w3.eth.gas_price,
+            "chainId": private_chainId,
+            "from": private_account,
             "nonce": nonce,
         }
     )
