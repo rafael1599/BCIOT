@@ -3,6 +3,7 @@ import asyncio
 import warnings
 import time
 from web3 import Web3 as w3
+from web3 import Web3 as private_w3
 import json
 import sys
 sys.setrecursionlimit(5000)
@@ -18,7 +19,7 @@ private_key = "6aa764ea368f0d774061518b15866c3453a4ade37171ac9f2561109b3bc4823b"
 
 # BC PRIVADA
 localhost =  'http://127.0.0.1:8545'
-w3 = w3(w3.HTTPProvider(localhost))
+private_w3 = private_w3(private_w3.HTTPProvider(localhost))
 private_chainId = 1337
 # account = "0xdc07AF52989E4ddA498918C9fa169d60134141f8"
 # nonce = w3.eth.getTransactionCount(account)
