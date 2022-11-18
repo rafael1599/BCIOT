@@ -1,4 +1,4 @@
-from routes.bprivate.bprivate import app, time, base, json, jsonify, baseBlockchain, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate
+from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate, signTransactionPrivate, hashTransactionPrivate, baseBlockchain
 
 baseLock = "/smartLock"
 
