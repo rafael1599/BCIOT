@@ -1,4 +1,4 @@
-from routes.bpublic.bpublic import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain
+from routes.bpublic.bpublic import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain, psutil
 baseLED = "/LED"
 
 contractAddressLED = "0x181Ebcb99c15d23eC0670E6Afdd9EBc46eA855eA"
@@ -31,9 +31,23 @@ async def sendStateLEDPublic(state):
     
     timeStart = time.time()
     
+    #Sacando el porcentaje init
+    pcrData = psutil.virtual_memory()
+    porcentaje1 = pcrData.percent
+    print("=======================================================================")
+    print("El porcentaje1 es: ",porcentaje1)
+    #-----------------------------------------------------------------------------
     transaccion = await buildTransactionLED(state, nonce)
     signedTransaction = await signTransaction(transaccion)
     hashedTransaction = await hashTransaction(signedTransaction)
+    #-----------------------------------------------------------------------------
+    porcentaje2 = pcrData.percent
+    print("=======================================================================")
+    print("El porcentaje2 es: ",porcentaje2)
+    promPercent = (porcentaje1+porcentaje2)/2
+    print("=======================================================================")
+    print("El porcentaje promedio es: ",promPercent)
+    #Sacando el porcentaje end
     print("################################################################")
     print(signedTransaction)
     await validateChangeCommand(state)

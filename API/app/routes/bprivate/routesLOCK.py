@@ -1,4 +1,4 @@
-from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate, signTransactionPrivate, hashTransactionPrivate, baseBlockchain, serialcom
+from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate, signTransactionPrivate, hashTransactionPrivate, baseBlockchain, serialcom, psutil
 
 baseLock = "/smartLock"
 
@@ -45,9 +45,23 @@ async def sendStateLockPrivate(state):
     
     timeStart = time.time()
     
+     #Sacando el porcentaje init
+    pcrData = psutil.virtual_memory()
+    porcentaje1 = pcrData.percent
+    print("=======================================================================")
+    print("El porcentaje1 es: ",porcentaje1)
+    #-----------------------------------------------------------------------------
     transaccion = await buildTransactionLOCK(state, nonce)
     signedTransaction = await signTransactionPrivate(transaccion)
     hashedTransaction = await hashTransactionPrivate(signedTransaction)
+     #-----------------------------------------------------------------------------
+    porcentaje2 = pcrData.percent
+    print("=======================================================================")
+    print("El porcentaje2 es: ",porcentaje2)
+    promPercent = (porcentaje1+porcentaje2)/2
+    print("=======================================================================")
+    print("El porcentaje promedio es: ",promPercent)
+    #Sacando el porcentaje end
     print("################################################################")
     print(signedTransaction)
     await validateChangeCommand(state)

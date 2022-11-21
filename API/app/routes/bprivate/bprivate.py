@@ -1,4 +1,4 @@
-from routes.routes import app, time, base, json, jsonify, serialcom
+from routes.routes import app, time, base, json, jsonify, serialcom, psutil
 from web3 import Web3 as private_w3
 
 baseBlockchain = '/Private'

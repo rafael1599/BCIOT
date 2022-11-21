@@ -1,4 +1,4 @@
-from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate, signTransactionPrivate, hashTransactionPrivate, baseBlockchain, serialcom
+from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate, signTransactionPrivate, hashTransactionPrivate, baseBlockchain, serialcom, psutil
 baseLED = "/LED"
 
 contractAddressLED = "0x23B81b7c5c0f1368f1Add8F21E066BCF72AD8670"
@@ -40,10 +40,23 @@ async def sendStateLEDPrivate(state):
     nonce = await getNoncePrivate()
     
     timeStart = time.time()
-    
+    #Sacando el porcentaje init
+    pcrData = psutil.virtual_memory()
+    porcentaje1 = pcrData.percent
+    print("=======================================================================")
+    print("El porcentaje1 es: ",porcentaje1)
+    #-----------------------------------------------------------------------------
     transaccion = await buildTransactionLED(state, nonce)
     signedTransaction = await signTransactionPrivate(transaccion)
     hashedTransaction = await hashTransactionPrivate(signedTransaction)
+    #-----------------------------------------------------------------------------
+    porcentaje2 = pcrData.percent
+    print("=======================================================================")
+    print("El porcentaje2 es: ",porcentaje2)
+    promPercent = (porcentaje1+porcentaje2)/2
+    print("=======================================================================")
+    print("El porcentaje promedio es: ",promPercent)
+    #Sacando el porcentaje end
     print("################################################################")
     print(signedTransaction)
     await validateChangeCommand(state)
