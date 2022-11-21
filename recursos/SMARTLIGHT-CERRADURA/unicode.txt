@@ -1,0 +1,65 @@
+#include <Servo.h>
+Servo ServoMotor;
+
+//PINES ARDUINO
+int redPin = 3;
+int greenPin = 5;
+int bluePin = 6;
+
+//VALORES DE LOS COLORES RGB
+int energyRed = 250;
+int energyGreen = 250;
+int energyBlue = 250;
+int energyAll = 250;
+
+String command;
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+
+  ServoMotor.attach(11);
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  ServoMotor.write(5);
+}
+void loop() {
+  // put your main code here, to run repeatedly:
+  while (Serial.available() == 0) {
+  }
+  
+    // PARA EL RGB
+    energyRed = Serial.readStringUntil(':').toInt();
+  	energyGreen = Serial.readStringUntil(':').toInt();
+    energyBlue = Serial.readStringUntil('\r').toInt();
+   
+   
+  if ((energyRed == 0)&&(energyGreen == 10)&&(energyBlue == 0)){
+    analogWrite(redPin, energyRed);
+    analogWrite(bluePin, energyBlue);
+    analogWrite(greenPin, energyGreen);
+    ServoMotor.write(5);
+    Serial.print("Cerradura desbloquada satisfactoriamente\n");
+  }
+  
+  if ((energyRed == 10)&&(energyGreen == 0)&&(energyBlue == 0)){
+    analogWrite(redPin, energyRed);
+    analogWrite(bluePin, energyBlue);
+    analogWrite(greenPin, energyGreen);
+    ServoMotor.write(50);
+    Serial.print("Cerradura bloquada\n");
+  }
+  
+  if ((energyRed != 0)||(energyGreen != 0)||(energyBlue != 0)){
+  	analogWrite(redPin, energyRed);
+    analogWrite(bluePin, energyBlue);
+    analogWrite(greenPin, energyGreen);
+    Serial.print("Se ha encendido tu color favorito\n");
+  }
+  
+  if ((energyRed == 0)&&(energyGreen == 0)&&(energyBlue == 0)){
+  	analogWrite(redPin, energyRed);
+    analogWrite(bluePin, energyBlue);
+    analogWrite(greenPin, energyGreen);
+    Serial.print("SmartLight apagado satisfactoriamente\n");
+  }
+}
