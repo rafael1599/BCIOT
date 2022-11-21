@@ -1,4 +1,4 @@
-from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate, signTransactionPrivate, hashTransactionPrivate, baseBlockchain
+from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate, signTransactionPrivate, hashTransactionPrivate, baseBlockchain, serialcom
 
 baseSML = "/smartLight"
 
@@ -17,6 +17,15 @@ async def buildTransactionSML(state, nonce):
             "nonce": nonce,
         }
     )
+
+def smlColor(color):
+    serialcom.write(str(color).encode())
+    
+def smlOff():
+	serialcom.write(str('0:0:0').encode())
+
+def disconnect():
+	serialcom.close()
 
 async def validateChangeCommand(state):
     command = contractSML.functions.getcommandSML().call()
@@ -41,6 +50,13 @@ async def sendStateSMLPrivate(state):
     await validateChangeCommand(state)
     
     timeEnd = time.time()
+
+    if state == 'Apagar':
+        smlOff()
+    if state != 'Apagar':
+        smlColor(state)
+    if state == '':
+        disconnect()
 
     res["message"] = "command enviado satisfactoriamente!"
     res["status"] = 200

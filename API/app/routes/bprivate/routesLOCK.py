@@ -1,4 +1,4 @@
-from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate, signTransactionPrivate, hashTransactionPrivate, baseBlockchain
+from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate, signTransactionPrivate, hashTransactionPrivate, baseBlockchain, serialcom
 
 baseLock = "/smartLock"
 
@@ -18,6 +18,15 @@ async def buildTransactionLOCK(state, nonce):
             "nonce": nonce,
         }
     )
+
+def LockOpen():
+    serialcom.write(str('0:10:0').encode())
+    
+def lockClose():
+	serialcom.write(str('10:0:0').encode())
+
+def disconnect():
+	serialcom.close()
     
 async def validateChangeCommand(state):
     command = contractLock.functions.getcommandLOCK().call()
@@ -44,6 +53,15 @@ async def sendStateLockPrivate(state):
     await validateChangeCommand(state)
     
     timeEnd = time.time()
+
+    if state == "open":
+        LockOpen()
+
+    if state == "close":
+        lockClose()
+
+    if state == '':
+        disconnect()
 
     res["message"] = "command enviado satisfactoriamente!"
     res["status"] = 200

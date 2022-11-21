@@ -1,4 +1,4 @@
-from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate, signTransactionPrivate, hashTransactionPrivate, baseBlockchain
+from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate, signTransactionPrivate, hashTransactionPrivate, baseBlockchain, serialcom
 baseLED = "/LED"
 
 contractAddressLED = "0x23B81b7c5c0f1368f1Add8F21E066BCF72AD8670"
@@ -16,6 +16,15 @@ async def buildTransactionLED(state, nonce):
             "nonce": nonce,
         }
     )
+
+def ledOn():
+    serialcom.write(str('1').encode())
+    
+def ledOff():
+	serialcom.write(str('0').encode())
+
+def disconnect():
+	serialcom.close()
 
 async def validateChangeCommand(state):
     command = contractLED.functions.getcommandLED().call()
@@ -40,6 +49,13 @@ async def sendStateLEDPrivate(state):
     await validateChangeCommand(state)
     
     timeEnd = time.time()
+    
+    if state == 'Encender':
+        ledOn()
+    if state == 'Apagar':
+        ledOff()
+    if state == '':
+        disconnect()
 
     res["message"] = "command enviado satisfactoriamente!"
     res["status"] = 200
