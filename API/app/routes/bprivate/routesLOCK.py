@@ -2,7 +2,7 @@ from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, 
 
 baseLock = "/smartLock"
 
-contractAddressLOCK = "0x76508615457ceE3bb2EA93aE01bCF7C13EC16Af9"
+contractAddressLOCK = "0xaA864ab0BA75Dc2424539D8A139578024dECFcf3"
 contractAbiLOCK = json.loads(
         '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLOCK", 				"type": "string" 			} 		], 		"name": "manejarLOCK", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLOCK", 				"type": "string" 			} 		], 		"name": "enviarcommandLOCK", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
     )
@@ -42,31 +42,23 @@ async def sendStateLockPrivate(state):
     res = {}
     
     nonce = await getNoncePrivate()
-    
+
     timeStart = time.time()
-    
-     #Sacando el porcentaje init
-    pcrData = psutil.virtual_memory()
-    porcentaje1 = pcrData.percent
-    print("=======================================================================")
-    print("El porcentaje1 es: ",porcentaje1)
     #-----------------------------------------------------------------------------
     transaccion = await buildTransactionLOCK(state, nonce)
     signedTransaction = await signTransactionPrivate(transaccion)
     hashedTransaction = await hashTransactionPrivate(signedTransaction)
-     #-----------------------------------------------------------------------------
-    porcentaje2 = pcrData.percent
-    print("=======================================================================")
-    print("El porcentaje2 es: ",porcentaje2)
-    promPercent = (porcentaje1+porcentaje2)/2
-    print("=======================================================================")
-    print("El porcentaje promedio es: ",promPercent)
+    #-----------------------------------------------------------------------------
+    timeEnd = time.time()
+   #Sacando el porcentaje init
+    pcrData = psutil.cpu_percent(interval=0.5)
+    print("El porcentaje es: ",pcrData)
     #Sacando el porcentaje end
     print("################################################################")
     print(signedTransaction)
     await validateChangeCommand(state)
     
-    timeEnd = time.time()
+    
 
     if state == "open":
         LockOpen()
@@ -81,7 +73,8 @@ async def sendStateLockPrivate(state):
     res["status"] = 200
     res["data"] = {
         "success": True,
-        "duration": timeEnd - timeStart
+        "duration": timeEnd - timeStart,
+        "pcr": pcrData
     }
 
     return jsonify(res)

@@ -40,28 +40,20 @@ async def sendStateLEDPrivate(state):
     nonce = await getNoncePrivate()
     
     timeStart = time.time()
-    #Sacando el porcentaje init
-    pcrData = psutil.virtual_memory()
-    porcentaje1 = pcrData.percent
-    print("=======================================================================")
-    print("El porcentaje1 es: ",porcentaje1)
     #-----------------------------------------------------------------------------
     transaccion = await buildTransactionLED(state, nonce)
     signedTransaction = await signTransactionPrivate(transaccion)
     hashedTransaction = await hashTransactionPrivate(signedTransaction)
     #-----------------------------------------------------------------------------
-    porcentaje2 = pcrData.percent
-    print("=======================================================================")
-    print("El porcentaje2 es: ",porcentaje2)
-    promPercent = (porcentaje1+porcentaje2)/2
-    print("=======================================================================")
-    print("El porcentaje promedio es: ",promPercent)
+    timeEnd = time.time()
+    #Sacando el porcentaje init
+    pcrData = psutil.cpu_percent(interval=0.5)
+    print("El porcentaje es: ",pcrData)
     #Sacando el porcentaje end
     print("################################################################")
     print(signedTransaction)
     await validateChangeCommand(state)
     
-    timeEnd = time.time()
     
     if state == 'Encender':
         ledOn()
@@ -74,7 +66,8 @@ async def sendStateLEDPrivate(state):
     res["status"] = 200
     res["data"] = {
         "success": True,
-        "duration": timeEnd - timeStart
+        "duration": timeEnd - timeStart,
+        "pcr": pcrData
     }
     return jsonify(res), 200
 

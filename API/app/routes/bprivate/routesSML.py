@@ -2,7 +2,7 @@ from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, 
 
 baseSML = "/smartLight"
 
-contractAddressSML = "0x59488D5d49d5f00270E15F184566893Ef2bF0457"
+contractAddressSML = "0xF65d3057f441140a279410d38332a668084A6A87"
 contractAbiSML = json.loads(
     '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandSML", 				"type": "string" 			} 		], 		"name": "manejarSML", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandSML", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandSML", 				"type": "string" 			} 		], 		"name": "enviarcommandSML", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandSML", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
 )
@@ -38,32 +38,22 @@ async def validateChangeCommand(state):
 async def sendStateSMLPrivate(state):
     res = {}
     
-    nonce = await getNoncePrivate()
-    
+    nonce = await getNoncePrivate()  
+        
     timeStart = time.time()
-    
-    #Sacando el porcentaje init
-    pcrData = psutil.virtual_memory()
-    porcentaje1 = pcrData.percent
-    print("=======================================================================")
-    print("El porcentaje1 es: ",porcentaje1)
     #-----------------------------------------------------------------------------
     transaccion = await buildTransactionSML(state, nonce)
     signedTransaction = await signTransactionPrivate(transaccion)
     hashedTransaction = await hashTransactionPrivate(signedTransaction)
      #-----------------------------------------------------------------------------
-    porcentaje2 = pcrData.percent
-    print("=======================================================================")
-    print("El porcentaje2 es: ",porcentaje2)
-    promPercent = (porcentaje1+porcentaje2)/2
-    print("=======================================================================")
-    print("El porcentaje promedio es: ",promPercent)
+    timeEnd = time.time()
+    #Sacando el porcentaje init
+    pcrData = psutil.cpu_percent(interval=0.5)
+    print("El porcentaje es: ",pcrData)
     #Sacando el porcentaje end
     print("################################################################")
     print(signedTransaction)
     await validateChangeCommand(state)
-    
-    timeEnd = time.time()
 
     if state == 'Apagar':
         smlOff()
@@ -76,7 +66,8 @@ async def sendStateSMLPrivate(state):
     res["status"] = 200
     res["data"] = {
         "success": True,
-        "duration": timeEnd - timeStart
+        "duration": timeEnd - timeStart,
+        "pcr": pcrData
     }
 
     return jsonify(res)

@@ -43,22 +43,16 @@ async def sendStateLockPublic(state):
     
     timeStart = time.time()
     
-    #Sacando el porcentaje init
-    pcrData = psutil.virtual_memory()
-    porcentaje1 = pcrData.percent
-    print("=======================================================================")
-    print("El porcentaje1 es: ",porcentaje1)
+    
+    timeStart = time.time()
     #-----------------------------------------------------------------------------
     transaccion = await buildTransactionLOCK(state, nonce)
     signedTransaction = await signTransaction(transaccion)
     hashedTransaction = await hashTransaction(signedTransaction)
-    #-----------------------------------------------------------------------------
-    porcentaje2 = pcrData.percent
-    print("=======================================================================")
-    print("El porcentaje2 es: ",porcentaje2)
-    promPercent = (porcentaje1+porcentaje2)/2
-    print("=======================================================================")
-    print("El porcentaje promedio es: ",promPercent)
+    timeEnd = time.time()
+    #Sacando el porcentaje init
+    pcrData = psutil.cpu_percent(interval=0.5)
+    print("El porcentaje es: ",pcrData)
     #Sacando el porcentaje end
     print("################################################################")
     print(signedTransaction)
@@ -72,7 +66,8 @@ async def sendStateLockPublic(state):
     res["status"] = 200
     res["data"] = {
         "success": True,
-        "duration": timeEnd - timeStart
+        "duration": timeEnd - timeStart,
+        "pcr": pcrData
     }
 
     return jsonify(res)
