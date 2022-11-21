@@ -27,6 +27,7 @@ async def validateChangeCommand(state):
 @app.route(base + baseBlockchain + baseLED + "/sendState/<state>", methods=["POST"])
 async def sendStateLEDPrivate(state):
     res = {}
+    
     nonce = await getNoncePrivate()
     
     timeStart = time.time()

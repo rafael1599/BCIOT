@@ -30,20 +30,20 @@ async def validateChangeCommand(state):
 @app.route(base + baseBlockchain + baseLock + "/sendState/<state>", methods=["POST"])
 
 async def sendStateLockPrivate(state):
-    # nonce = await getNonce()
+    res = {}
+    
+    nonce = await getNoncePrivate()
     
     timeStart = time.time()
     
     transaccion = await buildTransactionLOCK(state, nonce)
-    # signedTransaction = await signTransaction(transaccion)
-    # hashedTransaction = await hashTransaction(signedTransaction)
-    # print("################################################################")
-    # print(signedTransaction)
+    signedTransaction = await signTransactionPrivate(transaccion)
+    hashedTransaction = await hashTransactionPrivate(signedTransaction)
+    print("################################################################")
+    print(signedTransaction)
     await validateChangeCommand(state)
     
     timeEnd = time.time()
-
-    res = {}
 
     res["message"] = "command enviado satisfactoriamente!"
     res["status"] = 200
