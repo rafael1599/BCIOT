@@ -2,7 +2,7 @@ from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, 
 
 baseLock = "/smartLock"
 
-contractAddressLOCK = "0xaA864ab0BA75Dc2424539D8A139578024dECFcf3"
+contractAddressLOCK = "0xF474fFC39cC6e601945Beb78B2e69d05ed5af700"
 contractAbiLOCK = json.loads(
         '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLOCK", 				"type": "string" 			} 		], 		"name": "manejarLOCK", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLOCK", 				"type": "string" 			} 		], 		"name": "enviarcommandLOCK", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
     )

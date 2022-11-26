@@ -2,7 +2,7 @@ from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, 
 
 baseSML = "/smartLight"
 
-contractAddressSML = "0xF65d3057f441140a279410d38332a668084A6A87"
+contractAddressSML = "0x07AA0d06c44736018742A547074AFfD484855Cb3"
 contractAbiSML = json.loads(
     '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandSML", 				"type": "string" 			} 		], 		"name": "manejarSML", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandSML", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandSML", 				"type": "string" 			} 		], 		"name": "enviarcommandSML", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandSML", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
 )

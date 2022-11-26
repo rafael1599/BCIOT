@@ -7,10 +7,10 @@ baseBlockchain = '/Private'
 localhost =  'http://127.0.0.1:8502'
 private_w3 = private_w3(private_w3.HTTPProvider(localhost))
 private_chainId = 1337
-private_address = "0x3442e2f6447be971cab4d4fd5f820d14a14c3ef9"
+private_address = "0xdd1b5777d25a19bacf9d58a50445c7bed9cda232"
 private_account = private_w3.toChecksumAddress(private_address)
 private_nonce = private_w3.eth.getTransactionCount(private_account)
-private_key = "52d04451994c912795b149b29492210f52c8ceadff898dcc0bdf0c76ea0aac07"
+private_key = "864b1b31aa42750689194b53a99cdd64d1c49435ae0162671a14cf9b8baa4799"
 
 async def getNoncePrivate():
     return private_w3.eth.getTransactionCount(private_account)

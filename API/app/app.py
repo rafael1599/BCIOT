@@ -5,7 +5,7 @@ sys.setrecursionlimit(5000)
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-serialcom = serial.Serial('COM7', 9600)
+serialcom = serial.Serial('COM6', 9600)
 serialcom.timeout = 1
 
 app = Flask(__name__)
