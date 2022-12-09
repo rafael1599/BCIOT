@@ -1,4 +1,4 @@
-from routes.bpublic.bpublic import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain, psutil
+from routes.bpublic.bpublic import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain, psutil, serialcom
 
 baseLock = "/smartLock"
 
@@ -9,15 +9,6 @@ publicAbiLock = json.loads(
     )
 contractLock = w3.eth.contract(address=publicContractLOCK, abi=publicAbiLock)
 
-# BC PRIVADA
-
-# privateContractLOCK = "0x76508615457ceE3bb2EA93aE01bCF7C13EC16Af9"
-# privateAbiLock = json.loads(
-#         '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLOCK", 				"type": "string" 			} 		], 		"name": "manejarLOCK", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLOCK", 				"type": "string" 			} 		], 		"name": "enviarcommandLOCK", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
-#     )
-# contractLock = w3.eth.contract(address=privateContractLOCK, abi=privateAbiLock)
-
-
 async def buildTransactionLOCK(state, nonce):
     return contractLock.functions.enviarcommandLOCK(state).buildTransaction(
         {
@@ -27,6 +18,15 @@ async def buildTransactionLOCK(state, nonce):
             "nonce": nonce,
         }
     )
+
+def LockOpen():
+    serialcom.write(str('0:10:0').encode())
+    
+def lockClose():
+	serialcom.write(str('10:0:0').encode())
+
+def disconnect():
+	serialcom.close()
     
 async def validateChangeCommand(state):
     command = contractLock.functions.getcommandLOCK().call()
@@ -39,16 +39,14 @@ async def validateChangeCommand(state):
 @app.route(base + baseBlockchain + baseLock + "/sendState/<state>", methods=["POST"])
 
 async def sendStateLockPublic(state):
-    nonce = await getNonce()
-    
-    timeStart = time.time()
-    
+    nonce = await getNonce()    
     
     timeStart = time.time()
     #-----------------------------------------------------------------------------
     transaccion = await buildTransactionLOCK(state, nonce)
     signedTransaction = await signTransaction(transaccion)
     hashedTransaction = await hashTransaction(signedTransaction)
+    #-----------------------------------------------------------------------------
     timeEnd = time.time()
     #Sacando el porcentaje init
     pcrData = psutil.cpu_percent(interval=0.5)
@@ -58,7 +56,14 @@ async def sendStateLockPublic(state):
     print(signedTransaction)
     await validateChangeCommand(state)
     
-    timeEnd = time.time()
+    if state == "open":
+        LockOpen()
+
+    if state == "close":
+        lockClose()
+
+    if state == '':
+        disconnect()
 
     res = {}
 

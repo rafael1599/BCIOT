@@ -1,16 +1,16 @@
-from routes.routes import app, time, base, json, jsonify, serialcom, psutil
+from routes.routes import app, time, base, json, jsonify, psutil, serialcom
 from web3 import Web3 as private_w3
 
 baseBlockchain = '/Private'
 
 # BC PRIVADA
-localhost =  'http://127.0.0.1:8502'
+localhost =  'http://localhost:8545'
 private_w3 = private_w3(private_w3.HTTPProvider(localhost))
 private_chainId = 1337
-private_address = "0xdd1b5777d25a19bacf9d58a50445c7bed9cda232"
+private_address = "0xb27aa5bf2e19e5b3660de782403bbc2c2d020cd9"
 private_account = private_w3.toChecksumAddress(private_address)
 private_nonce = private_w3.eth.getTransactionCount(private_account)
-private_key = "864b1b31aa42750689194b53a99cdd64d1c49435ae0162671a14cf9b8baa4799"
+private_key = "72e5a8374030ccbec31fccd59e39f7beb53221fa4125508fc35558018ba62416"
 
 async def getNoncePrivate():
     return private_w3.eth.getTransactionCount(private_account)

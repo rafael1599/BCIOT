@@ -1,4 +1,4 @@
-from routes.routes import app, time, base, json, jsonify, psutil
+from routes.routes import app, time, base, json, jsonify, psutil, serialcom
 from web3 import Web3 as w3
 
 baseBlockchain = '/Public'

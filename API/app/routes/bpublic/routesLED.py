@@ -1,4 +1,4 @@
-from routes.bpublic.bpublic import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain, psutil
+from routes.bpublic.bpublic import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain, psutil, serialcom
 baseLED = "/LED"
 
 contractAddressLED = "0x181Ebcb99c15d23eC0670E6Afdd9EBc46eA855eA"
@@ -17,6 +17,15 @@ async def buildTransactionLED(state, nonce):
         }
     )
 
+def ledOn():
+    serialcom.write(str('1').encode())
+    
+def ledOff():
+	serialcom.write(str('0').encode())
+
+def disconnect():
+	serialcom.close()
+
 async def validateChangeCommand(state):
     command = contractLED.functions.getcommandLED().call()
     if state == command:
@@ -30,8 +39,7 @@ async def sendStateLEDPublic(state):
     nonce = await getNonce()
     
     timeStart = time.time()
-    
-    timeStart = time.time()
+
     #-----------------------------------------------------------------------------
     transaccion = await buildTransactionLED(state, nonce)
     signedTransaction = await signTransaction(transaccion)
@@ -46,8 +54,13 @@ async def sendStateLEDPublic(state):
     print("################################################################")
     print(signedTransaction)
     await validateChangeCommand(state)
-    
-    timeEnd = time.time()
+
+    if state == 'Encender':
+        ledOn()
+    if state == 'Apagar':
+        ledOff()
+    if state == '':
+        disconnect()
 
     res["message"] = "command enviado satisfactoriamente!"
     res["status"] = 200

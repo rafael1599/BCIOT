@@ -1,4 +1,4 @@
-from routes.bpublic.bpublic import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain, psutil
+from routes.bpublic.bpublic import app, time, base, json, w3, chainId, account, nonce, private_key, jsonify, getNonce, signTransaction, hashTransaction, baseBlockchain, psutil, serialcom
 
 baseSML = "/smartLight"
 
@@ -17,6 +17,15 @@ async def buildTransactionSML(state, nonce):
         }
     )
 
+def smlColor(color):
+    serialcom.write(str(color).encode())
+    
+def smlOff():
+	serialcom.write(str('0:0:0').encode())
+
+def disconnect():
+	serialcom.close()
+
 async def validateChangeCommand(state):
     command = contractSML.functions.getcommandSML().call()
     if state == command:
@@ -29,13 +38,12 @@ async def sendStateSMLPublic(state):
     nonce = await getNonce()
     
     timeStart = time.time()
-    
-    timeStart = time.time()
     #-----------------------------------------------------------------------------
     transaccion = await buildTransactionSML(state, nonce)
     signedTransaction = await signTransaction(transaccion)
     hashedTransaction = await hashTransaction(signedTransaction)
-    #-----------------------------------------------------------------------------
+    #-----------------------------------------------------------------------------    
+    timeEnd = time.time()
     #Sacando el porcentaje init
     pcrData = psutil.cpu_percent(interval=0.5)
     print("El porcentaje es: ",pcrData)
@@ -43,8 +51,13 @@ async def sendStateSMLPublic(state):
     print("################################################################")
     print(signedTransaction)
     await validateChangeCommand(state)
-    
-    timeEnd = time.time()
+
+    if state == 'Apagar':
+        smlOff()
+    if state != 'Apagar':
+        smlColor(state)
+    if state == '':
+        disconnect()
 
     res = {}
 

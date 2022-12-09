@@ -1,7 +1,7 @@
 from routes.bprivate.bprivate import app, time, base, json, jsonify, localhost, private_w3, private_chainId, private_account, private_nonce, getNoncePrivate, signTransactionPrivate, hashTransactionPrivate, baseBlockchain, serialcom, psutil
 baseLED = "/LED"
 
-contractAddressLED = "0x1ce6ba46289e093C20cA947b19b92b15F8308F5A"
+contractAddressLED = "0x32f669c1773c36e12E5D299aA339aE08ed8d30Ff"
 contractAbiLED = json.loads(
     '[ 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLED", 				"type": "string" 			} 		], 		"name": "enviarcommandLED", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLED", 				"type": "string" 			} 		], 		"name": "manejarLED", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLED", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
 )
@@ -53,7 +53,6 @@ async def sendStateLEDPrivate(state):
     print("################################################################")
     print(signedTransaction)
     await validateChangeCommand(state)
-    
     
     if state == 'Encender':
         ledOn()
