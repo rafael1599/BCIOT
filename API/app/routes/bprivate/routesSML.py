@@ -6,7 +6,9 @@ contractAddressSML = "0xb8C0574D583eAfF4D690F1ba0de1dcBee781f939"
 contractAbiSML = json.loads(
     '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandSML", 				"type": "string" 			} 		], 		"name": "manejarSML", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandSML", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandSML", 				"type": "string" 			} 		], 		"name": "enviarcommandSML", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandSML", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
 )
-contractSML = private_w3.eth.contract(address=contractAddressSML, abi=contractAbiSML)
+contractSML = private_w3.eth.contract(
+    address=contractAddressSML, abi=contractAbiSML)
+
 
 async def buildTransactionSML(state, nonce):
     return contractSML.functions.enviarcommandSML(state).buildTransaction(
@@ -18,14 +20,18 @@ async def buildTransactionSML(state, nonce):
         }
     )
 
+
 def smlColor(color):
     serialcom.write(str(color).encode())
-    
+
+
 def smlOff():
-	serialcom.write(str('0:0:0').encode())
+    serialcom.write(str('0:0:0').encode())
+
 
 def disconnect():
-	serialcom.close()
+    serialcom.close()
+
 
 async def validateChangeCommand(state):
     command = contractSML.functions.getcommandSML().call()
@@ -34,23 +40,24 @@ async def validateChangeCommand(state):
     else:
         await validateChangeCommand(state)
 
+
 @app.route(base + baseBlockchain + baseSML + "/sendState/<state>", methods=["POST"])
 async def sendStateSMLPrivate(state):
     res = {}
-    
-    nonce = await getNoncePrivate()  
-        
+
+    nonce = await getNoncePrivate()
+
     timeStart = time.time()
-    #-----------------------------------------------------------------------------
+    # -----------------------------------------------------------------------------
     transaccion = await buildTransactionSML(state, nonce)
     signedTransaction = await signTransactionPrivate(transaccion)
     hashedTransaction = await hashTransactionPrivate(signedTransaction)
-     #-----------------------------------------------------------------------------
+    # -----------------------------------------------------------------------------
     timeEnd = time.time()
-    #Sacando el porcentaje init
+    # Sacando el porcentaje init
     pcrData = psutil.cpu_percent(interval=0.5)
-    print("El porcentaje es: ",pcrData)
-    #Sacando el porcentaje end
+    print("El porcentaje es: ", pcrData)
+    # Sacando el porcentaje end
     print("################################################################")
     print(signedTransaction)
     await validateChangeCommand(state)
@@ -71,6 +78,7 @@ async def sendStateSMLPrivate(state):
     }
 
     return jsonify(res)
+
 
 @app.route(base + baseBlockchain + baseSML + "/getState")
 async def getStateSMLPrivate():

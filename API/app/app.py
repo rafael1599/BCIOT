@@ -1,5 +1,13 @@
+import routes.routes
+import errors.errors
 from flask import Flask, Response, request, jsonify
-import asyncio, warnings, time, json, sys, serial, psutil
+import asyncio
+import warnings
+import time
+import json
+import sys
+import serial
+import psutil
 
 sys.setrecursionlimit(5000)
 
@@ -12,9 +20,6 @@ app = Flask(__name__)
 
 base = "/api"
 
-import errors.errors
-import routes.routes
 
 if __name__ == "__main__":
     app.run()
-

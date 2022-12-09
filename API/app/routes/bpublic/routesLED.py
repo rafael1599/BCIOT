@@ -7,6 +7,7 @@ contractAbiLED = json.loads(
 )
 contractLED = w3.eth.contract(address=contractAddressLED, abi=contractAbiLED)
 
+
 async def buildTransactionLED(state, nonce):
     return contractLED.functions.enviarcommandLED(state).buildTransaction(
         {
@@ -17,14 +18,18 @@ async def buildTransactionLED(state, nonce):
         }
     )
 
+
 def ledOn():
     serialcom.write(str('1').encode())
-    
+
+
 def ledOff():
-	serialcom.write(str('0').encode())
+    serialcom.write(str('0').encode())
+
 
 def disconnect():
-	serialcom.close()
+    serialcom.close()
+
 
 async def validateChangeCommand(state):
     command = contractLED.functions.getcommandLED().call()
@@ -33,23 +38,24 @@ async def validateChangeCommand(state):
     else:
         await validateChangeCommand(state)
 
+
 @app.route(base + baseBlockchain + baseLED + "/sendState/<state>", methods=["POST"])
 async def sendStateLEDPublic(state):
     res = {}
     nonce = await getNonce()
-    
+
     timeStart = time.time()
 
-    #-----------------------------------------------------------------------------
+    # -----------------------------------------------------------------------------
     transaccion = await buildTransactionLED(state, nonce)
     signedTransaction = await signTransaction(transaccion)
     hashedTransaction = await hashTransaction(signedTransaction)
-    #-----------------------------------------------------------------------------
+    # -----------------------------------------------------------------------------
     timeEnd = time.time()
-    #Sacando el porcentaje init
+    # Sacando el porcentaje init
     pcrData = psutil.cpu_percent(interval=0.5)
-    print("El porcentaje es: ",pcrData)
-    #Sacando el porcentaje end
+    print("El porcentaje es: ", pcrData)
+    # Sacando el porcentaje end
 
     print("################################################################")
     print(signedTransaction)
@@ -70,6 +76,7 @@ async def sendStateLEDPublic(state):
         "pcr": pcrData
     }
     return jsonify(res), 200
+
 
 @app.route(base + baseBlockchain + baseLED + "/getState")
 async def getStateLEDPublic():

@@ -4,9 +4,10 @@ baseLock = "/smartLock"
 
 contractAddressLOCK = "0x9Ebbb5aEe2E601C58de4c9a501Ab44d27B191F5C"
 contractAbiLOCK = json.loads(
-        '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLOCK", 				"type": "string" 			} 		], 		"name": "manejarLOCK", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLOCK", 				"type": "string" 			} 		], 		"name": "enviarcommandLOCK", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
-    )
-contractLock = private_w3.eth.contract(address=contractAddressLOCK, abi=contractAbiLOCK)
+    '[ 	{ 		"anonymous": false, 		"inputs": [ 			{ 				"indexed": false, 				"internalType": "string", 				"name": "commandLOCK", 				"type": "string" 			} 		], 		"name": "manejarLOCK", 		"type": "event" 	}, 	{ 		"inputs": [], 		"name": "commandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	}, 	{ 		"inputs": [ 			{ 				"internalType": "string", 				"name": "_commandLOCK", 				"type": "string" 			} 		], 		"name": "enviarcommandLOCK", 		"outputs": [], 		"stateMutability": "nonpayable", 		"type": "function" 	}, 	{ 		"inputs": [], 		"name": "getcommandLOCK", 		"outputs": [ 			{ 				"internalType": "string", 				"name": "", 				"type": "string" 			} 		], 		"stateMutability": "view", 		"type": "function" 	} ]'
+)
+contractLock = private_w3.eth.contract(
+    address=contractAddressLOCK, abi=contractAbiLOCK)
 
 
 async def buildTransactionLOCK(state, nonce):
@@ -19,15 +20,19 @@ async def buildTransactionLOCK(state, nonce):
         }
     )
 
+
 def LockOpen():
     serialcom.write(str('0:10:0').encode())
-    
+
+
 def lockClose():
-	serialcom.write(str('10:0:0').encode())
+    serialcom.write(str('10:0:0').encode())
+
 
 def disconnect():
-	serialcom.close()
-    
+    serialcom.close()
+
+
 async def validateChangeCommand(state):
     command = contractLock.functions.getcommandLOCK().call()
     if state == command:
@@ -37,27 +42,26 @@ async def validateChangeCommand(state):
 
 
 @app.route(base + baseBlockchain + baseLock + "/sendState/<state>", methods=["POST"])
-
 async def sendStateLockPrivate(state):
     res = {}
-    
+
     nonce = await getNoncePrivate()
 
     timeStart = time.time()
-    #-----------------------------------------------------------------------------
+    # -----------------------------------------------------------------------------
     transaccion = await buildTransactionLOCK(state, nonce)
     signedTransaction = await signTransactionPrivate(transaccion)
     hashedTransaction = await hashTransactionPrivate(signedTransaction)
-    #-----------------------------------------------------------------------------
+    # -----------------------------------------------------------------------------
     timeEnd = time.time()
-   #Sacando el porcentaje init
+   # Sacando el porcentaje init
     pcrData = psutil.cpu_percent(interval=0.5)
-    print("El porcentaje es: ",pcrData)
-    #Sacando el porcentaje end
+    print("El porcentaje es: ", pcrData)
+    # Sacando el porcentaje end
     print("################################################################")
     print(signedTransaction)
     await validateChangeCommand(state)
-    
+
     if state == "open":
         LockOpen()
 
@@ -77,7 +81,8 @@ async def sendStateLockPrivate(state):
 
     return jsonify(res)
 
-@app.route(base + baseBlockchain+ baseLock + "/getState")
+
+@app.route(base + baseBlockchain + baseLock + "/getState")
 async def getStateLOCKPrivate():
     command = contractLock.functions.getcommandLOCK().call()
     print("Comando obtenido privada"+command)
