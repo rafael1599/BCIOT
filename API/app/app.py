@@ -1,5 +1,3 @@
-import routes.routes
-import errors.errors
 from flask import Flask, Response, request, jsonify
 import asyncio
 import warnings
@@ -13,13 +11,15 @@ sys.setrecursionlimit(5000)
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-serialcom = serial.Serial('COM7', 9600)
+serialcom = serial.Serial('COM6', 9600)
 serialcom.timeout = 1
 
 app = Flask(__name__)
 
 base = "/api"
 
+import routes.routes
+import errors.errors
 
 if __name__ == "__main__":
     app.run()

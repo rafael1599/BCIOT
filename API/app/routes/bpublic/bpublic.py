@@ -1,6 +1,3 @@
-import routes.bpublic.routesSML
-import routes.bpublic.routesLOCK
-import routes.bpublic.routesLED
 from routes.routes import app, time, base, json, jsonify, psutil, serialcom
 from web3 import Web3 as w3
 
@@ -22,6 +19,9 @@ async def getNonce():
 async def signTransaction(transaccion):
     return w3.eth.account.sign_transaction(transaccion, private_key=private_key)
 
-
 async def hashTransaction(signedTransaction):
     return w3.eth.send_raw_transaction(signedTransaction.rawTransaction)
+
+import routes.bpublic.routesSML
+import routes.bpublic.routesLOCK
+import routes.bpublic.routesLED

@@ -1,6 +1,3 @@
-import routes.bprivate.routesSML
-import routes.bprivate.routesLOCK
-import routes.bprivate.routesLED
 from routes.routes import app, time, base, json, jsonify, psutil, serialcom
 from web3 import Web3 as private_w3
 
@@ -23,6 +20,9 @@ async def getNoncePrivate():
 async def signTransactionPrivate(transaccion):
     return private_w3.eth.account.sign_transaction(transaccion, private_key=private_key)
 
-
 async def hashTransactionPrivate(signedTransaction):
     return private_w3.eth.send_raw_transaction(signedTransaction.rawTransaction)
+
+import routes.bprivate.routesSML
+import routes.bprivate.routesLOCK
+import routes.bprivate.routesLED
